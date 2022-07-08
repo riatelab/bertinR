@@ -1,6 +1,0 @@
-# (uncomment to add a dependency)
-dependencies:
- - name: bertin
-   version: 0.14
-   src: htmlwidgets/bertin
-   script: bertin.min.js
