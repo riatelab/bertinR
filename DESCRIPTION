@@ -10,7 +10,8 @@ Description: Create and integrate thematic maps in your workflow. This package
     helps to design various cartographic representations such as proportional
     symbols, choropleth or typology maps. It also offers several functions to
     display layout elements that improve the graphic presentation of maps.
-URL: https://github.com/riatelab/bertin/
+URL: https://github.com/riatelab/bertin/,
+    https://riatelab.github.io/bertin/
 BugReports: https://github.com/riatelab/bertin/issues/
 License: GPL-3
 Encoding: UTF-8
