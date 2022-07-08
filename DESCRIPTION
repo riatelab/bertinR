@@ -18,5 +18,9 @@ Encoding: UTF-8
 Imports: 
     htmlwidgets,
     jsonlite 
-Suggests: sf
+Suggests: 
+    knitr,
+    rmarkdown,
+    sf
 RoxygenNote: 7.2.0
+VignetteBuilder: knitr

@@ -1,0 +1,55 @@
+---
+title: "bertin"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{bertin}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## MAp1
+
+```{r setup}
+library(bertin)
+library(sf)
+mtq <- st_read(system.file("geojson/mtq.geojson", package = "bertin"), quiet = TRUE)
+
+bt_param(margin = 10, width = 800, projection = "Mercator")|>
+  bt_bubble(geojson = mtq, values = "POP", k = 30, tooltip = "$POP") |>
+  bt_waterlines(geojson = mtq, dist = 0.25, nb = 5)|>
+  bt_layer(geojson = mtq, fill = "#808080") |>
+  bt_graticule(strokeWidth = 1.5, strokeDasharray = 2, stroke  = "green", step  = 0.1)|>
+  bt_header(text = "What a Map!\nBadaboum!", fontSize = 40) |>
+  bt_footer(text="Credit lines, super long super long super long super long super long", fontSize = 8) |>
+  bt_draw()
+```
+
+
+
+## Map2
+
+```{r}
+
+bt_param(margin = 10, width = 800, projection = "Mercator") |>
+  bt_layer(
+    geojson = mtq,
+    fill = list(
+      type = "choro",
+      values = "CHOM",
+      breaks = c(78.00, 350.75, 839.00, 1659.00, 10046.00),
+      leg_round = -1,
+      leg_title = "Taux de chômage\n. pers",
+      leg_x = 410,
+      leg_y = 10
+    )
+  ) |>
+  bt_draw()
+```
+
