@@ -11,7 +11,7 @@ public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostat
 [![R-CMD-check](https://github.com/riatelab/bertinR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/riatelab/bertinR/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of bertin is to …
+bertin is a R package that allows to create a multitude of interactive thematic maps (symbols, bubble, choropleth, typologies, spikes, dot cartogram, links, flows, dot density maps, "points Bertin", tiles, discontinuities, "mushroom"... ). Based on the javascript library [bertin.js](https://github.com/neocarto/bertin) 1.1.0, this package allows to realize simply, in the syntax of R, vector maps by taking advantage of the modern web technologies (d3.js, d3.geo, d3.geoprojection...).
 
 ## Installation
 
