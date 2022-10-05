@@ -11,7 +11,16 @@ public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostat
 [![R-CMD-check](https://github.com/riatelab/bertinR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/riatelab/bertinR/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of bertin is to …
+Bertin.js is an easy to use JavaScript library mainly based on D3.js
+makes creating thematic maps simple. The principle is to work with
+layers stacked on top of one other. Much like in Geographic Information
+Software (GIS) software, Bertin.js displays layers with a specific
+hierarchy. The layer at bottom are rendered and then followed by the
+layer right above it. Some of the layers are used to display various
+components of a map, some of common layers are: header, footer,
+graticule, outline, choro, typo, prop, shadow, scalebar, text etc.
+
+**`bertin` package is a wrapper around Bertin.js**
 
 ## Installation
 
