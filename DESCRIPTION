@@ -1,6 +1,6 @@
 Package: bertin
 Title: Thematic Cartography with 'bertin.js'
-Version: 0.1.0
+Version: 1.2.0
 Authors@R: c(
     person("Timothée", "Giraud", email = "timothee.giraud@cnrs.fr", 
         role = c("cre","aut"), comment = c(ORCID = "0000-0002-1932-3323")), 
@@ -22,5 +22,5 @@ Suggests:
     knitr,
     rmarkdown,
     sf
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.1
 VignetteBuilder: knitr
