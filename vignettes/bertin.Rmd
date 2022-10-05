@@ -14,16 +14,14 @@ knitr::opts_chunk$set(
 )
 ```
 
-## MAp1
+## Map1
 
 ```{r setup}
 library(bertin)
 library(sf)
 mtq <- st_read(system.file("geojson/mtq.geojson", package = "bertin"), quiet = TRUE)
-
 bt_param(margin = 10, width = 800, projection = "Mercator")|>
   bt_bubble(geojson = mtq, values = "POP", k = 30, tooltip = "$POP") |>
-  bt_waterlines(geojson = mtq, dist = 0.25, nb = 5)|>
   bt_layer(geojson = mtq, fill = "#808080") |>
   bt_graticule(strokeWidth = 1.5, strokeDasharray = 2, stroke  = "green", step  = 0.1)|>
   bt_header(text = "What a Map!\nBadaboum!", fontSize = 40) |>

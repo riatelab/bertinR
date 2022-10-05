@@ -24,7 +24,7 @@ bt_param <- function(margin, width, projection, ...){
 #' Layer
 #'
 #' @param bertin map object
-#' @param geojson sf object
+#' @param geojson sf object EPSG:4326
 #' @param fill fill
 #' @param tooltip tooltip
 #' @param strokeWidth stroke width

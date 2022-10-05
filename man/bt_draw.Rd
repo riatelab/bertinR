@@ -4,14 +4,10 @@
 \alias{bt_draw}
 \title{Draw the map}
 \usage{
-bt_draw(bertin, width = NULL, height = NULL, elementId = NULL)
+bt_draw(bertin, elementId = NULL)
 }
 \arguments{
 \item{bertin}{bertin}
-
-\item{width}{width}
-
-\item{height}{height}
 
 \item{elementId}{elementId}
 }

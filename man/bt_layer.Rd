@@ -19,7 +19,7 @@ bt_layer(
 \arguments{
 \item{bertin}{map object}
 
-\item{geojson}{sf object}
+\item{geojson}{sf object EPSG:4326}
 
 \item{fill}{fill}
 

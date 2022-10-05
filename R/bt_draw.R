@@ -1,15 +1,16 @@
 #' Draw the map
 #'
 #' @param bertin bertin
-#' @param width width
-#' @param height height
+
 #' @param elementId elementId
 #'
 #' @importFrom htmlwidgets createWidget
 #' @importFrom jsonlite toJSON
 #'
 #' @export
-bt_draw <- function(bertin, width = NULL, height = NULL, elementId = NULL) {
+bt_draw <- function(bertin, elementId = NULL) {
+  bertin$params$reverse = TRUE
+
     # forward options using x
     x = list(
       message = as.character(
@@ -17,12 +18,13 @@ bt_draw <- function(bertin, width = NULL, height = NULL, elementId = NULL) {
         )
     )
 
+
     # create widget
     htmlwidgets::createWidget(
       name = 'draw',
       x,
-      width = width,
-      height = height,
+      # width = width,
+      # height = height,
       package = 'bertin',
       elementId = elementId
     )
