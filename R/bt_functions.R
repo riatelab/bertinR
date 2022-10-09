@@ -82,7 +82,29 @@ bt_graticule <- function(bertin, strokeWidth, strokeDasharray,
   return(bertin)
 }
 
-
+#' Outline
+#'
+#' @param bertin map object
+#' @param fill fill
+#' @param opacity opacity
+#' @param stroke str
+#' @param strokeWidth str wid
+#' @param step step
+#' @param ... other param
+#'
+#' @return map object
+#' @export
+#'
+#' @examples
+#' bt_outline(fill = "#ADD8F7", stroke = "#4269ad") |>
+#'   bt_draw()
+bt_outline <- function(bertin, fill, opacity, stroke, strokeWidth, step, ...){
+  res <- c(as.list(environment()), list(...))
+  res <- clean_input(res, type = "outline")
+  if(missing(bertin)){bertin <- list()}
+  bertin$layers[[length(bertin$layers) + 1]] <- res
+  return(bertin)
+}
 
 #' Waterlines
 #'
@@ -185,6 +207,64 @@ bt_bubble <-function(bertin, geojson, values, k, tooltip, ...){
   return(bertin)
 }
 
+#' Regular Bubble
+#'
+#' @param bertin map obj
+#' @param geojson sf obj
+#' @param step values
+#' @param values k
+#' @param tooltip tooltip
+#' @param ... other param
+#'
+#' @return a map object
+#' @export
+#'
+#' @examples
+#' library(sf)
+#' mtq <- st_read(system.file("geojson/mtq.geojson", package = "bertin"), quiet = TRUE)
+#' bt_regularbubble(geojson = mtq, values = "POP", step = 30, k = 40, tooltip = c("$LIBGEO","$POP")) |>
+#'   bt_layer(geojson = mtq, fill = "#808080") |>
+#'   bt_draw()
+bt_regularbubble <- function(bertin, geojson, step, values, tooltip, ...){
+  res <- c(as.list(environment()), list(...))
+  res <- clean_input(res, type = "regularbubble")
+  if(missing(bertin)){bertin <- list()}
+  bertin$layers[[length(bertin$layers) + 1]] <- res
+  return(bertin)
+}
+
+
+#' Dot cartogram
+#'
+#' @param bertin map obj
+#' @param geojson sf obj
+#' @param onedot dot value
+#' @param iteration an integer to define the number of iteration for the Dorling method
+#' @param values values
+#' @param radius radius
+#' @param span spacing between dots
+#' @param fill fill color
+#' @param tooltip tooltip
+#' @param ... other param
+#'
+#' @return a map object
+#' @export
+#'
+#' @examples
+#' library(sf)
+#' world <- st_read(system.file("geojson/world.geojson", package = "bertin"))
+#' data <- read.csv(system.file("csv/data.csv", package = "bertin"))
+#' bt_layer(geojson = world, fill = "#808080") |>
+#'   bt_dotcartogram(geojson = merge(world, data,  by.x = "ISO3", by.y = "id"),
+#'                   onedot = 200000000000, iteration = 200, values = "gdp") |>
+#'   bt_draw()
+bt_dotcartogram <-function(bertin, geojson, onedot, iteration, values, radius, span, fill, tooltip, ...){
+  res <- c(as.list(environment()), list(...))
+  res <- clean_input(res, type = "dotcartogram")
+  if(missing(bertin)){bertin <- list()}
+  bertin$layers[[length(bertin$layers) + 1]] <- res
+  return(bertin)
+}
 
 clean_input <- function(res, type){
   res <- res[unlist(lapply(X = res, FUN = function(x){!is.name(x)}))]
@@ -192,4 +272,3 @@ clean_input <- function(res, type){
   res$type <- type
   res
 }
-

@@ -51,3 +51,15 @@ bt_param(margin = 10, width = 800, projection = "Mercator") |>
   bt_draw()
 ```
 
+## Map3
+
+```{r}
+world <- st_read(system.file("geojson/world.geojson", package = "bertin"))
+bt_param(projection = "InterruptedMollweideHemispheres", clip = TRUE) |>
+  bt_outline(fill = "#ADD8F7", stroke = "#4269ad") |>
+  bt_layer(geojson = world, fill = "#808080") |>
+  bt_graticule(strokeWidth = .5, strokeDasharray = 2, stroke = "#808080", step = 10) |>
+  bt_draw()
+```
+
+
