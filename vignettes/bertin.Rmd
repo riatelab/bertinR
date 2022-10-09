@@ -55,10 +55,27 @@ bt_param(margin = 10, width = 800, projection = "Mercator") |>
 
 ```{r}
 world <- st_read(system.file("geojson/world.geojson", package = "bertin"))
+data <- read.csv(system.file("csv/data.csv", package = "bertin"))
 bt_param(projection = "InterruptedMollweideHemispheres", clip = TRUE) |>
-  bt_outline(fill = "#ADD8F7", stroke = "#4269ad") |>
-  bt_layer(geojson = world, fill = "#808080") |>
-  bt_graticule(strokeWidth = .5, strokeDasharray = 2, stroke = "#808080", step = 10) |>
+  bt_outline(fill = "#ADD8F7") |>
+  bt_layer(geojson = world, fill = "white", fillOpacity = .35) |>
+  bt_graticule() |>
+  bt_bubble(geojson = merge(world, data,  by.x = "ISO3", by.y = "id"),
+            values = "pop", k = 60, fill = list(
+              type = "typo",
+              values = "region",
+              leg_x = 100,
+              leg_y = 100,
+              leg_title = "The Continents"
+            ), tooltip = list(
+              fields = c("$name", "", "Continent", "$region", "Population", "$pop"),
+              fontSize = c(25, 10, 14, 12, 14, 12),
+              fontWeight = c("bold", "normal", "bold", "normal", "bold", "normal")
+            ),
+            leg_round = -2,
+            leg_x = 100,
+            leg_y = 300,
+            leg_title = "Population") |>
   bt_draw()
 ```
 
