@@ -22,6 +22,9 @@
     <loc>https://riatelab.github.io/bertin/reference/bt_bubble.html</loc>
   </url>
   <url>
+    <loc>https://riatelab.github.io/bertin/reference/bt_dotcartogram.html</loc>
+  </url>
+  <url>
     <loc>https://riatelab.github.io/bertin/reference/bt_draw.html</loc>
   </url>
   <url>
@@ -37,7 +40,13 @@
     <loc>https://riatelab.github.io/bertin/reference/bt_layer.html</loc>
   </url>
   <url>
+    <loc>https://riatelab.github.io/bertin/reference/bt_outline.html</loc>
+  </url>
+  <url>
     <loc>https://riatelab.github.io/bertin/reference/bt_param.html</loc>
+  </url>
+  <url>
+    <loc>https://riatelab.github.io/bertin/reference/bt_regularbubble.html</loc>
   </url>
   <url>
     <loc>https://riatelab.github.io/bertin/reference/bt_waterlines.html</loc>
