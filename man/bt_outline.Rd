@@ -22,7 +22,7 @@ bt_outline(bertin, fill, opacity, stroke, strokeWidth, step, ...)
 \item{...}{other param}
 }
 \value{
-map object
+a map object
 }
 \description{
 Outline
