@@ -31,7 +31,13 @@
     <loc>https://riatelab.github.io/bertin/reference/bt_footer.html</loc>
   </url>
   <url>
+    <loc>https://riatelab.github.io/bertin/reference/bt_geolines.html</loc>
+  </url>
+  <url>
     <loc>https://riatelab.github.io/bertin/reference/bt_graticule.html</loc>
+  </url>
+  <url>
+    <loc>https://riatelab.github.io/bertin/reference/bt_hatch.html</loc>
   </url>
   <url>
     <loc>https://riatelab.github.io/bertin/reference/bt_header.html</loc>
@@ -47,6 +53,21 @@
   </url>
   <url>
     <loc>https://riatelab.github.io/bertin/reference/bt_regularbubble.html</loc>
+  </url>
+  <url>
+    <loc>https://riatelab.github.io/bertin/reference/bt_rhumbs.html</loc>
+  </url>
+  <url>
+    <loc>https://riatelab.github.io/bertin/reference/bt_scalebar.html</loc>
+  </url>
+  <url>
+    <loc>https://riatelab.github.io/bertin/reference/bt_shadow.html</loc>
+  </url>
+  <url>
+    <loc>https://riatelab.github.io/bertin/reference/bt_square.html</loc>
+  </url>
+  <url>
+    <loc>https://riatelab.github.io/bertin/reference/bt_tissot.html</loc>
   </url>
   <url>
     <loc>https://riatelab.github.io/bertin/reference/bt_waterlines.html</loc>
