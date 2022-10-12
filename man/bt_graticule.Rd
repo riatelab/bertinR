@@ -29,7 +29,7 @@ Graticules
 library(sf)
 mtq <- st_read(system.file("geojson/mtq.geojson", package = "bertin"), quiet = TRUE)
 bt_param(margin = 10, width = 500, projection = "Winkel3") |>
-  bt_layer(geojson = mtq, fill = "red") |>
+  bt_layer(data = mtq, fill = "red") |>
   bt_graticule(strokeWidth = 1.5, stroke  = "green", step  = 0.1)|>
   bt_draw()
 }

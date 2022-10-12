@@ -27,7 +27,7 @@ Scalebar
 library(sf)
 world <- st_read(system.file("geojson/world.geojson", package = "bertin"))
 bt_outline(fill = "#ADD8F7") |>
-  bt_layer(geojson = world) |>
+  bt_layer(data = world) |>
   bt_scalebar() |>
   bt_draw()
 }

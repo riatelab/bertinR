@@ -24,7 +24,7 @@ bt_param <- function(margin, width, projection, ...){
 #' Layer
 #'
 #' @param bertin map object
-#' @param geojson sf object EPSG:4326
+#' @param data sf object EPSG:4326
 #' @param fill fill
 #' @param tooltip tooltip
 #' @param strokeWidth stroke width
@@ -40,9 +40,9 @@ bt_param <- function(margin, width, projection, ...){
 #' library(sf)
 #' mtq <- st_read(system.file("geojson/mtq.geojson", package = "bertin"), quiet = TRUE)
 #' bt_param(margin = 10, width = 500, projection = "Winkel3") |>
-#'   bt_layer(geojson = mtq, fill = "red") |>
+#'   bt_layer(data = mtq, fill = "red") |>
 #'   bt_draw()
-bt_layer <-function(bertin, geojson, fill,
+bt_layer <-function(bertin, data, fill,
                     tooltip, strokeWidth,
                     strokeDasharray, stroke,step, ...){
   res <- c(as.list(environment()), list(...))
@@ -71,7 +71,7 @@ bt_layer <-function(bertin, geojson, fill,
 #' world <- st_read(system.file("geojson/world.geojson", package = "bertin"))
 #' bt_param(projection = "Robinson", clip = TRUE) |>
 #'   bt_outline() |>
-#'   bt_layer(geojson = world, fill = "white", fillOpacity = .35) |>
+#'   bt_layer(data = world, fill = "white", fillOpacity = .35) |>
 #'   bt_tissot(step = 20) |>
 #'   bt_draw()
 bt_tissot <- function(bertin, step, fill, fillOpacity,
@@ -99,7 +99,7 @@ bt_tissot <- function(bertin, step, fill, fillOpacity,
 #' library(sf)
 #' mtq <- st_read(system.file("geojson/mtq.geojson", package = "bertin"), quiet = TRUE)
 #' bt_param(margin = 10, width = 500, projection = "Winkel3") |>
-#'   bt_layer(geojson = mtq, fill = "red") |>
+#'   bt_layer(data = mtq, fill = "red") |>
 #'   bt_graticule(strokeWidth = 1.5, stroke  = "green", step  = 0.1)|>
 #'   bt_draw()
 bt_graticule <- function(bertin, strokeWidth, strokeDasharray,
@@ -114,7 +114,7 @@ bt_graticule <- function(bertin, strokeWidth, strokeDasharray,
 #' Shadow
 #'
 #' @param bertin map object
-#' @param geojson geojson
+#' @param data sf object EPSG:4326
 #' @param dx dx
 #' @param dy dy
 #' @param stdDeviation blur
@@ -129,10 +129,10 @@ bt_graticule <- function(bertin, strokeWidth, strokeDasharray,
 #' world <- st_read(system.file("geojson/world.geojson", package = "bertin"))
 #' bt_param(projection = "Eckert3", clip = TRUE) |>
 #'   bt_outline() |>
-#'   bt_shadow(geojson = world) |>
-#'   bt_layer(geojson = world, fill = "white") |>
+#'   bt_shadow(data = world) |>
+#'   bt_layer(data = world, fill = "white") |>
 #'   bt_draw()
-bt_shadow <- function(bertin, geojson, dx, dy, stdDeviation, opacity, ...){
+bt_shadow <- function(bertin, data, dx, dy, stdDeviation, opacity, ...){
   res <- c(as.list(environment()), list(...))
   res <- clean_input(res, type = "shadow")
   if(missing(bertin)){bertin <- list()}
@@ -164,31 +164,31 @@ bt_outline <- function(bertin, fill, opacity, stroke, strokeWidth, step, ...){
   return(bertin)
 }
 
-#' Waterlines
-#'
-#' @param bertin map object
-#' @param geojson sf
-#' @param dist dist
-#' @param nb nb
-#' @param ...  other
-#'
-#' @return a map object
-#' @export
-#'
-#' @examples
-#' library(sf)
-#' mtq <- st_read(system.file("geojson/mtq.geojson", package = "bertin"), quiet = TRUE)
-#' bt_param(margin = 10, width = 500, projection = "Winkel3") |>
-#'   bt_layer(geojson = mtq, fill = "red") |>
-#'   bt_waterlines(geojson = mtq, dist = 0.25, nb = 5)|>
-#'   bt_draw()
-bt_waterlines <-function(bertin, geojson, dist, nb, ...){
-  res <- c(as.list(environment()), list(...))
-  res <- clean_input(res, type = "waterlines")
-  if(missing(bertin)){bertin <- list()}
-  bertin$layers[[length(bertin$layers) + 1]] <- res
-  return(bertin)
-}
+#' #' Waterlines
+#' #'
+#' #' @param bertin map object
+#' #' @param data sf object EPSG:4326
+#' #' @param dist dist
+#' #' @param nb nb
+#' #' @param ...  other
+#' #'
+#' #' @return a map object
+#' #' @export
+#' #'
+#' #' @examples
+#' #' library(sf)
+#' #' mtq <- st_read(system.file("geojson/mtq.geojson", package = "bertin"), quiet = TRUE)
+#' #' bt_param(margin = 10, width = 500, projection = "Winkel3") |>
+#' #'   bt_layer(data = mtq, fill = "red") |>
+#' #'   bt_waterlines(data = mtq, dist = 0.25, nb = 5)|>
+#' #'   bt_draw()
+#' bt_waterlines <-function(bertin, data, dist, nb, ...){
+#'   res <- c(as.list(environment()), list(...))
+#'   res <- clean_input(res, type = "waterlines")
+#'   if(missing(bertin)){bertin <- list()}
+#'   bertin$layers[[length(bertin$layers) + 1]] <- res
+#'   return(bertin)
+#' }
 
 #' Header
 #'
@@ -203,7 +203,7 @@ bt_waterlines <-function(bertin, geojson, dist, nb, ...){
 #' library(sf)
 #' mtq <- st_read(system.file("geojson/mtq.geojson", package = "bertin"), quiet = TRUE)
 #' bt_param(margin = 10, width = 500, projection = "Winkel3") |>
-#'   bt_layer(geojson = mtq, fill = "red") |>
+#'   bt_layer(data = mtq, fill = "red") |>
 #'   bt_header(text = "Title") |>
 #'   bt_draw()
 bt_header <-function(bertin, text, fontSize, ...){
@@ -254,7 +254,7 @@ bt_footer <- function(bertin, text, fontSize, ...){
 #' library(sf)
 #' world <- st_read(system.file("geojson/world.geojson", package = "bertin"))
 #' bt_outline(fill = "#ADD8F7") |>
-#'   bt_layer(geojson = world) |>
+#'   bt_layer(data = world) |>
 #'   bt_scalebar() |>
 #'   bt_draw()
 bt_scalebar <- function(bertin, x, y, units, ...){
@@ -357,7 +357,7 @@ bt_rhumbs <- function(bertin, nb, position, stroke, strokeWidth, strokeOpacity, 
 #' Bubble
 #'
 #' @param bertin map obj
-#' @param geojson sf obj
+#' @param data sf object EPSG:4326
 #' @param values values
 #' @param k k
 #' @param tooltip tooltip
@@ -369,10 +369,10 @@ bt_rhumbs <- function(bertin, nb, position, stroke, strokeWidth, strokeOpacity, 
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("geojson/mtq.geojson", package = "bertin"), quiet = TRUE)
-#' bt_bubble(geojson = mtq, values = "POP", k = 60, tooltip = "$LIBGEO") |>
-#'   bt_layer(geojson = mtq, fill = "#808080") |>
+#' bt_bubble(data = mtq, values = "POP", k = 60, tooltip = "$LIBGEO") |>
+#'   bt_layer(data = mtq, fill = "#808080") |>
 #'   bt_draw()
-bt_bubble <-function(bertin, geojson, values, k, tooltip, ...){
+bt_bubble <-function(bertin, data, values, k, tooltip, ...){
   res <- c(as.list(environment()), list(...))
   res <- clean_input(res, type = "bubble")
   if(missing(bertin)){bertin <- list()}
@@ -383,7 +383,7 @@ bt_bubble <-function(bertin, geojson, values, k, tooltip, ...){
 #' Square
 #'
 #' @param bertin map obj
-#' @param geojson sf obj
+#' @param data sf object EPSG:4326
 #' @param values values
 #' @param k k
 #' @param tooltip tooltip
@@ -399,11 +399,11 @@ bt_bubble <-function(bertin, geojson, values, k, tooltip, ...){
 #' data <- merge(world, stats,  by.x = "ISO3", by.y = "id")
 #' bt_param(projection = "Eckert3", clip = TRUE) |>
 #'   bt_outline() |>
-#'   bt_layer(geojson = world, fill = "white") |>
-#'   bt_square(geojson = data,values = "pop", k = 60,
+#'   bt_layer(data = world, fill = "white") |>
+#'   bt_square(data = data,values = "pop", k = 60,
 #'             tooltip = c("$NAMEen", "$pop", "(inh.)")) |>
 #'   bt_draw()
-bt_square <-function(bertin, geojson, values, k, tooltip, ...){
+bt_square <-function(bertin, data, values, k, tooltip, ...){
   res <- c(as.list(environment()), list(...))
   res <- clean_input(res, type = "square")
   if(missing(bertin)){bertin <- list()}
@@ -414,7 +414,7 @@ bt_square <-function(bertin, geojson, values, k, tooltip, ...){
 #' Regular Bubble
 #'
 #' @param bertin map obj
-#' @param geojson sf obj
+#' @param data sf object EPSG:4326
 #' @param step values
 #' @param values k
 #' @param tooltip tooltip
@@ -426,10 +426,10 @@ bt_square <-function(bertin, geojson, values, k, tooltip, ...){
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("geojson/mtq.geojson", package = "bertin"), quiet = TRUE)
-#' bt_regularbubble(geojson = mtq, values = "POP", step = 30, k = 40, tooltip = c("$LIBGEO","$POP")) |>
-#'   bt_layer(geojson = mtq, fill = "#808080") |>
+#' bt_regularbubble(data = mtq, values = "POP", step = 30, k = 40, tooltip = c("$LIBGEO","$POP")) |>
+#'   bt_layer(data = mtq, fill = "#808080") |>
 #'   bt_draw()
-bt_regularbubble <- function(bertin, geojson, step, values, tooltip, ...){
+bt_regularbubble <- function(bertin, data, step, values, tooltip, ...){
   res <- c(as.list(environment()), list(...))
   res <- clean_input(res, type = "regularbubble")
   if(missing(bertin)){bertin <- list()}
@@ -441,7 +441,7 @@ bt_regularbubble <- function(bertin, geojson, step, values, tooltip, ...){
 #' Dot cartogram
 #'
 #' @param bertin map obj
-#' @param geojson sf obj
+#' @param data sf object EPSG:4326
 #' @param onedot dot value
 #' @param iteration an integer to define the number of iteration for the Dorling method
 #' @param values values
@@ -458,11 +458,11 @@ bt_regularbubble <- function(bertin, geojson, step, values, tooltip, ...){
 #' library(sf)
 #' world <- st_read(system.file("geojson/world.geojson", package = "bertin"))
 #' data <- read.csv(system.file("csv/data.csv", package = "bertin"))
-#' bt_layer(geojson = world, fill = "#808080") |>
-#'   bt_dotcartogram(geojson = merge(world, data,  by.x = "ISO3", by.y = "id"),
+#' bt_layer(data = world, fill = "#808080") |>
+#'   bt_dotcartogram(data = merge(world, data,  by.x = "ISO3", by.y = "id"),
 #'                   onedot = 200000000000, iteration = 200, values = "gdp") |>
 #'   bt_draw()
-bt_dotcartogram <-function(bertin, geojson, onedot, iteration, values, radius, span, fill, tooltip, ...){
+bt_dotcartogram <-function(bertin, data, onedot, iteration, values, radius, span, fill, tooltip, ...){
   res <- c(as.list(environment()), list(...))
   res <- clean_input(res, type = "dotcartogram")
   if(missing(bertin)){bertin <- list()}

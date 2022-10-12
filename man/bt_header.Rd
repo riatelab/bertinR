@@ -2,7 +2,32 @@
 % Please edit documentation in R/bt_functions.R
 \name{bt_header}
 \alias{bt_header}
-\title{Header}
+\title{#' Waterlines
+#'
+#' @param bertin map object
+#' @param data sf object EPSG:4326
+#' @param dist dist
+#' @param nb nb
+#' @param ...  other
+#'
+#' @return a map object
+#' @export
+#'
+#' @examples
+#' library(sf)
+#' mtq <- st_read(system.file("geojson/mtq.geojson", package = "bertin"), quiet = TRUE)
+#' bt_param(margin = 10, width = 500, projection = "Winkel3") |>
+#'   bt_layer(data = mtq, fill = "red") |>
+#'   bt_waterlines(data = mtq, dist = 0.25, nb = 5)|>
+#'   bt_draw()
+bt_waterlines <-function(bertin, data, dist, nb, ...){
+  res <- c(as.list(environment()), list(...))
+  res <- clean_input(res, type = "waterlines")
+  if(missing(bertin)){bertin <- list()}
+  bertin$layers[[length(bertin$layers) + 1]] <- res
+  return(bertin)
+}
+Header}
 \usage{
 bt_header(bertin, text, fontSize, ...)
 }
@@ -19,13 +44,38 @@ bt_header(bertin, text, fontSize, ...)
 a map object
 }
 \description{
+#' Waterlines
+#'
+#' @param bertin map object
+#' @param data sf object EPSG:4326
+#' @param dist dist
+#' @param nb nb
+#' @param ...  other
+#'
+#' @return a map object
+#' @export
+#'
+#' @examples
+#' library(sf)
+#' mtq <- st_read(system.file("geojson/mtq.geojson", package = "bertin"), quiet = TRUE)
+#' bt_param(margin = 10, width = 500, projection = "Winkel3") |>
+#'   bt_layer(data = mtq, fill = "red") |>
+#'   bt_waterlines(data = mtq, dist = 0.25, nb = 5)|>
+#'   bt_draw()
+bt_waterlines <-function(bertin, data, dist, nb, ...){
+  res <- c(as.list(environment()), list(...))
+  res <- clean_input(res, type = "waterlines")
+  if(missing(bertin)){bertin <- list()}
+  bertin$layers[[length(bertin$layers) + 1]] <- res
+  return(bertin)
+}
 Header
 }
 \examples{
 library(sf)
 mtq <- st_read(system.file("geojson/mtq.geojson", package = "bertin"), quiet = TRUE)
 bt_param(margin = 10, width = 500, projection = "Winkel3") |>
-  bt_layer(geojson = mtq, fill = "red") |>
+  bt_layer(data = mtq, fill = "red") |>
   bt_header(text = "Title") |>
   bt_draw()
 }

@@ -4,12 +4,12 @@
 \alias{bt_regularbubble}
 \title{Regular Bubble}
 \usage{
-bt_regularbubble(bertin, geojson, step, values, tooltip, ...)
+bt_regularbubble(bertin, data, step, values, tooltip, ...)
 }
 \arguments{
 \item{bertin}{map obj}
 
-\item{geojson}{sf obj}
+\item{data}{sf object EPSG:4326}
 
 \item{step}{values}
 
@@ -28,7 +28,7 @@ Regular Bubble
 \examples{
 library(sf)
 mtq <- st_read(system.file("geojson/mtq.geojson", package = "bertin"), quiet = TRUE)
-bt_regularbubble(geojson = mtq, values = "POP", step = 30, k = 40, tooltip = c("$LIBGEO","$POP")) |>
-  bt_layer(geojson = mtq, fill = "#808080") |>
+bt_regularbubble(data = mtq, values = "POP", step = 30, k = 40, tooltip = c("$LIBGEO","$POP")) |>
+  bt_layer(data = mtq, fill = "#808080") |>
   bt_draw()
 }

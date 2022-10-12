@@ -4,12 +4,12 @@
 \alias{bt_square}
 \title{Square}
 \usage{
-bt_square(bertin, geojson, values, k, tooltip, ...)
+bt_square(bertin, data, values, k, tooltip, ...)
 }
 \arguments{
 \item{bertin}{map obj}
 
-\item{geojson}{sf obj}
+\item{data}{sf object EPSG:4326}
 
 \item{values}{values}
 
@@ -32,8 +32,8 @@ stats <- read.csv(system.file("csv/data.csv", package = "bertin"))
 data <- merge(world, stats,  by.x = "ISO3", by.y = "id")
 bt_param(projection = "Eckert3", clip = TRUE) |>
   bt_outline() |>
-  bt_layer(geojson = world, fill = "white") |>
-  bt_square(geojson = data,values = "pop", k = 60,
+  bt_layer(data = world, fill = "white") |>
+  bt_square(data = data,values = "pop", k = 60,
             tooltip = c("$NAMEen", "$pop", "(inh.)")) |>
   bt_draw()
 }

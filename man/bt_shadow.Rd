@@ -4,12 +4,12 @@
 \alias{bt_shadow}
 \title{Shadow}
 \usage{
-bt_shadow(bertin, geojson, dx, dy, stdDeviation, opacity, ...)
+bt_shadow(bertin, data, dx, dy, stdDeviation, opacity, ...)
 }
 \arguments{
 \item{bertin}{map object}
 
-\item{geojson}{geojson}
+\item{data}{sf object EPSG:4326}
 
 \item{dx}{dx}
 
@@ -32,7 +32,7 @@ library(sf)
 world <- st_read(system.file("geojson/world.geojson", package = "bertin"))
 bt_param(projection = "Eckert3", clip = TRUE) |>
   bt_outline() |>
-  bt_shadow(geojson = world) |>
-  bt_layer(geojson = world, fill = "white") |>
+  bt_shadow(data = world) |>
+  bt_layer(data = world, fill = "white") |>
   bt_draw()
 }

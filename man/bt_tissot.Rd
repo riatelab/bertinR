@@ -43,7 +43,7 @@ library(sf)
 world <- st_read(system.file("geojson/world.geojson", package = "bertin"))
 bt_param(projection = "Robinson", clip = TRUE) |>
   bt_outline() |>
-  bt_layer(geojson = world, fill = "white", fillOpacity = .35) |>
+  bt_layer(data = world, fill = "white", fillOpacity = .35) |>
   bt_tissot(step = 20) |>
   bt_draw()
 }

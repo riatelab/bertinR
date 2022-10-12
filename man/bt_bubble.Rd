@@ -4,12 +4,12 @@
 \alias{bt_bubble}
 \title{Bubble}
 \usage{
-bt_bubble(bertin, geojson, values, k, tooltip, ...)
+bt_bubble(bertin, data, values, k, tooltip, ...)
 }
 \arguments{
 \item{bertin}{map obj}
 
-\item{geojson}{sf obj}
+\item{data}{sf object EPSG:4326}
 
 \item{values}{values}
 
@@ -28,7 +28,7 @@ Bubble
 \examples{
 library(sf)
 mtq <- st_read(system.file("geojson/mtq.geojson", package = "bertin"), quiet = TRUE)
-bt_bubble(geojson = mtq, values = "POP", k = 60, tooltip = "$LIBGEO") |>
-  bt_layer(geojson = mtq, fill = "#808080") |>
+bt_bubble(data = mtq, values = "POP", k = 60, tooltip = "$LIBGEO") |>
+  bt_layer(data = mtq, fill = "#808080") |>
   bt_draw()
 }

@@ -6,7 +6,7 @@
 \usage{
 bt_layer(
   bertin,
-  geojson,
+  data,
   fill,
   tooltip,
   strokeWidth,
@@ -19,7 +19,7 @@ bt_layer(
 \arguments{
 \item{bertin}{map object}
 
-\item{geojson}{sf object EPSG:4326}
+\item{data}{sf object EPSG:4326}
 
 \item{fill}{fill}
 
@@ -45,6 +45,6 @@ Layer
 library(sf)
 mtq <- st_read(system.file("geojson/mtq.geojson", package = "bertin"), quiet = TRUE)
 bt_param(margin = 10, width = 500, projection = "Winkel3") |>
-  bt_layer(geojson = mtq, fill = "red") |>
+  bt_layer(data = mtq, fill = "red") |>
   bt_draw()
 }

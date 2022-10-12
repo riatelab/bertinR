@@ -10,7 +10,15 @@
 #' @export
 bt_draw <- function(bertin, elementId = NULL) {
   bertin$params$reverse = TRUE
-
+  for(i in seq_along(bertin$layers)){
+    old_names <- names(bertin$layers[[i]])
+    ind <- (which(old_names == "data"))
+    if(length(ind>0)){
+      new_names <- old_names
+      new_names[ind] <- "geojson"
+      names(bertin$layers[[i]]) <- new_names
+    }
+  }
     # forward options using x
     x = list(
       message = as.character(

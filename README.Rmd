@@ -36,15 +36,18 @@ remotes::install_github("riatelab/bertin")
 
 ## Example
 
-```{r example, eval = FALSE}
+```{r example, eval = FALSE, fig.height = 4}
 library(bertin)
 library(sf)
 mtq <- st_read(system.file("geojson/mtq.geojson", package = "bertin"), quiet = TRUE)
-a <- bt_bubble(geojson = mtq, values = "POP", k = 60, tooltip = "$LIBGEO") |>
-  bt_layer(geojson = mtq, fill = "#808080") |>
-  bt_draw()
-htmlwidgets::saveWidget(a, 'map.html')
+bt_param(width = 400)|>
+  bt_layer(data = mtq, fill = "#808080") |>
+  bt_bubble(data = mtq, values = "POP", k = 60, tooltip = "$LIBGEO") |>
+  bt_draw() |> 
+  htmlwidgets::saveWidget('map.html')
 ```
+
+
 
 [See examples here](https://riatelab.github.io/bertin)
 

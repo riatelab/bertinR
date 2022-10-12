@@ -10,70 +10,58 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>", 
+  fig.height = 4
 )
 ```
 
-## Map1
+## Import
 
 ```{r setup}
 library(bertin)
 library(sf)
-mtq <- st_read(system.file("geojson/mtq.geojson", package = "bertin"), quiet = TRUE)
-bt_param(margin = 10, width = 800, projection = "Mercator")|>
-  bt_bubble(geojson = mtq, values = "POP", k = 30, tooltip = "$POP") |>
-  bt_layer(geojson = mtq, fill = "#808080") |>
-  bt_graticule(strokeWidth = 1.5, strokeDasharray = 2, stroke  = "green", step  = 0.1)|>
-  bt_header(text = "What a Map!\nBadaboum!", fontSize = 40) |>
-  bt_footer(text="Credit lines, super long super long super long super long super long", fontSize = 8) |>
+stats <- read.csv(system.file("csv/data.csv", package = "bertin"))
+world <- st_read(system.file("geojson/world.geojson", package = "bertin"), 
+                 quiet = TRUE)
+data <- merge(world, stats,  by.x = "ISO3", by.y = "id")
+```
+
+## Bubble
+
+```{r bubble}
+bt_param(margin = 10, width = 800)|>
+  bt_graticule(strokeWidth = 1.5, strokeDasharray = 2, stroke  = "green", 
+               step  = 5)|>
+  bt_layer(data = data, fill = "#808080") |>
+  bt_bubble(data = data, values = "pop", k = 30, tooltip = "$pop") |>
+  bt_header(text = "What a Map!", fontSize = 40) |>
+  bt_footer(text="Credit lines, super long super long super long super ", 
+            fontSize = 8) |>
   bt_draw()
 ```
 
 
-
-## Map2
-
-```{r}
-
-bt_param(margin = 10, width = 800, projection = "Mercator") |>
-  bt_layer(
-    geojson = mtq,
-    fill = list(
-      type = "choro",
-      values = "CHOM",
-      breaks = c(78.00, 350.75, 839.00, 1659.00, 10046.00),
-      leg_round = -1,
-      leg_title = "Taux de chômage\n. pers",
-      leg_x = 410,
-      leg_y = 10
-    )
-  ) |>
-  bt_draw()
-```
 
 ## Typo
 
 Adapted from https://observablehq.com/@neocartocnrs/bertin-js-typo?collection=@neocartocnrs/bertin
 
 ```{r}
-stats <- read.csv(system.file("csv/data.csv", package = "bertin"))
-world <- st_read(system.file("geojson/world.geojson", package = "bertin"))
-data <- merge(world, stats,  by.x = "ISO3", by.y = "id")
 bt_param(projection = "InterruptedHomolosine", clip = TRUE) |>
   bt_outline() |>
   bt_graticule() |>
-  bt_shadow(geojson = data, opacity = 0.2) |>
-  bt_layer(geojson = data,
+  bt_shadow(data = data, opacity = 0.2) |>
+  bt_layer(data = data,
            tooltip = c("$region", "$NAMEen", ""),
            fill = list(
-    type = "typo",
-    values = "region",
-    strokeWidth = 0.3,
-    colors = "Tableau10",
-    leg_title = "The Continents",
-    leg_x = 55,
-    leg_y = 180
-  )) |>
+             type = "typo",
+             values = "region",
+             strokeWidth = 0.3,
+             colors = "Tableau10",
+             leg_title = "The Continents",
+             leg_x = 55,
+             leg_y = 180
+           )) |>
   bt_draw()
 ```
 
@@ -82,13 +70,10 @@ bt_param(projection = "InterruptedHomolosine", clip = TRUE) |>
 Adapted from https://observablehq.com/@neocartocnrs/bertin-js-chropoleth?collection=@neocartocnrs/bertin
 
 ```{r}
-stats <- read.csv(system.file("csv/data.csv", package = "bertin"))
-world <- st_read(system.file("geojson/world.geojson", package = "bertin"))
-data <- merge(world, stats,  by.x = "ISO3", by.y = "id")
 bt_param(projection = "Eckert3", clip = TRUE) |>
   bt_outline() |>
   bt_graticule() |>
-  bt_layer(geojson = data,
+  bt_layer(data = data,
            fill = list(
              type = "choro",
              values = "gdppc",
@@ -96,10 +81,9 @@ bt_param(projection = "Eckert3", clip = TRUE) |>
              method = "quantile",
              colors = "RdYlGn",
              leg_round = -2,
-             leg_title = "GDP per inh
-(in $)",
-leg_x = 100,
-leg_y = 200
+             leg_title = "GDP per inh\n(in $)",
+             leg_x = 100,
+             leg_y = 200
            ), tooltip = c("$name", "$gdppc", "(current US$)")) |>
   bt_draw()
 ```
@@ -109,14 +93,11 @@ leg_y = 200
 Adapted from https://observablehq.com/@neocartocnrs/bertin-js-stock-typo?collection=@neocartocnrs/bertin
 
 ```{r}
-world <- st_read(system.file("geojson/world.geojson", package = "bertin"))
-stats <- read.csv(system.file("csv/data.csv", package = "bertin"))
-data <- merge(world, stats,  by.x = "ISO3", by.y = "id")
 bt_param(projection = "InterruptedMollweideHemispheres", clip = TRUE) |>
   bt_outline(fill = "#ADD8F7") |>
-  bt_layer(geojson = world, fill = "white", fillOpacity = .35) |>
+  bt_layer(data = world, fill = "white", fillOpacity = .35) |>
   bt_graticule() |>
-  bt_bubble(geojson = data,
+  bt_bubble(data = data,
             values = "pop", k = 60, fill = list(
               type = "typo",
               values = "region",
@@ -140,22 +121,21 @@ bt_param(projection = "InterruptedMollweideHemispheres", clip = TRUE) |>
 Adapted from https://observablehq.com/@neocartocnrs/bertin-js-stock-choro?collection=@neocartocnrs/bertin
 
 ```{r}
-world <- st_read(system.file("geojson/world.geojson", package = "bertin"))
-stats <- read.csv(system.file("csv/data.csv", package = "bertin"))
-data <- merge(world, stats,  by.x = "ISO3", by.y = "id")
 bt_param(projection = "PolyhedralWaterman") |>
   bt_outline() |>
-  bt_layer(geojson = world, fill = "white", fillOpacity = .3) |>
+  bt_layer(data = world, fill = "white", fillOpacity = .3) |>
   bt_graticule() |>
-  bt_bubble(geojson = data, leg_round = -2, k = 55, values = "pop",
+  bt_bubble(data = data, leg_round = -2, k = 55, values = "pop",
             fill = list(
-              type = "choro", method = "quantile", nbreaks = 7, values = "gdppc", colors = "RdYlGn", leg_title = "GDP per capital\n(in $)",
+              type = "choro", method = "quantile", nbreaks = 7, 
+              values = "gdppc", colors = "RdYlGn", 
+              leg_title = "GDP per capital\n(in $)",
               leg_x = 100, leg_y =270, leg_round = -2
             ),
             tooltip = c("$name", "$gdppc", "(current US$)"),
             leg_title = "Number of inh.",
             leg_x = 800, leg_y = 270
-            ) |>
+  ) |>
   bt_draw()
 ```
 
@@ -164,23 +144,17 @@ bt_param(projection = "PolyhedralWaterman") |>
 Adapted from https://observablehq.com/@neocartocnrs/bertin-js-regular-bubbles?collection=@neocartocnrs/bertin
 
 ```{r examples-regularbubble}
-stats <- read.csv(system.file("csv/data.csv", package = "bertin"))
-world <- st_read(system.file("geojson/world.geojson", package = "bertin"))
-data <- merge(world, stats,  by.x = "ISO3", by.y = "id")
-bt_param(projection = "Bertin1953") |>
+bt_param(projection = "Bertin1953", width = 600) |>
   bt_outline() |>
-  bt_layer(geojson = world, fill = "white", fillOpacity = .3) |>
+  bt_layer(data = world, fill = "white", fillOpacity = .3) |>
   bt_graticule() |>
   bt_header(text = "World Population (step = 10)") |>
-  bt_regularbubble(geojson = data, step = 10, values = "pop", k = 15,
+  bt_regularbubble(data = data, step = 10, values = "pop", k = 10,
                    tooltip = list(
                      "$NAMEen",
                      "",
                      "country value",
-                     "$pop",
-                     "",
-                     "dot value",
-                     "$___value"
+                     "$pop"
                    )) |>
   bt_draw()
 ```
@@ -188,10 +162,9 @@ bt_param(projection = "Bertin1953") |>
 ## Tissot's indicatrix
 
 ```{r}
-world <- st_read(system.file("geojson/world.geojson", package = "bertin"))
 bt_param(projection = "Eckert3", clip = TRUE) |>
   bt_outline() |>
-  bt_layer(geojson = world, fill = "white", fillOpacity = .3) |>
+  bt_layer(data = world, fill = "white", fillOpacity = .3) |>
   bt_tissot(step = 20) |>
   bt_draw()
 ```

@@ -6,7 +6,7 @@
 \usage{
 bt_dotcartogram(
   bertin,
-  geojson,
+  data,
   onedot,
   iteration,
   values,
@@ -20,7 +20,7 @@ bt_dotcartogram(
 \arguments{
 \item{bertin}{map obj}
 
-\item{geojson}{sf obj}
+\item{data}{sf object EPSG:4326}
 
 \item{onedot}{dot value}
 
@@ -48,8 +48,8 @@ Dot cartogram
 library(sf)
 world <- st_read(system.file("geojson/world.geojson", package = "bertin"))
 data <- read.csv(system.file("csv/data.csv", package = "bertin"))
-bt_layer(geojson = world, fill = "#808080") |>
-  bt_dotcartogram(geojson = merge(world, data,  by.x = "ISO3", by.y = "id"),
+bt_layer(data = world, fill = "#808080") |>
+  bt_dotcartogram(data = merge(world, data,  by.x = "ISO3", by.y = "id"),
                   onedot = 200000000000, iteration = 200, values = "gdp") |>
   bt_draw()
 }
