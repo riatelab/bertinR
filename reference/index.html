@@ -98,7 +98,32 @@
           
           <code><a href="bt_header.html">bt_header()</a></code> 
         </dt>
-        <dd>Header</dd>
+        <dd>#' Waterlines
+#'
+#' @param bertin map object
+#' @param data sf object EPSG:4326
+#' @param dist dist
+#' @param nb nb
+#' @param ...  other
+#'
+#' @return a map object
+#' @export
+#'
+#' @examples
+#' library(sf)
+#' mtq &lt;- st_read(system.file("geojson/mtq.geojson", package = "bertin"), quiet = TRUE)
+#' bt_param(margin = 10, width = 500, projection = "Winkel3") |&gt;
+#'   bt_layer(data = mtq, fill = "red") |&gt;
+#'   bt_waterlines(data = mtq, dist = 0.25, nb = 5)|&gt;
+#'   bt_draw()
+bt_waterlines &lt;-function(bertin, data, dist, nb, ...)
+  res &lt;- c(as.list(environment()), list(...))
+  res &lt;- clean_input(res, type = "waterlines")
+  if(missing(bertin))bertin &lt;- list()
+  bertin$layers[[length(bertin$layers) + 1]] &lt;- res
+  return(bertin)
+
+Header</dd>
       </dl><dl><dt>
           
           <code><a href="bt_layer.html">bt_layer()</a></code> 
@@ -144,11 +169,6 @@
           <code><a href="bt_tissot.html">bt_tissot()</a></code> 
         </dt>
         <dd>Tissot's indicatrix</dd>
-      </dl><dl><dt>
-          
-          <code><a href="bt_waterlines.html">bt_waterlines()</a></code> 
-        </dt>
-        <dd>Waterlines</dd>
       </dl></div>
   </main></div>
 

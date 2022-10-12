@@ -70,28 +70,28 @@
 <div class="page-header"><h1 id="bertin">bertin<a class="anchor" aria-label="anchor" href="#bertin"></a>
 </h1></div>
 <!-- badges: start -->
-<p>Bertin.js is an easy to use JavaScript library mainly based on D3.js makes creating thematic maps simple. The principle is to work with layers stacked on top of one other. Much like in Geographic Information Software (GIS) software, Bertin.js displays layers with a specific hierarchy. The layer at bottom are rendered and then followed by the layer right above it. Some of the layers are used to display various components of a map, some of common layers are: header, footer, graticule, outline, choro, typo, prop, shadow, scalebar, text etc.</p>
-<p><strong><code>bertin</code> package is a wrapper around Bertin.js</strong></p>
+<p><a href="https://github.com/neocarto/bertin" class="external-link"><code>bertin.js</code></a> is an easy to use JavaScript library mainly based on <code>D3.js</code> makes creating thematic maps simple. The principle is to work with layers stacked on top of one other. Much like in Geographic Information Software (GIS) software, <code>bertin.js</code> displays layers with a specific hierarchy. The layer at bottom are rendered and then followed by the layer right above it. Some of the layers are used to display various components of a map, some of common layers are: header, footer, graticule, outline, choro, typo, prop, shadow, scalebar, text etc.</p>
+<p><strong><code>bertin</code> package is a wrapper around <code>bertin.js</code></strong></p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the development version of bertin from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<p>You can install the development version of <code>bertin</code> from <a href="https://github.com/riatelab/bertin" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"riatelab/bertinR"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"riatelab/bertin"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/riatelab/bertin/" class="external-link">bertin</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
 <span><span class="va">mtq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"geojson/mtq.geojson"</span>, package <span class="op">=</span> <span class="st">"bertin"</span><span class="op">)</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/bt_bubble.html">bt_bubble</a></span><span class="op">(</span>geojson <span class="op">=</span> <span class="va">mtq</span>, values <span class="op">=</span> <span class="st">"POP"</span>, k <span class="op">=</span> <span class="fl">60</span>, tooltip <span class="op">=</span> <span class="st">"$LIBGEO"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="reference/bt_layer.html">bt_layer</a></span><span class="op">(</span>geojson <span class="op">=</span> <span class="va">mtq</span>, fill <span class="op">=</span> <span class="st">"#808080"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="reference/bt_draw.html">bt_draw</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">htmlwidgets</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/htmlwidgets/man/saveWidget.html" class="external-link">saveWidget</a></span><span class="op">(</span><span class="va">a</span>, <span class="st">'map.html'</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="reference/bt_param.html">bt_param</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">400</span><span class="op">)</span><span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="reference/bt_layer.html">bt_layer</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtq</span>, fill <span class="op">=</span> <span class="st">"#808080"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="reference/bt_bubble.html">bt_bubble</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtq</span>, values <span class="op">=</span> <span class="st">"POP"</span>, k <span class="op">=</span> <span class="fl">60</span>, tooltip <span class="op">=</span> <span class="st">"$LIBGEO"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="reference/bt_draw.html">bt_draw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">htmlwidgets</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/htmlwidgets/man/saveWidget.html" class="external-link">saveWidget</a></span><span class="op">(</span><span class="st">'map.html'</span><span class="op">)</span></span></code></pre></div>
 <p><a href="https://riatelab.github.io/bertin">See examples here</a></p>
 </div>
 </div>
@@ -123,6 +123,7 @@
 <ul class="list-unstyled">
 <li>Timothée Giraud <br><small class="roles"> Maintainer, author </small> <a href="https://orcid.org/0000-0002-1932-3323" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>Nicolas Lambert <br><small class="roles"> Author </small>  </li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
 
