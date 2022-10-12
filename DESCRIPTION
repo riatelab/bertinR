@@ -5,7 +5,8 @@ Authors@R: c(
     person("Timothée", "Giraud", email = "timothee.giraud@cnrs.fr", 
         role = c("cre","aut"), comment = c(ORCID = "0000-0002-1932-3323")), 
     person("Nicolas", "Lambert", 
-        email = "nicolas.lambert@cnrs.fr", role = "aut"))
+        email = "nicolas.lambert@cnrs.fr", role = "aut"), 
+    person("Lucas", "Longour", role = "ctb"))
 Description: Create and integrate thematic maps in your workflow. This package
     helps to design various cartographic representations such as proportional
     symbols, choropleth or typology maps. It also offers several functions to
