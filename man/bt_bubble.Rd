@@ -27,8 +27,9 @@ Bubble
 }
 \examples{
 library(sf)
-mtq <- st_read(system.file("geojson/mtq.geojson", package = "bertin"), quiet = TRUE)
-bt_bubble(data = mtq, values = "POP", k = 60, tooltip = "$LIBGEO") |>
-  bt_layer(data = mtq, fill = "#808080") |>
+world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
+                 layer = "world", quiet = TRUE)
+bt_layer(data = world, fill = "#808080") |>
+  bt_bubble(data = world, values = "pop", k = 60, tooltip = "$LIBGEO") |>
   bt_draw()
 }

@@ -46,10 +46,11 @@ Dot cartogram
 }
 \examples{
 library(sf)
-world <- st_read(system.file("geojson/world.geojson", package = "bertin"))
-data <- read.csv(system.file("csv/data.csv", package = "bertin"))
+world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
+                 layer = "world", quiet = TRUE)
 bt_layer(data = world, fill = "#808080") |>
-  bt_dotcartogram(data = merge(world, data,  by.x = "ISO3", by.y = "id"),
-                  onedot = 200000000000, iteration = 200, values = "gdp") |>
+  bt_dotcartogram(data = world,
+                  onedot = 100000000000,
+                  iteration = 200, values = "gdp") |>
   bt_draw()
 }

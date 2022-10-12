@@ -27,8 +27,11 @@ Regular Bubble
 }
 \examples{
 library(sf)
-mtq <- st_read(system.file("geojson/mtq.geojson", package = "bertin"), quiet = TRUE)
-bt_regularbubble(data = mtq, values = "POP", step = 30, k = 40, tooltip = c("$LIBGEO","$POP")) |>
-  bt_layer(data = mtq, fill = "#808080") |>
+world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
+                 layer = "world", quiet = TRUE)
+bt_layer(data = world, fill = "#808080") |>
+  bt_regularbubble(data = world,
+                   values = "pop", step = 10,
+                   k = 10, tooltip = c("$name","$pop")) |>
   bt_draw()
 }

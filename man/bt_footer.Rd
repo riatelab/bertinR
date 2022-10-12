@@ -22,10 +22,11 @@ a map object
 Footer
 }
 \examples{
-library(sf)
-mtq <- st_read(system.file("geojson/mtq.geojson", package = "bertin"), quiet = TRUE)
+library(sf)#' library(sf)
+world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
+                 layer = "world", quiet = TRUE)
 bt_param(margin = 10, width = 500, projection = "Winkel3") |>
-  bt_layer(geojson = mtq, fill = "red") |>
+  bt_layer(data = world, fill = "red") |>
   bt_footer(text = "Title") |>
   bt_draw()
 }

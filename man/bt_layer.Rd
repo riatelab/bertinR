@@ -43,8 +43,9 @@ Layer
 }
 \examples{
 library(sf)
-mtq <- st_read(system.file("geojson/mtq.geojson", package = "bertin"), quiet = TRUE)
+world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
+                 layer = "world", quiet = TRUE)
 bt_param(margin = 10, width = 500, projection = "Winkel3") |>
-  bt_layer(data = mtq, fill = "red") |>
+  bt_layer(data = world, fill = "red") |>
   bt_draw()
 }

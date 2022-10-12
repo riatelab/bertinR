@@ -25,7 +25,8 @@ Scalebar
 }
 \examples{
 library(sf)
-world <- st_read(system.file("geojson/world.geojson", package = "bertin"))
+world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
+                 layer = "world", quiet = TRUE)
 bt_outline(fill = "#ADD8F7") |>
   bt_layer(data = world) |>
   bt_scalebar() |>

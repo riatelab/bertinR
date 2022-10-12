@@ -38,10 +38,11 @@ remotes::install_github("riatelab/bertin")
 ``` r
 library(bertin)
 library(sf)
-mtq <- st_read(system.file("geojson/mtq.geojson", package = "bertin"), quiet = TRUE)
-bt_param(width = 400)|>
-  bt_layer(data = mtq, fill = "#808080") |>
-  bt_bubble(data = mtq, values = "POP", k = 60, tooltip = "$LIBGEO") |>
+world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
+                 layer = "world", quiet = TRUE)
+bt_param(width = 800)|>
+  bt_layer(data = world, fill = "#808080") |>
+  bt_bubble(data = world, values = "pop", k = 20, tooltip = "$name") |>
   bt_draw() |> 
   htmlwidgets::saveWidget('map.html')
 ```

@@ -40,7 +40,8 @@ Tissot's indicatrix
 }
 \examples{
 library(sf)
-world <- st_read(system.file("geojson/world.geojson", package = "bertin"))
+world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
+                 layer = "world", quiet = TRUE)
 bt_param(projection = "Robinson", clip = TRUE) |>
   bt_outline() |>
   bt_layer(data = world, fill = "white", fillOpacity = .35) |>

@@ -11,7 +11,7 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>", 
-  fig.height = 4
+  fig.height = 4.5
 )
 ```
 
@@ -20,10 +20,8 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(bertin)
 library(sf)
-stats <- read.csv(system.file("csv/data.csv", package = "bertin"))
-world <- st_read(system.file("geojson/world.geojson", package = "bertin"), 
-                 quiet = TRUE)
-data <- merge(world, stats,  by.x = "ISO3", by.y = "id")
+world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
+                 layer = "world", quiet = TRUE)
 ```
 
 ## Bubble
@@ -32,8 +30,8 @@ data <- merge(world, stats,  by.x = "ISO3", by.y = "id")
 bt_param(margin = 10, width = 800)|>
   bt_graticule(strokeWidth = 1.5, strokeDasharray = 2, stroke  = "green", 
                step  = 5)|>
-  bt_layer(data = data, fill = "#808080") |>
-  bt_bubble(data = data, values = "pop", k = 30, tooltip = "$pop") |>
+  bt_layer(data = world, fill = "#808080") |>
+  bt_bubble(data = world, values = "pop", k = 30, tooltip = "$pop") |>
   bt_header(text = "What a Map!", fontSize = 40) |>
   bt_footer(text="Credit lines, super long super long super long super ", 
             fontSize = 8) |>
@@ -50,9 +48,9 @@ Adapted from https://observablehq.com/@neocartocnrs/bertin-js-typo?collection=@n
 bt_param(projection = "InterruptedHomolosine", clip = TRUE) |>
   bt_outline() |>
   bt_graticule() |>
-  bt_shadow(data = data, opacity = 0.2) |>
-  bt_layer(data = data,
-           tooltip = c("$region", "$NAMEen", ""),
+  bt_shadow(data = world, opacity = 0.2) |>
+  bt_layer(data = world,
+           tooltip = c("$region", "$name", ""),
            fill = list(
              type = "typo",
              values = "region",
@@ -73,7 +71,7 @@ Adapted from https://observablehq.com/@neocartocnrs/bertin-js-chropoleth?collect
 bt_param(projection = "Eckert3", clip = TRUE) |>
   bt_outline() |>
   bt_graticule() |>
-  bt_layer(data = data,
+  bt_layer(data = world,
            fill = list(
              type = "choro",
              values = "gdppc",
@@ -97,7 +95,7 @@ bt_param(projection = "InterruptedMollweideHemispheres", clip = TRUE) |>
   bt_outline(fill = "#ADD8F7") |>
   bt_layer(data = world, fill = "white", fillOpacity = .35) |>
   bt_graticule() |>
-  bt_bubble(data = data,
+  bt_bubble(data = world,
             values = "pop", k = 60, fill = list(
               type = "typo",
               values = "region",
@@ -125,7 +123,7 @@ bt_param(projection = "PolyhedralWaterman") |>
   bt_outline() |>
   bt_layer(data = world, fill = "white", fillOpacity = .3) |>
   bt_graticule() |>
-  bt_bubble(data = data, leg_round = -2, k = 55, values = "pop",
+  bt_bubble(data = world, leg_round = -2, k = 55, values = "pop",
             fill = list(
               type = "choro", method = "quantile", nbreaks = 7, 
               values = "gdppc", colors = "RdYlGn", 
@@ -149,9 +147,9 @@ bt_param(projection = "Bertin1953", width = 600) |>
   bt_layer(data = world, fill = "white", fillOpacity = .3) |>
   bt_graticule() |>
   bt_header(text = "World Population (step = 10)") |>
-  bt_regularbubble(data = data, step = 10, values = "pop", k = 10,
+  bt_regularbubble(data = world, step = 10, values = "pop", k = 10,
                    tooltip = list(
-                     "$NAMEen",
+                     "$name",
                      "",
                      "country value",
                      "$pop"

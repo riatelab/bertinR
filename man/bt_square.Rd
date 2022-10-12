@@ -27,13 +27,12 @@ Square
 }
 \examples{
 library(sf)
-world <- st_read(system.file("geojson/world.geojson", package = "bertin"))
-stats <- read.csv(system.file("csv/data.csv", package = "bertin"))
-data <- merge(world, stats,  by.x = "ISO3", by.y = "id")
+world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
+                 layer = "world", quiet = TRUE)
 bt_param(projection = "Eckert3", clip = TRUE) |>
   bt_outline() |>
   bt_layer(data = world, fill = "white") |>
   bt_square(data = data,values = "pop", k = 60,
-            tooltip = c("$NAMEen", "$pop", "(inh.)")) |>
+            tooltip = c("$name", "$pop", "(inh.)")) |>
   bt_draw()
 }

@@ -40,10 +40,11 @@ Rhumbs
 }
 \examples{
 library(sf)
-world <- st_read(system.file("geojson/world.geojson", package = "bertin"))
+world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
+                 layer = "world", quiet = TRUE)
 bt_param(projection = "Eckert3", clip = TRUE) |>
   bt_outline() |>
-  bt_layer(geojson = world, fill = "white") |>
+  bt_layer(data = world, fill = "white") |>
   bt_rhumbs(position = c(370, 370), nb = 25) |>
   bt_draw()
 }
