@@ -2,7 +2,7 @@
 #'
 #' @param bertin map object
 #' @param file file
-#' @param delay dealy (in seconds) to wait before saving the SVG
+#' @param delay delay (in seconds) to wait before saving the SVG
 #'
 #' @importFrom chromote ChromoteSession
 #' @importFrom htmlwidgets saveWidget
