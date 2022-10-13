@@ -18,7 +18,8 @@ License: GPL-3
 Encoding: UTF-8
 Imports: 
     htmlwidgets,
-    jsonlite 
+    jsonlite, 
+    chromote
 Suggests: 
     knitr,
     rmarkdown,
