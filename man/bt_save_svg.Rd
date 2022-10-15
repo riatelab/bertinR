@@ -11,7 +11,9 @@ bt_save_svg(bertin, file, background, delay)
 
 \item{file}{file}
 
-\item{delay}{dealy (in seconds) to wait before saving the SVG}
+\item{background}{background}
+
+\item{delay}{delay (in seconds) to wait before saving the SVG}
 }
 \value{
 a svg file
