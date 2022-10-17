@@ -27,5 +27,7 @@ world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
 map <- bt_layer(data = world, fill = "#808080") |>
 bt_draw()
 (myfile <- tempfile(fileext = ".svg"))
-bt_save(bertin = map, file = myfile)
+if (require("chromote")){
+  bt_save(bertin = map, file = myfile)
+}
 }

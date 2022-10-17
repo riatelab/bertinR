@@ -4,7 +4,7 @@
 #' @param file file
 #' @param background background
 #'
-#' @importFrom chromote ChromoteSession
+#@importFrom chromote ChromoteSession
 #' @importFrom htmlwidgets saveWidget
 #'
 #' @return nothing is returned, a svg file is created
@@ -18,8 +18,20 @@
 #' map <- bt_layer(data = world, fill = "#808080") |>
 #' bt_draw()
 #' (myfile <- tempfile(fileext = ".svg"))
-#' bt_save(bertin = map, file = myfile)
+#' if (require("chromote")){
+#'   bt_save(bertin = map, file = myfile)
+#' }
 bt_save <- function(bertin, file, background){
+  if (!requireNamespace("chromote", quietly = TRUE)) {
+    stop(
+      "'chromote' package is needed for this function to work. Please install it.",
+      call. = FALSE
+    )
+  }
+
+
+
+
   file_url <- function(filename) {
     if (.Platform$OS.type == "windows") {
       paste0("file://", normalizePath(filename, mustWork = TRUE))

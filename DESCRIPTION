@@ -18,11 +18,11 @@ License: GPL-3
 Encoding: UTF-8
 Imports: 
     htmlwidgets,
-    jsonlite, 
-    chromote
+    jsonlite
 Suggests: 
     knitr,
     rmarkdown,
-    sf
+    sf,
+    chromote
 RoxygenNote: 7.2.1
 VignetteBuilder: knitr
