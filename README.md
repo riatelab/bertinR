@@ -42,9 +42,12 @@ world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
                  layer = "world", quiet = TRUE)
 bt_param(width = 800)|>
   bt_layer(data = world, fill = "#808080") |>
-  bt_bubble(data = world, values = "pop", k = 20, tooltip = "$name") |>
+  bt_bubble(data = world, values = "pop", k = 20) |>
   bt_draw() |> 
-  htmlwidgets::saveWidget('map.html')
+  bt_save("map.svg")
 ```
+
+![](map.svg)  
+file: “map.svg”
 
 [See examples here](https://riatelab.github.io/bertin)
