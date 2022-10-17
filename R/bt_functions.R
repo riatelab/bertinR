@@ -485,6 +485,65 @@ bt_dotcartogram <-function(bertin, data, onedot, iteration, values, radius, span
   return(bertin)
 }
 
+#' Mushroom
+#'
+#' @param bertin map object
+#' @param data sf object EPSG:4326
+#' @param top_values top values
+#' @param bottom_values bottom values
+#' @param bottom_tooltip bottom tooltip
+#' @param top_tooltip top tooltip
+#' @param ... other param
+#'
+#' @return a map object
+#' @export
+#'
+#' @examples
+#' library(sf)
+#' world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
+#'                  layer = "world", quiet = TRUE)
+#' africa <- subset(world, region == "Africa")
+#' africa$pop_pct <- (africa$pop / sum(africa$pop, na.rm = TRUE)) * 100
+#' africa$gdp_pct <- (africa$gdp / sum(africa$gdp, na.rm = TRUE)) * 100
+#' bt_layer(data = africa, fill = "#808080") |>
+#'   bt_mushroom(data = africa, top_values = "gdp_pct", bottom_values = "pop_pct") |>
+#'   bt_draw()
+bt_mushroom <- function(bertin, data, top_values, bottom_values, bottom_tooltip, top_tooltip, ...){
+  res <- c(as.list(environment()), list(...))
+  res <- clean_input(res, type = "mushroom")
+  if(missing(bertin)){bertin <- list()}
+  bertin$layers[[length(bertin$layers) + 1]] <- res
+  return(bertin)
+}
+
+#' Spikes
+#'
+#' @param bertin map object
+#' @param data sf object EPSG:4326
+#' @param values values
+#' @param k height of highest peak
+#' @param w width of the spikes
+#' @param tooltip tooltip
+#' @param ... other param
+#'
+#' @return a map object
+#' @export
+#'
+#' @examples
+#' library(sf)
+#' world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
+#'                  layer = "world", quiet = TRUE)
+#' bt_layer(data = world, fill = "#808080") |>
+#'   bt_spikes(data = world, values = "pop", k = 110, w = 6) |>
+#'   bt_draw()
+bt_spikes <- function(bertin, data, values, k, w, tooltip, ...){
+  res <- c(as.list(environment()), list(...))
+  res <- clean_input(res, type = "spikes")
+  if(missing(bertin)){bertin <- list()}
+  bertin$layers[[length(bertin$layers) + 1]] <- res
+  return(bertin)
+}
+
 clean_input <- function(res, type){
   res <- res[unlist(lapply(X = res, FUN = function(x){!is.name(x)}))]
   res$bertin <- NULL

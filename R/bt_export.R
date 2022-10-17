@@ -2,7 +2,8 @@
 #'
 #' @param bertin map object
 #' @param file file
-#' @param delay dealy (in seconds) to wait before saving the SVG
+#' @param background background
+#' @param delay delay (in seconds) to wait before saving the SVG
 #'
 #' @importFrom chromote ChromoteSession
 #' @importFrom htmlwidgets saveWidget
@@ -30,7 +31,7 @@ bt_save_svg <- function(bertin, file, background, delay){
   tmp_html <- tempfile('bt_save_svg', fileext = '.html', tmpdir = getwd())
   session <- chromote::ChromoteSession$new()
   on.exit(unlink(tmp_html))
-  htmlwidgets::saveWidget(map, file = tmp_html)
+  htmlwidgets::saveWidget(bertin, file = tmp_html)
   session$Page$navigate(file_url(tmp_html))
   Sys.sleep(delay)
   eval <- paste0(
