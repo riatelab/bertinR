@@ -48,6 +48,7 @@ bt_save <- function(bertin, file, background){
                  'xmlns:xlink="http://www.w3.org/1999/xlink" \\2')
   svg <- gsub(pattern = '^(.{6})(.*)$', replacement = repl, x = svg)
   cat(svg, file = file)
+  session$close()
   return(invisible(NULL))
 }
 
