@@ -1,7 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^README\.Rmd$
-^map.html$
+^map.svg$
 ^\.github$
 ^_pkgdown\.yml$
 ^docs$
