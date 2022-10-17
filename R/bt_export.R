@@ -65,6 +65,7 @@ bt_save <- function(bertin, filename, background){
   writeLines(svg, fileConn)
   close(fileConn)
   try(session$parent$close(), silent = TRUE)
+  try(session$close(), silent = TRUE)
 
   return(invisible(NULL))
 }
