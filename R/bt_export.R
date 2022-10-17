@@ -43,7 +43,7 @@ bt_save <- function(bertin, filename, background){
   tmp_html <- tempfile(fileext = ".html")
   on.exit(unlink(tmp_html))
   session <- chromote::ChromoteSession$new()
-  on.exit(session$close())
+  # on.exit(session$close())
   htmlwidgets::saveWidget(bertin, file = tmp_html)
   session$Page$navigate(file_url(tmp_html))
   eval <- paste0(
@@ -64,5 +64,7 @@ bt_save <- function(bertin, filename, background){
   fileConn <- file(filename)
   writeLines(svg, fileConn)
   close(fileConn)
+  try(session$parent$close(), silent = TRUE)
+
   return(invisible(NULL))
 }
