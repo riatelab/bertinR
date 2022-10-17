@@ -4,12 +4,12 @@
 \alias{bt_save}
 \title{Export to SVG}
 \usage{
-bt_save(bertin, file, background)
+bt_save(bertin, filename, background)
 }
 \arguments{
 \item{bertin}{map object}
 
-\item{file}{file}
+\item{filename}{file}
 
 \item{background}{background}
 }
@@ -28,6 +28,6 @@ map <- bt_layer(data = world, fill = "#808080") |>
 bt_draw()
 (myfile <- tempfile(fileext = ".svg"))
 if (require("chromote")){
-  bt_save(bertin = map, file = myfile)
+  bt_save(bertin = map, filename = myfile)
 }
 }

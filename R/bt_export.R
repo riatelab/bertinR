@@ -1,7 +1,7 @@
 #' Export to SVG
 #'
 #' @param bertin map object
-#' @param file file
+#' @param filename file
 #' @param background background
 #'
 #@importFrom chromote ChromoteSession
@@ -19,9 +19,9 @@
 #' bt_draw()
 #' (myfile <- tempfile(fileext = ".svg"))
 #' if (require("chromote")){
-#'   bt_save(bertin = map, file = myfile)
+#'   bt_save(bertin = map, filename = myfile)
 #' }
-bt_save <- function(bertin, file, background){
+bt_save <- function(bertin, filename, background){
   if (!requireNamespace("chromote", quietly = TRUE)) {
     stop(
       "'chromote' package is needed for this function to work. Please install it.",
@@ -60,7 +60,9 @@ bt_save <- function(bertin, file, background){
   repl <- paste0('\\1 xmlns="http://www.w3.org/2000/svg" ',
                  'xmlns:xlink="http://www.w3.org/1999/xlink" \\2')
   svg <- gsub(pattern = '^(.{6})(.*)$', replacement = repl, x = svg)
-  cat(svg, file = file)
-  # session$Runtime$close()
+  # write the svg file
+  fileConn <- file(filename)
+  writeLines(svg, fileConn)
+  close(fileConn)
   return(invisible(NULL))
 }
