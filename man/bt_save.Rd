@@ -20,6 +20,7 @@ nothing is returned, a svg file is created
 Export to SVG
 }
 \examples{
+\dontrun{
 library(bertin)
 library(sf)
 world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
@@ -29,5 +30,6 @@ bt_draw()
 (myfile <- tempfile(fileext = ".svg"))
 if (require("chromote")){
   bt_save(bertin = map, filename = myfile)
+}
 }
 }

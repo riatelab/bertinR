@@ -451,6 +451,34 @@ bt_regularbubble <- function(bertin, data, step, values, tooltip, ...){
   return(bertin)
 }
 
+#' Regular Square
+#'
+#' @param bertin map obj
+#' @param data sf object EPSG:4326
+#' @param step values
+#' @param values k
+#' @param tooltip tooltip
+#' @param ... other param
+#'
+#' @return a map object
+#' @export
+#'
+#' @examples
+#' library(sf)
+#' world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
+#'                  layer = "world", quiet = TRUE)
+#' bt_layer(data = world, fill = "#808080") |>
+#'   bt_regularsquare(data = world,
+#'                    values = "pop", step = 10,
+#'                    k = 10, tooltip = c("$name","$pop")) |>
+#'   bt_draw()
+bt_regularsquare <- function(bertin, data, step, values, tooltip, ...){
+  res <- c(as.list(environment()), list(...))
+  res <- clean_input(res, type = "regularsquare")
+  if(missing(bertin)){bertin <- list()}
+  bertin$layers[[length(bertin$layers) + 1]] <- res
+  return(bertin)
+}
 
 #' Dot cartogram
 #'
