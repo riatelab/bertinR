@@ -480,6 +480,41 @@ bt_regularsquare <- function(bertin, data, step, values, tooltip, ...){
   return(bertin)
 }
 
+#' Regular Grid
+#'
+#' @param bertin map obj
+#' @param data sf object EPSG:4326
+#' @param step step
+#' @param values values
+#' @param fill fill
+#' @param tooltip tooltip
+#' @param ... other param
+#'
+#' @return a map object
+#' @export
+#'
+#' @examples
+#' library(sf)
+#' world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
+#'                  layer = "world", quiet = TRUE)
+#' bt_layer(data = world, fill = "#808080") |>
+#'   bt_regulargrid(data = world, values = "pop",
+#'                  step = 20,
+#'                 fill = list(
+#'                    nbreaks = 6,
+#'                    method = "quantile",
+#'                    colors = "Blues"
+#'                  ),
+#'                  tooltip = "$value") |>
+#'   bt_draw()
+bt_regulargrid <- function(bertin, data, step, values, fill,tooltip, ...){
+  res <- c(as.list(environment()), list(...))
+  res <- clean_input(res, type = "regulargrid")
+  if(missing(bertin)){bertin <- list()}
+  bertin$layers[[length(bertin$layers) + 1]] <- res
+  return(bertin)
+}
+
 #' Dot cartogram
 #'
 #' @param bertin map obj
@@ -567,6 +602,37 @@ bt_mushroom <- function(bertin, data, top_values, bottom_values, bottom_tooltip,
 bt_spikes <- function(bertin, data, values, k, w, tooltip, ...){
   res <- c(as.list(environment()), list(...))
   res <- clean_input(res, type = "spikes")
+  if(missing(bertin)){bertin <- list()}
+  bertin$layers[[length(bertin$layers) + 1]] <- res
+  return(bertin)
+}
+
+#' Smooth
+#'
+#' @param bertin map object
+#' @param data sf object EPSG:4326
+#' @param values values
+#' @param thresholds number of classes (default: 100)
+#' @param bandwidth  bandwidth (the standard deviation) of the Gaussian kernel and returns the estimate. (default: 5)
+#' @param colorcurve a value to curve the color interpolation (default: 2)
+#' @param ... other param
+#'
+#' @return a map object
+#' @export
+#'
+#' @examples
+#' library(sf)
+#' world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
+#'                  layer = "world", quiet = TRUE)
+#' bt_layer(data = world, fill = "#808080") |>
+#'   bt_smooth(data = world, values = "pop",
+#'             thresholds = 50,
+#'             bandwidth = 25,
+#'             colorcurve = 1) |>
+#'   bt_draw()
+bt_smooth <- function(bertin, data, values, thresholds, bandwidth, colorcurve, ...){
+  res <- c(as.list(environment()), list(...))
+  res <- clean_input(res, type = "smooth")
   if(missing(bertin)){bertin <- list()}
   bertin$layers[[length(bertin$layers) + 1]] <- res
   return(bertin)
