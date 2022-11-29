@@ -11,6 +11,7 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' library(bertin)
 #' library(sf)
 #' world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
@@ -20,6 +21,7 @@
 #' (myfile <- tempfile(fileext = ".svg"))
 #' if (require("chromote")){
 #'   bt_save(bertin = map, filename = myfile)
+#' }
 #' }
 bt_save <- function(bertin, filename, background){
   if (!requireNamespace("chromote", quietly = TRUE)) {
