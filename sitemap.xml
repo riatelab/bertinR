@@ -58,6 +58,12 @@
     <loc>https://riatelab.github.io/bertin/reference/bt_regularbubble.html</loc>
   </url>
   <url>
+    <loc>https://riatelab.github.io/bertin/reference/bt_regulargrid.html</loc>
+  </url>
+  <url>
+    <loc>https://riatelab.github.io/bertin/reference/bt_regularsquare.html</loc>
+  </url>
+  <url>
     <loc>https://riatelab.github.io/bertin/reference/bt_rhumbs.html</loc>
   </url>
   <url>
@@ -68,6 +74,9 @@
   </url>
   <url>
     <loc>https://riatelab.github.io/bertin/reference/bt_shadow.html</loc>
+  </url>
+  <url>
+    <loc>https://riatelab.github.io/bertin/reference/bt_smooth.html</loc>
   </url>
   <url>
     <loc>https://riatelab.github.io/bertin/reference/bt_spikes.html</loc>
