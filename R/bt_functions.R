@@ -85,6 +85,92 @@ bt_tissot <- function(bertin, step, fill, fillOpacity,
   return(bertin)
 }
 
+#' Mercator Tiles
+#'
+#' @param bertin map object
+#' @param style tile style
+#' @param zoomDelta zoom offset
+#' @param tileSize tile size
+#' @param opacity tile opacity
+#' @param ...
+#'
+#' @return map object
+#' @export
+#'
+#' @examples
+#' library(sf)
+#' world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
+#'                  layer = "world", quiet = TRUE)
+#' italy <- world[world$name == "Italy",]
+#' bt_param(projection = "Mercator", clip = TRUE, extent = italy) |>
+#'   bt_tiles(style = "worldphysical") |>
+#'   bt_draw()
+bt_tiles <- function(bertin, style, zoomDelta, tileSize, opacity, ...){
+  res <- c(as.list(environment()), list(...))
+  res <- clean_input(res, type = "tiles")
+  if(missing(bertin)){bertin <- list()}
+  bertin$layers[[length(bertin$layers) + 1]] <- res
+  return(bertin)
+}
+
+#' Texts
+#'
+#' @param bertin map object
+#' @param text text to display
+#' @param position position
+#' @param fontSize text size
+#' @param fontFamily font family
+#' @param ...
+#'
+#' @return map object
+#' @export
+#'
+#' @examples
+#' library(sf)
+#' world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
+#'                  layer = "world", quiet = TRUE)
+#' bt_param(projection = "Mercator", clip = TRUE) |>
+#'   bt_layer(data = world) |>
+#'   bt_text(text = "This is my text", position = "bottomright",
+#'           fontSize = 20, frame_stroke = "red", margin = 4) |>
+#'   bt_draw()
+bt_text <- function(bertin, text, position, fontSize, fontFamily, ...){
+  res <- c(as.list(environment()), list(...))
+  res <- clean_input(res, type = "text")
+  if(missing(bertin)){bertin <- list()}
+  bertin$layers[[length(bertin$layers) + 1]] <- res
+  return(bertin)
+}
+
+#' Labels
+#'
+#' @param bertin map object
+#' @param data sf object EPSG:4326
+#' @param values values
+#' @param fill fill
+#' @param fontSize font size
+#' @param fontFamily font family
+#' @param ...
+#'
+#' @return map object
+#' @export
+#'
+#' @examples
+#' library(sf)
+#' world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
+#'                  layer = "world", quiet = TRUE)
+#' bt_param(projection = "Mercator", clip = TRUE) |>
+#'   bt_layer(data = world) |>
+#'   bt_label(data = world, values = "name") |>
+#'   bt_draw()
+bt_label <- function(bertin, data, values, fill,fontSize, fontFamily, ...){
+  res <- c(as.list(environment()), list(...))
+  res <- clean_input(res, type = "label")
+  if(missing(bertin)){bertin <- list()}
+  bertin$layers[[length(bertin$layers) + 1]] <- res
+  return(bertin)
+}
+
 #' Graticules
 #'
 #' @param bertin map object
