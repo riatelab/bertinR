@@ -92,7 +92,7 @@ bt_tissot <- function(bertin, step, fill, fillOpacity,
 #' @param zoomDelta zoom offset
 #' @param tileSize tile size
 #' @param opacity tile opacity
-#' @param ...
+#' @param ... other param
 #'
 #' @return map object
 #' @export
@@ -120,7 +120,7 @@ bt_tiles <- function(bertin, style, zoomDelta, tileSize, opacity, ...){
 #' @param position position
 #' @param fontSize text size
 #' @param fontFamily font family
-#' @param ...
+#' @param ... other param
 #'
 #' @return map object
 #' @export
@@ -150,7 +150,7 @@ bt_text <- function(bertin, text, position, fontSize, fontFamily, ...){
 #' @param fill fill
 #' @param fontSize font size
 #' @param fontFamily font family
-#' @param ...
+#' @param ... other param
 #'
 #' @return map object
 #' @export

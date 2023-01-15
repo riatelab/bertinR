@@ -17,7 +17,7 @@ bt_tiles(bertin, style, zoomDelta, tileSize, opacity, ...)
 
 \item{opacity}{tile opacity}
 
-\item{...}{}
+\item{...}{other param}
 }
 \value{
 map object

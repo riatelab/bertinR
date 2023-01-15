@@ -17,7 +17,7 @@ bt_text(bertin, text, position, fontSize, fontFamily, ...)
 
 \item{fontFamily}{font family}
 
-\item{...}{}
+\item{...}{other param}
 }
 \value{
 map object

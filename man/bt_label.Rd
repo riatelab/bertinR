@@ -19,7 +19,7 @@ bt_label(bertin, data, values, fill, fontSize, fontFamily, ...)
 
 \item{fontFamily}{font family}
 
-\item{...}{}
+\item{...}{other param}
 }
 \value{
 map object
