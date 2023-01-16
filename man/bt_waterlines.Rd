@@ -25,4 +25,10 @@ Waterlines
 }
 \examples{
 library(sf)
+world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
+                 layer = "world", quiet = TRUE)
+bt_param(margin = 10, width = 500, projection = "NellHammer") |>
+  bt_layer(data = world) |>
+  bt_waterlines(data = world, dist = 3, nb = 4) |>
+  bt_draw()
 }
