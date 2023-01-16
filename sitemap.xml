@@ -43,6 +43,9 @@
     <loc>https://riatelab.github.io/bertin/reference/bt_header.html</loc>
   </url>
   <url>
+    <loc>https://riatelab.github.io/bertin/reference/bt_label.html</loc>
+  </url>
+  <url>
     <loc>https://riatelab.github.io/bertin/reference/bt_layer.html</loc>
   </url>
   <url>
@@ -83,6 +86,12 @@
   </url>
   <url>
     <loc>https://riatelab.github.io/bertin/reference/bt_square.html</loc>
+  </url>
+  <url>
+    <loc>https://riatelab.github.io/bertin/reference/bt_text.html</loc>
+  </url>
+  <url>
+    <loc>https://riatelab.github.io/bertin/reference/bt_tiles.html</loc>
   </url>
   <url>
     <loc>https://riatelab.github.io/bertin/reference/bt_tissot.html</loc>
