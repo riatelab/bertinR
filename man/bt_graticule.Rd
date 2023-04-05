@@ -4,20 +4,17 @@
 \alias{bt_graticule}
 \title{Graticules}
 \usage{
-bt_graticule(bertin, strokeWidth, strokeDasharray, stroke, step, ...)
+bt_graticule(
+  bertin,
+  stroke = "white",
+  strokeDasharray = "none",
+  strokeWidth = 0.8,
+  step = c(10, 10),
+  display = TRUE
+)
 }
 \arguments{
-\item{bertin}{map object}
-
-\item{strokeWidth}{str wid}
-
-\item{strokeDasharray}{str dash arr}
-
-\item{stroke}{str}
-
-\item{step}{step}
-
-\item{...}{other param}
+\item{display}{}
 }
 \value{
 map object

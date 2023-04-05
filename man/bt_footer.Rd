@@ -4,16 +4,19 @@
 \alias{bt_footer}
 \title{Footer}
 \usage{
-bt_footer(bertin, text, fontSize, ...)
+bt_footer(
+  bertin,
+  text = "",
+  fontSize = 15,
+  anchor = "end",
+  fill = "#9e9696",
+  background = "white",
+  backgroundOpacity = 1,
+  display = 1
+)
 }
 \arguments{
-\item{bertin}{bertin}
-
-\item{text}{text}
-
-\item{fontSize}{fontSize}
-
-\item{...}{other}
+\item{display}{}
 }
 \value{
 a map object

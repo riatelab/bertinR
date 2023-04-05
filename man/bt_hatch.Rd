@@ -6,31 +6,17 @@
 \usage{
 bt_hatch(
   bertin,
-  angle,
-  stroke,
-  strokeWidth,
-  strokeOpacity,
-  strokeDasharray,
-  spacing,
-  ...
+  angle = 45,
+  stroke = "#786d6c",
+  strokeWidth = 2,
+  strokeOpacity = 1,
+  strokeDasharray = "none",
+  spacing = 8,
+  display = TRUE
 )
 }
 \arguments{
-\item{bertin}{map object}
-
-\item{angle}{orientation of lines}
-
-\item{stroke}{stroke}
-
-\item{strokeWidth}{stroke width}
-
-\item{strokeOpacity}{stroke opacity}
-
-\item{strokeDasharray}{stroke dasharray}
-
-\item{spacing}{spacing between lines}
-
-\item{...}{other param}
+\item{display}{}
 }
 \value{
 a map object

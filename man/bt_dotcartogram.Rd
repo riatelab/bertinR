@@ -8,35 +8,32 @@ bt_dotcartogram(
   bertin,
   data,
   onedot,
-  iteration,
+  nbmax = 200,
+  iteration = 200,
   values,
-  radius,
-  span,
-  fill,
+  radius = 4,
+  span = 0.5,
+  fill = randomcolor,
+  stroke = "white",
+  strokeWidth = 0.5,
+  fillOpacity = 1,
   tooltip,
-  ...
+  display = TRUE,
+  leg_x,
+  leg_y,
+  leg_fill = "none",
+  leg_stroke = "black",
+  leg_strokeWidth = 0.8,
+  leg_txtcol = "#363636",
+  leg_title = var_data,
+  leg_round,
+  leg_fontSize = 10
 )
 }
 \arguments{
-\item{bertin}{map obj}
+\item{display}{}
 
-\item{data}{sf object EPSG:4326}
-
-\item{onedot}{dot value}
-
-\item{iteration}{an integer to define the number of iteration for the Dorling method}
-
-\item{values}{values}
-
-\item{radius}{radius}
-
-\item{span}{spacing between dots}
-
-\item{fill}{fill color}
-
-\item{tooltip}{tooltip}
-
-\item{...}{other param}
+\item{leg_fontSize}{}
 }
 \value{
 a map object

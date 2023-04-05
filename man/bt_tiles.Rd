@@ -4,20 +4,20 @@
 \alias{bt_tiles}
 \title{Mercator Tiles}
 \usage{
-bt_tiles(bertin, style, zoomDelta, tileSize, opacity, ...)
+bt_tiles(
+  bertin,
+  style = "opentopomap",
+  zoomDelta = 0,
+  tileSize = 512,
+  opacity = 1,
+  clip,
+  source = c(100, 200),
+  increasetilesize = 1,
+  display = 1
+)
 }
 \arguments{
-\item{bertin}{map object}
-
-\item{style}{tile style}
-
-\item{zoomDelta}{zoom offset}
-
-\item{tileSize}{tile size}
-
-\item{opacity}{tile opacity}
-
-\item{...}{other param}
+\item{display}{}
 }
 \value{
 map object

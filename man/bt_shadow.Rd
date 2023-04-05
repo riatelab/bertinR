@@ -4,22 +4,19 @@
 \alias{bt_shadow}
 \title{Shadow}
 \usage{
-bt_shadow(bertin, data, dx, dy, stdDeviation, opacity, ...)
+bt_shadow(
+  bertin,
+  data,
+  dx = 3,
+  dy = 3,
+  stdDeviation = 1.5,
+  opacity = 0.7,
+  fill = "#35383d",
+  display = TRUE
+)
 }
 \arguments{
-\item{bertin}{map object}
-
-\item{data}{sf object EPSG:4326}
-
-\item{dx}{dx}
-
-\item{dy}{dy}
-
-\item{stdDeviation}{blur}
-
-\item{opacity}{opacity}
-
-\item{...}{other param}
+\item{display}{}
 }
 \value{
 a map object

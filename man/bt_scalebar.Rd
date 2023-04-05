@@ -4,18 +4,16 @@
 \alias{bt_scalebar}
 \title{Scalebar}
 \usage{
-bt_scalebar(bertin, x, y, units, ...)
+bt_scalebar(
+  bertin,
+  x = "left",
+  y = "bottom",
+  units = "kilometers",
+  display = TRUE
+)
 }
 \arguments{
-\item{bertin}{map object}
-
-\item{x}{x}
-
-\item{y}{y}
-
-\item{units}{units}
-
-\item{...}{other param}
+\item{display}{}
 }
 \value{
 a map object

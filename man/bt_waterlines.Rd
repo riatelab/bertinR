@@ -4,18 +4,23 @@
 \alias{bt_waterlines}
 \title{Waterlines}
 \usage{
-bt_waterlines(bertin, data, dist, nb, ...)
+bt_waterlines(
+  bertin,
+  data,
+  dist = 5,
+  nb = 3,
+  precision = 3,
+  stroke = "#5d81ba",
+  strokeOpacity = c(1, 0.1),
+  strokeWidth = c(1.2, 0.2),
+  strokeDasharray = "none",
+  strokeLinecap = "round",
+  strokeLineJoin = "round",
+  display = TRUE
+)
 }
 \arguments{
-\item{bertin}{map object}
-
-\item{data}{sf object EPSG:4326}
-
-\item{dist}{dist}
-
-\item{nb}{nb}
-
-\item{...}{other}
+\item{display}{}
 }
 \value{
 a map object

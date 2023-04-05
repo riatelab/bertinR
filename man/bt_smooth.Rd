@@ -4,22 +4,34 @@
 \alias{bt_smooth}
 \title{Smooth}
 \usage{
-bt_smooth(bertin, data, values, thresholds, bandwidth, colorcurve, ...)
+bt_smooth(
+  bertin,
+  data,
+  values,
+  stroke = "white",
+  strokeWidth = 0.5,
+  strokeLinecap = "round",
+  strokeDasharray = "none",
+  fllOpacity = 1,
+  strokeOpacity = 1,
+  display = TRUE,
+  fill = "RdYlGn",
+  thresholds = 100,
+  bandwidth = 5,
+  colorcurve = 2,
+  reverse = FALSE,
+  remove = 0,
+  clip = FALSE,
+  grid_step = 20,
+  grid_blur = 0,
+  grid_operator = "sum",
+  grid_geoprocessing = "intersection"
+)
 }
 \arguments{
-\item{bertin}{map object}
+\item{display}{}
 
-\item{data}{sf object EPSG:4326}
-
-\item{values}{values}
-
-\item{thresholds}{number of classes (default: 100)}
-
-\item{bandwidth}{bandwidth (the standard deviation) of the Gaussian kernel and returns the estimate. (default: 5)}
-
-\item{colorcurve}{a value to curve the color interpolation (default: 2)}
-
-\item{...}{other param}
+\item{clip}{}
 }
 \value{
 a map object

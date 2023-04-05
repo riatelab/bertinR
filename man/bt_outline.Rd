@@ -4,22 +4,17 @@
 \alias{bt_outline}
 \title{Outline}
 \usage{
-bt_outline(bertin, fill, opacity, stroke, strokeWidth, step, ...)
+bt_outline(
+  bertin,
+  fill = "#add8f7",
+  opacity = 1,
+  stroke = "none",
+  strokeWidth = 1,
+  diplay = TRUE
+)
 }
 \arguments{
-\item{bertin}{map object}
-
-\item{fill}{fill}
-
-\item{opacity}{opacity}
-
-\item{stroke}{str}
-
-\item{strokeWidth}{str wid}
-
-\item{step}{step}
-
-\item{...}{other param}
+\item{display}{}
 }
 \value{
 a map object

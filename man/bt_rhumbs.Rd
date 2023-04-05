@@ -6,31 +6,17 @@
 \usage{
 bt_rhumbs(
   bertin,
-  nb,
-  position,
-  stroke,
-  strokeWidth,
-  strokeOpacity,
-  strokeDasharray,
-  ...
+  nb = 10,
+  position = c(height, 4, width, 4, width, 4),
+  stroke = "#786d6c",
+  strokeWidth = 2,
+  strokeOpacity = 1,
+  strokeDasharray = "none",
+  display = TRUE
 )
 }
 \arguments{
-\item{bertin}{map object}
-
-\item{nb}{number of lines}
-
-\item{position}{position of the center in x and y}
-
-\item{stroke}{stroke color}
-
-\item{strokeWidth}{stroke width}
-
-\item{strokeOpacity}{stroke opacity}
-
-\item{strokeDasharray}{stroke dasharray}
-
-\item{...}{other param}
+\item{display}{}
 }
 \value{
 a map object

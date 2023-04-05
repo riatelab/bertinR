@@ -4,22 +4,24 @@
 \alias{bt_label}
 \title{Labels}
 \usage{
-bt_label(bertin, data, values, fill, fontSize, fontFamily, ...)
+bt_label(
+  bertin,
+  data,
+  values,
+  fill = "#474342",
+  fontSize = 10,
+  fontFamily = "Roboto",
+  textDecoration = "none",
+  fontWeight = "normal",
+  fontStyle = "normal",
+  opacity = 1,
+  halo = FALSE,
+  halo_style = c("white", 4, 0.5),
+  display = TRUE
+)
 }
 \arguments{
-\item{bertin}{map object}
-
-\item{data}{sf object EPSG:4326}
-
-\item{values}{values}
-
-\item{fill}{fill}
-
-\item{fontSize}{font size}
-
-\item{fontFamily}{font family}
-
-\item{...}{other param}
+\item{display}{}
 }
 \value{
 map object

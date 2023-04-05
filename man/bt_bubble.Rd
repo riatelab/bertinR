@@ -4,20 +4,37 @@
 \alias{bt_bubble}
 \title{Bubble}
 \usage{
-bt_bubble(bertin, data, values, k, tooltip, ...)
+bt_bubble(
+  bertin,
+  data,
+  values,
+  k = 50,
+  fixmax,
+  fill = "random color",
+  stroke = "white",
+  strokeWidth = 0.5,
+  fillOpacity = 1,
+  dorling = FALSE,
+  iteration = 200,
+  tooltip,
+  display = TRUE,
+  leg_x,
+  leg_y,
+  leg_fill = "none",
+  leg_stroke = "black",
+  leg_strokeWidth = 0.8,
+  leg_txtcol = "#363636",
+  leg_title = values,
+  leg_round,
+  leg_divisor = 1,
+  leg_fontSize = 14,
+  leg_fontSize2 = 10
+)
 }
 \arguments{
-\item{bertin}{map obj}
+\item{display}{}
 
-\item{data}{sf object EPSG:4326}
-
-\item{values}{values}
-
-\item{k}{k}
-
-\item{tooltip}{tooltip}
-
-\item{...}{other param}
+\item{leg_fontSize2}{}
 }
 \value{
 a map object
@@ -30,6 +47,6 @@ library(sf)
 world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
                  layer = "world", quiet = TRUE)
 bt_layer(data = world, fill = "#808080") |>
-  bt_bubble(data = world, values = "pop", k = 60, tooltip = "$LIBGEO") |>
+  bt_bubble(data = world, values = "pop", k = 60, tooltip = "$name") |>
   bt_draw()
 }

@@ -4,22 +4,41 @@
 \alias{bt_regulargrid}
 \title{Regular Grid}
 \usage{
-bt_regulargrid(bertin, data, step, values, fill, tooltip, ...)
+bt_regulargrid(
+  bertin,
+  data,
+  step = 20,
+  values,
+  operator = "sum",
+  geoprocessing = "intersection",
+  blur = 0,
+  colors = "Tableau10",
+  order,
+  col_missing = "#f5f5f5",
+  txt_missing = "No data",
+  stroke = "white",
+  strokeWidth = 0.5,
+  fillOpacity = 1,
+  tooltip,
+  leg_x,
+  leg_y,
+  leg_w = 30,
+  leg_h = 20,
+  leg_fill = "none",
+  leg_stroke = "black",
+  leg_strokeWidth = 0.8,
+  leg_txtcol = "#363636",
+  leg_title = var_data,
+  leg_round,
+  leg_fontSize = 10
+)
 }
 \arguments{
-\item{bertin}{map obj}
+\item{blur}{}
 
-\item{data}{sf object EPSG:4326}
+\item{tooltip}{}
 
-\item{step}{step}
-
-\item{values}{values}
-
-\item{fill}{fill}
-
-\item{tooltip}{tooltip}
-
-\item{...}{other param}
+\item{leg_fontSize}{}
 }
 \value{
 a map object

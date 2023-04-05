@@ -4,20 +4,28 @@
 \alias{bt_text}
 \title{Texts}
 \usage{
-bt_text(bertin, text, position, fontSize, fontFamily, ...)
+bt_text(
+  bertin,
+  text,
+  position = c(100, 200),
+  fontSize = 15,
+  fontFamily = "Roboto",
+  textDecoration = "none",
+  fontWeight = "normal",
+  fontStyle = "none",
+  margin = 0,
+  anchor = "start",
+  fill = "#474342",
+  stroke = "none",
+  frame_fill = "none",
+  frame_stroke = "none",
+  frame_strokeWidth = 1,
+  frame_opacity = 1,
+  display = TRUE
+)
 }
 \arguments{
-\item{bertin}{map object}
-
-\item{text}{text to display}
-
-\item{position}{position}
-
-\item{fontSize}{text size}
-
-\item{fontFamily}{font family}
-
-\item{...}{other param}
+\item{display}{}
 }
 \value{
 map object

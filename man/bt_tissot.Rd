@@ -6,37 +6,30 @@
 \usage{
 bt_tissot(
   bertin,
-  step,
-  fill,
-  fillOpacity,
-  stroke,
-  strokeWidth,
-  strokeOpacity,
-  ...
+  step = 20,
+  fill = "#d91848",
+  fillOpacity = 0.5,
+  stroke = "white",
+  strokeWidth = 1.5,
+  strokeOpacity = 1,
+  display = TRUE
 )
-}
-\arguments{
-\item{bertin}{map object}
-
-\item{step}{step between circles}
-
-\item{fill}{fill}
-
-\item{fillOpacity}{fill opacity}
-
-\item{stroke}{stroke}
-
-\item{strokeWidth}{stroke width}
-
-\item{strokeOpacity}{stroke opacity}
-
-\item{...}{other param}
 }
 \value{
 map object
 }
 \description{
-Tissot's indicatrix
+#' @eval my_params(c(
+}
+\details{
+'bertin',
+ 'step',
+ 'fill',
+ 'fillOpacity',
+ 'stroke',
+ 'strokeWidth',
+ 'strokeOpacity',
+ 'display',))
 }
 \examples{
 library(sf)

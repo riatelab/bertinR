@@ -4,20 +4,37 @@
 \alias{bt_regularbubble}
 \title{Regular Bubble}
 \usage{
-bt_regularbubble(bertin, data, step, values, tooltip, ...)
+bt_regularbubble(
+  bertin,
+  data,
+  values,
+  k = 50,
+  fixmax,
+  fill = "random color",
+  stroke = "white",
+  strokeWidth = 0.5,
+  fillOpacity = 1,
+  dorling = FALSE,
+  iteration = 200,
+  tooltip,
+  display = TRUE,
+  leg_x,
+  leg_y,
+  leg_fill = "none",
+  leg_stroke = "black",
+  leg_strokeWidth = 0.8,
+  leg_txtcol = "#363636",
+  leg_title = var_data,
+  leg_round,
+  leg_divisor = 1,
+  leg_fontSize = 14,
+  leg_fontSize2 = 10
+)
 }
 \arguments{
-\item{bertin}{map obj}
+\item{display}{}
 
-\item{data}{sf object EPSG:4326}
-
-\item{step}{values}
-
-\item{values}{k}
-
-\item{tooltip}{tooltip}
-
-\item{...}{other param}
+\item{leg_fontSize2}{}
 }
 \value{
 a map object
@@ -28,10 +45,10 @@ Regular Bubble
 \examples{
 library(sf)
 world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
-                 layer = "world", quiet = TRUE)
+                layer = "world", quiet = TRUE)
 bt_layer(data = world, fill = "#808080") |>
-  bt_regularbubble(data = world,
-                   values = "pop", step = 10,
-                   k = 10, tooltip = c("$name","$pop")) |>
-  bt_draw()
+bt_regularbubble(data = world,
+                 values = "pop", step = 10,
+                   k = 10, tooltip = "$value") |>
+ bt_draw()
 }

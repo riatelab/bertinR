@@ -4,20 +4,17 @@
 \alias{bt_geolines}
 \title{Geolines}
 \usage{
-bt_geolines(bertin, stroke, strokeWidth, strokeDasharray, strokeLinecap, ...)
+bt_geolines(
+  bertin,
+  stroke = "#020e21",
+  strokeWidth = c(1.5, 1.2, 0.7),
+  strokeDasharray = c("none", 5, 3),
+  strokeLinecap = "round",
+  display = TRUE
+)
 }
 \arguments{
-\item{bertin}{map object}
-
-\item{stroke}{stroke}
-
-\item{strokeWidth}{stroke width}
-
-\item{strokeDasharray}{stroke dasharray}
-
-\item{strokeLinecap}{stroke linecap}
-
-\item{...}{other param}
+\item{display}{}
 }
 \value{
 a map object

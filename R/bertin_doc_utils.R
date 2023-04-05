@@ -1,0 +1,170 @@
+my_params <- function(x) {
+  params <- list(
+    leg_x = "position in x (if this value is not filled, the legend is not displayed)(value in px)",
+    leg_y = "position in y (if this value is not filled, the legend is not displayed)(value in px)",
+    leg_fill = "color of the circles",
+    leg_stroke = "stroke color of the circles",
+    leg_strokeWidth = "stoke-width of the legend",
+    leg_txtcol = "color of the text",
+    leg_title = "title of the legend",
+    leg_round = "number of digits after the decimal point",
+    leg_divisor = paste0("A number to divide to the values in the legend.",
+                         " For example, 1000 is used to convert units to thousands.",
+                         "1000000 allows to convert units into millions"
+                         ),
+
+    leg_fontSize = "legend title font size",
+    leg_fontSize2 = "legend text font size",
+
+
+    margin = "margin",
+    width = "width in px",
+    projection = "projection of the map",
+    extent = paste0("a feature or a bbox array defining the extent.",
+                   "It could be a country or [[112, -43],[153, -9]]"
+                   ),
+
+    background = "color of the background",
+    clip = "a boolean to avoid artifacts of discontinuous projection",
+    reverse = paste0("a boolean. By default, the layer placed on the top",
+                     "of the code is display on the top of the map.",
+                     "With reverse : true, your can reverse this order"
+                     )
+
+
+
+  ,
+
+
+    bertin = "map object",
+    data = "sf object EPSG:4326",
+    fill = "fill color",
+    stroke = "stroke color",
+    strokeLinecap = "appearance of the line cap",
+    strokeLinejoin = "appearance of the intersection beetween two or several lines",
+    strokeWidth = "stroke width ",
+    strokeDasharray = "stroke dash array",
+    fillOpacity = "fill opacity",
+    strokeOpacity = "stroke opacity",
+    step= "gap between graticules. The value can be a number or an array of two values",
+    symbol = paste0("if it is a dot layer, the type of symbol.","circle", "cross",
+                    "diamond", "square", "star", "triangle", "wye"
+                    ),
+    text = "text to display",
+    position = paste0("position of the text. It can be an array with x,y coordinates. For example [100,200]",
+                      ". It can be also a string defining the position.", "'topleft', 'top', 'topright', 'left', 'middle',
+                    'right', 'bottomleft', 'bottom', 'bottomright'"),
+
+    fontSize = "text size",
+    fontFamily = "font family",
+    textDecoration = "text decoration.","'none', 'underline', 'line-through', 'overline'",
+    fontWeigh = "font weight",". 'normal', 'bold', 'bolder', 'lighter'",
+    fontStyle =  "font style","'normal', 'italic', 'oblique'",
+    anchor = "text anchor. start, middle, end",
+    frame_fill = "frame background color",
+    frame_stroke = "frame stroke color",
+    frame_strokeWidth = "thickness of the frame contour",
+    frame_opacity= "frame opacity",
+    halo= "boolean to display a halo below the text",
+    halo_style = "an array defining the halo style. [color, thickness, opacity]",
+
+
+
+
+    symbol_size = "if it is a dot layer, a number indicating the size of the symbol",
+    symbol_shift  = "if it is a dot layer, use a value > 0 to switch symbols and avoid overlay",
+    symbol_iteration = "Number of iteration to shift symbols",
+    display = "Boolean to allow to show or hide the layer. This parameter has no effect on the calculation of the extent",
+    tooltip = "tooltip allows you to display a label when you fly over an object",
+
+    style = paste0("tile style", "'openstreetmap', 'opentopomap',
+                   'worldterrain', 'worldimagery', 'worldStreet',
+                   'worldphysical', 'shadedrelief', 'oceanbasemap'"
+                   ),
+    zoomDelta = "zoom offset",
+    tileSize = "tile size",
+    opacity = "opacity of the object",
+    source = paste0("position of the text. It can be an array with x,y coordinates. For example [100,200]",
+                    ". It can be also a string defining the position.", "'topleft', 'top', 'topright', 'left', 'middle',
+                    'right', 'bottomleft', 'bottom', 'bottomright'"),
+    increasetilesize= "a value to slightly increase the size of the tiles solve the problem of gap between the tiles with chromium",
+
+
+
+    dx = "shift in x ",
+    dy = "shift in y",
+    stdDeviation = "blur",
+
+    dist = "distance between lines in pixels",
+    nb = "number of lines",
+    precision = "number of steps defining buffers. 1 = not accurate, 8 = accurate",
+
+    backgroundOpacity = "background opacity",
+
+    x = "position in x (pixel)",
+    y = "position in y (pixel)",
+    units = "distance unit, miles or kilometers",
+
+    angle= "orientation of lines (degree)",
+    spacing = "spacing between lines (pixel)",
+
+    k= "size of the largest object",
+    fixmax = "Max value to fix the size of the biggest circle, in order to make maps comparable",
+    dorling = "avoid overlapping between bubbles. a boolean",
+    demers = "avoid overlapping between quares. a boolean",
+
+
+    operator = "'sum' for absolute quantitative data or 'mean",
+    geoprocessing = "'intersection' intersection between polygons and grid squares.
+                      Assignment of values in proportion to the intersected area) or 'dotinpoly'
+                      (considers each grid square and assigns the value of the underlying polygon
+                      or the weighted average of intersecting polygons. ).",
+    blur = "radius of the kernel defined",
+
+    colors = "define the pallette of categorical colors",
+    order = "an array of values to set the order of the colors",
+    col_missing = "Color for missing values",
+    txt_missing = "Text for missing values",
+
+
+    onedot = "dot value (if onedot is filled, nbmax is useless)",
+    nbmax = "number max of circles on the map",
+    radius = "radius of dots",
+    span = "spacing between dots",
+
+
+    top_values = "a string corresponding to the targeted top variable in the properties (compulsory)",
+    bottom_values = "a string corresponding to the targeted bottom variable in the properties(compulsory)",
+    top_fill = "top fill color",
+    bottom_fill = "bottom fill color",
+    top_tooltip = "top tooltip allows you to display a label when you fly over an object",
+    bottom_tooltip= "tooltip allows you to display a label when you fly over an object",
+    leg_top_txt= "title for the top variable",
+    leg_bottom_txt = "title for the bottom variable",
+    leg_bottom_fill = "color of bottom semi circles",
+    leg_top_fill = "color of top semi circles",
+
+
+    w = "width of the spikes",
+
+    thresholds = "number of classes",
+    bandwidth ="bandwidth (the standard deviation) of the Gaussian kernel and returns the estimate.",
+    colorcurve = "a value to curve the color interpolation",
+    grid_step = "Gap between the points",
+    grid_blur= "radius of the kernel",
+    grid_operator =  "operator 'sum' for absolute quantitative data or 'mean' for relative data (default: 'sum'. highly recommended)",
+    grid_geoprocessing = "intersection (intersection between polygons and grid squares. Assignment of values in proportion to the intersected area) or 'dotinpoly' (considers each grid square and assigns the value of the underlying polygon or the weighted average of intersecting polygons. )"
+  )
+
+
+  for (i in 1:length(params)) {
+    params[[i]] <- paste0(
+      "@param ", names(params)[i]," ",
+      params[[i]]
+    )
+  }
+
+  unname(unlist(params[x]))
+}
+
+

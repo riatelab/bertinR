@@ -1,17 +1,22 @@
 #' Params
 #'
-#' @param margin margin
-#' @param width width
-#' @param projection proj
-#' @param ... other params
+#'
+#' @eval my_params(c(
+#' 'margin',
+#' 'width',
+#' 'projection',
+#' 'extent',
+#' 'background',
+#' 'clip',
+#' 'reverse'))
 #'
 #' @return A list of params
 #' @export
 #'
 #' @examples
 #' bt_param(margin = 10)
-bt_param <- function(margin, width, projection, ...){
-  res <- c(as.list(environment()), list(...))
+bt_param <- function(margin=1, width=1000, projection="Mercator", extent = NULL ,background=NULL,clip=FALSE, reverse=FALSE){
+  res <- c(as.list(environment()))
   not_empty <- function(x){sum(nchar(x))>0}
   res <- res[unlist(lapply(X = res, FUN = not_empty))]
   res <- list(params=res)
@@ -23,15 +28,25 @@ bt_param <- function(margin, width, projection, ...){
 
 #' Layer
 #'
-#' @param bertin map object
-#' @param data sf object EPSG:4326
-#' @param fill fill
-#' @param tooltip tooltip
-#' @param strokeWidth stroke width
-#' @param strokeDasharray stroke dash array
-#' @param stroke stroke
-#' @param step step
-#' @param ... other params
+#' @eval my_params(c(
+#'
+#' 'bertin',
+#' 'data',
+#' 'fill',
+#' 'stroke',
+#' 'strokeLinecap',
+#' 'strokeLinejoin',
+#' 'strokeWidth',
+#' 'strokeDasharray',
+#' 'fillOpacity',
+#' 'strokeOpacity',
+#' 'symbol',
+#' 'symbol_size',
+#' 'symbol_shift',
+#' 'symbol_iteration',
+#' 'display',
+#' 'tooltip'))
+#'
 #'
 #' @return a bertin list
 #'
@@ -43,10 +58,11 @@ bt_param <- function(margin, width, projection, ...){
 #' bt_param(margin = 10, width = 500, projection = "Winkel3") |>
 #'   bt_layer(data = world, fill = "red") |>
 #'   bt_draw()
-bt_layer <-function(bertin, data, fill,
-                    tooltip, strokeWidth,
-                    strokeDasharray, stroke,step, ...){
-  res <- c(as.list(environment()), list(...))
+bt_layer <-function(bertin, data, fill = "randomcolor",
+                    tooltip, strokeWidth=0.5,
+                    strokeDasharray=NULL, stroke = "white",strokeLinecap="round", strokeLinejoin= "round", fillOpacity = 1,
+                    strokeOpacity=1, symbol="circle", symbol_size = 5, symbol_shift=0,symbol_iteration=200, display = TRUE ) {
+  res <- c(as.list(environment()))
   res <- clean_input(res, type = "layer")
   if(missing(bertin)){bertin <- list()}
   bertin$layers[[length(bertin$layers) + 1]] <- res
@@ -55,14 +71,17 @@ bt_layer <-function(bertin, data, fill,
 
 #' Tissot's indicatrix
 #'
-#' @param bertin map object
-#' @param step step between circles
-#' @param fill fill
-#' @param fillOpacity fill opacity
-#' @param stroke stroke
-#' @param strokeWidth stroke width
-#' @param strokeOpacity stroke opacity
-#' @param ... other param
+#'
+#' #' @eval my_params(c(
+#'
+#'  'bertin',
+#'  'step',
+#'  'fill',
+#'  'fillOpacity',
+#'  'stroke',
+#'  'strokeWidth',
+#'  'strokeOpacity',
+#'  'display',))
 #'
 #' @return map object
 #' @export
@@ -76,9 +95,8 @@ bt_layer <-function(bertin, data, fill,
 #'   bt_layer(data = world, fill = "white", fillOpacity = .35) |>
 #'   bt_tissot(step = 20) |>
 #'   bt_draw()
-bt_tissot <- function(bertin, step, fill, fillOpacity,
-                      stroke, strokeWidth, strokeOpacity, ...){
-  res <- c(as.list(environment()), list(...))
+bt_tissot <- function(bertin, step=20 , fill="#d91848", fillOpacity=0.5, stroke ="white",strokeWidth=1.5, strokeOpacity=1,display=TRUE ){
+  res <- c(as.list(environment()))
   res <- clean_input(res, type = "tissot")
   if(missing(bertin)){bertin <- list()}
   bertin$layers[[length(bertin$layers) + 1]] <- res
@@ -87,12 +105,16 @@ bt_tissot <- function(bertin, step, fill, fillOpacity,
 
 #' Mercator Tiles
 #'
-#' @param bertin map object
-#' @param style tile style
-#' @param zoomDelta zoom offset
-#' @param tileSize tile size
-#' @param opacity tile opacity
-#' @param ... other param
+#' @param bertin
+#' @param style
+#' @param zoomDelta
+#' @param tileSize
+#' @param opacity
+#' @param clip
+#' @param source
+#' @param increasetilesize
+#' @param display
+#'
 #'
 #' @return map object
 #' @export
@@ -105,8 +127,8 @@ bt_tissot <- function(bertin, step, fill, fillOpacity,
 #' bt_param(projection = "Mercator", clip = TRUE, extent = italy) |>
 #'   bt_tiles(style = "worldphysical") |>
 #'   bt_draw()
-bt_tiles <- function(bertin, style, zoomDelta, tileSize, opacity, ...){
-  res <- c(as.list(environment()), list(...))
+bt_tiles <- function(bertin, style="opentopomap",zoomDelta = 0, tileSize=512, opacity=1,clip, source= c(100,200),increasetilesize=1, display=1){
+  res <- c(as.list(environment()))
   res <- clean_input(res, type = "tiles")
   if(missing(bertin)){bertin <- list()}
   bertin$layers[[length(bertin$layers) + 1]] <- res
@@ -115,12 +137,24 @@ bt_tiles <- function(bertin, style, zoomDelta, tileSize, opacity, ...){
 
 #' Texts
 #'
-#' @param bertin map object
-#' @param text text to display
-#' @param position position
-#' @param fontSize text size
-#' @param fontFamily font family
-#' @param ... other param
+#' @param bertin
+#' @param text
+#' @param position
+#' @param fontSize
+#' @param fontFamily
+#' @param textDecoration
+#' @param fontWeight
+#' @param fontStyle
+#' @param margin
+#' @param anchor
+#' @param fill
+#' @param stroke
+#' @param frame_fill
+#' @param frame_stroke
+#' @param frame_strokeWidth
+#' @param frame_opacity
+#' @param display
+#'
 #'
 #' @return map object
 #' @export
@@ -134,8 +168,11 @@ bt_tiles <- function(bertin, style, zoomDelta, tileSize, opacity, ...){
 #'   bt_text(text = "This is my text", position = "bottomright",
 #'           fontSize = 20, frame_stroke = "red", margin = 4) |>
 #'   bt_draw()
-bt_text <- function(bertin, text, position, fontSize, fontFamily, ...){
-  res <- c(as.list(environment()), list(...))
+bt_text <- function(bertin, text, position=c(100,200),fontSize=15,fontFamily="Roboto",
+                    textDecoration="none", fontWeight = "normal", fontStyle = "none",
+                    margin=0,anchor="start",fill="#474342",stroke="none",frame_fill="none",
+                    frame_stroke= "none", frame_strokeWidth= 1, frame_opacity=1,display=TRUE){
+  res <- c(as.list(environment()))
   res <- clean_input(res, type = "text")
   if(missing(bertin)){bertin <- list()}
   bertin$layers[[length(bertin$layers) + 1]] <- res
@@ -144,13 +181,20 @@ bt_text <- function(bertin, text, position, fontSize, fontFamily, ...){
 
 #' Labels
 #'
-#' @param bertin map object
-#' @param data sf object EPSG:4326
-#' @param values values
-#' @param fill fill
-#' @param fontSize font size
-#' @param fontFamily font family
-#' @param ... other param
+#' @param bertin
+#' @param data
+#' @param values
+#' @param fill
+#' @param fontSize
+#' @param fontFamily
+#' @param textDecoration
+#' @param fontWeight
+#' @param fontStyle
+#' @param opacity
+#' @param halo
+#' @param halo_style
+#' @param display
+#'
 #'
 #' @return map object
 #' @export
@@ -163,8 +207,9 @@ bt_text <- function(bertin, text, position, fontSize, fontFamily, ...){
 #'   bt_layer(data = world) |>
 #'   bt_label(data = world, values = "name") |>
 #'   bt_draw()
-bt_label <- function(bertin, data, values, fill,fontSize, fontFamily, ...){
-  res <- c(as.list(environment()), list(...))
+bt_label <- function(bertin, data, values, fill = "#474342" ,fontSize=10, fontFamily = "Roboto", textDecoration ="none", fontWeight ="normal",
+                     fontStyle="normal", opacity=1, halo= FALSE, halo_style= c("white",4,0.5),display=TRUE){
+  res <- c(as.list(environment()))
   res <- clean_input(res, type = "label")
   if(missing(bertin)){bertin <- list()}
   bertin$layers[[length(bertin$layers) + 1]] <- res
@@ -173,12 +218,15 @@ bt_label <- function(bertin, data, values, fill,fontSize, fontFamily, ...){
 
 #' Graticules
 #'
-#' @param bertin map object
-#' @param strokeWidth str wid
-#' @param strokeDasharray str dash arr
-#' @param stroke str
-#' @param step step
-#' @param ... other param
+#' @param bertin
+#' @param stroke
+#' @param strokeDasharray
+#' @param strokeWidth
+#' @param step
+#' @param display
+#'
+#'
+#'
 #'
 #' @return map object
 #' @export
@@ -191,9 +239,8 @@ bt_label <- function(bertin, data, values, fill,fontSize, fontFamily, ...){
 #'   bt_layer(data = world, fill = "red") |>
 #'   bt_graticule(strokeWidth = 1.5, stroke  = "green", step  = 15)|>
 #'   bt_draw()
-bt_graticule <- function(bertin, strokeWidth, strokeDasharray,
-                         stroke, step, ...){
-  res <- c(as.list(environment()), list(...))
+bt_graticule <- function(bertin, stroke="white", strokeDasharray="none",strokeWidth=0.8, step= c(10,10),display=TRUE){
+  res <- c(as.list(environment()))
   res <- clean_input(res, type = "graticule")
   if(missing(bertin)){bertin <- list()}
   bertin$layers[[length(bertin$layers) + 1]] <- res
@@ -202,13 +249,15 @@ bt_graticule <- function(bertin, strokeWidth, strokeDasharray,
 
 #' Shadow
 #'
-#' @param bertin map object
-#' @param data sf object EPSG:4326
-#' @param dx dx
-#' @param dy dy
-#' @param stdDeviation blur
-#' @param opacity opacity
-#' @param ... other param
+#' @param bertin
+#' @param data
+#' @param fill
+#' @param dx
+#' @param dy
+#' @param stdDeviation
+#' @param opacity
+#' @param display
+#'
 #'
 #' @return a map object
 #' @export
@@ -222,8 +271,8 @@ bt_graticule <- function(bertin, strokeWidth, strokeDasharray,
 #'   bt_shadow(data = world) |>
 #'   bt_layer(data = world, fill = "white") |>
 #'   bt_draw()
-bt_shadow <- function(bertin, data, dx, dy, stdDeviation, opacity, ...){
-  res <- c(as.list(environment()), list(...))
+bt_shadow <- function(bertin, data, dx=3, dy=3, stdDeviation=1.5, opacity=0.7, fill= "#35383d", display=TRUE){
+  res <- c(as.list(environment()))
   res <- clean_input(res, type = "shadow")
   if(missing(bertin)){bertin <- list()}
   bertin$layers[[length(bertin$layers) + 1]] <- res
@@ -232,13 +281,13 @@ bt_shadow <- function(bertin, data, dx, dy, stdDeviation, opacity, ...){
 
 #' Outline
 #'
-#' @param bertin map object
-#' @param fill fill
-#' @param opacity opacity
-#' @param stroke str
-#' @param strokeWidth str wid
-#' @param step step
-#' @param ... other param
+#' @param bertin
+#' @param fill
+#' @param opacity
+#' @param stroke
+#' @param strokeWidth
+#' @param display
+#'
 #'
 #' @return a map object
 #' @export
@@ -246,8 +295,8 @@ bt_shadow <- function(bertin, data, dx, dy, stdDeviation, opacity, ...){
 #' @examples
 #' bt_outline(fill = "#ADD8F7", stroke = "#4269ad") |>
 #'   bt_draw()
-bt_outline <- function(bertin, fill, opacity, stroke, strokeWidth, step, ...){
-  res <- c(as.list(environment()), list(...))
+bt_outline <- function(bertin, fill="#add8f7", opacity=1, stroke="none", strokeWidth=1, diplay=TRUE){
+  res <- c(as.list(environment()))
   res <- clean_input(res, type = "outline")
   if(missing(bertin)){bertin <- list()}
   bertin$layers[[length(bertin$layers) + 1]] <- res
@@ -257,11 +306,20 @@ bt_outline <- function(bertin, fill, opacity, stroke, strokeWidth, step, ...){
 
 #' Waterlines
 #'
-#' @param bertin map object
-#' @param data sf object EPSG:4326
-#' @param dist dist
-#' @param nb nb
-#' @param ...  other
+#' @param bertin
+#' @param data
+#' @param dist
+#' @param nb
+#' @param precision
+#' @param stroke
+#' @param strokeOpacity
+#' @param strokeWidth
+#' @param strokeDasharray
+#' @param strokeLinecap
+#' @param strokeLinejoin
+#' @param display
+#'
+#'
 #'
 #' @return a map object
 #' @export
@@ -274,8 +332,9 @@ bt_outline <- function(bertin, fill, opacity, stroke, strokeWidth, step, ...){
 #'   bt_layer(data = world) |>
 #'   bt_waterlines(data = world, dist = 3, nb = 4) |>
 #'   bt_draw()
-bt_waterlines <-function(bertin, data, dist, nb, ...){
-  res <- c(as.list(environment()), list(...))
+bt_waterlines <-function(bertin, data, dist=5, nb=3, precision=3, stroke="#5d81ba",strokeOpacity= c(1,0.1), strokeWidth=c(1.2,0.2), strokeDasharray="none",
+                         strokeLinecap="round", strokeLineJoin="round", display=TRUE){
+  res <- c(as.list(environment()))
   res <- clean_input(res, type = "waterlines")
   if(missing(bertin)){bertin <- list()}
   bertin$layers[[length(bertin$layers) + 1]] <- res
@@ -289,10 +348,16 @@ bt_waterlines <-function(bertin, data, dist, nb, ...){
 
 #' Header
 #'
-#' @param bertin map object
-#' @param text text
-#' @param fontSize font size
-#' @param ... other param
+#' @param bertin
+#' @param text
+#' @param anchor
+#' @param fontSize
+#' @param fill
+#' @param background
+#' @param backgroundOpacity
+#' @param display
+#'
+#'
 #'
 #' @return a map object
 #' @export
@@ -304,8 +369,8 @@ bt_waterlines <-function(bertin, data, dist, nb, ...){
 #'   bt_layer(data = world, fill = "red") |>
 #'   bt_header(text = "Title") |>
 #'   bt_draw()
-bt_header <-function(bertin, text, fontSize, ...){
-  res <- c(as.list(environment()), list(...))
+bt_header <-function(bertin, text="", fontSize=20, fill= "#9e9696", background= "white", backgroundOpacity=1, display= TRUE){
+  res <- c(as.list(environment()))
   res <- clean_input(res, type = "header")
   if(missing(bertin)){bertin <- list()}
   bertin$layers[[length(bertin$layers) + 1]] <- res
@@ -314,10 +379,17 @@ bt_header <-function(bertin, text, fontSize, ...){
 
 #' Footer
 #'
-#' @param bertin bertin
-#' @param text text
-#' @param fontSize fontSize
-#' @param ... other
+#' @param bertin
+#' @param text
+#' @param anchor
+#' @param fontSize
+#' @param fill
+#' @param background
+#' @param backgroundOpacity
+#' @param display
+#'
+#'
+#'
 #'
 #' @return a map object
 #' @export
@@ -330,8 +402,8 @@ bt_header <-function(bertin, text, fontSize, ...){
 #'   bt_layer(data = world, fill = "red") |>
 #'   bt_footer(text = "Title") |>
 #'   bt_draw()
-bt_footer <- function(bertin, text, fontSize, ...){
-  res <- c(as.list(environment()), list(...))
+bt_footer <- function(bertin, text="", fontSize=15,anchor="end",fill="#9e9696", background= "white", backgroundOpacity=1, display=1){
+  res <- c(as.list(environment()))
   res <- clean_input(res, type = "footer")
   if(missing(bertin)){bertin <- list()}
   bertin$layers[[length(bertin$layers) + 1]] <- res
@@ -340,11 +412,12 @@ bt_footer <- function(bertin, text, fontSize, ...){
 
 #' Scalebar
 #'
-#' @param bertin map object
-#' @param x x
-#' @param y y
-#' @param units units
-#' @param ... other param
+#' @param bertin
+#' @param x
+#' @param y
+#' @param units
+#' @param display
+#'
 #'
 #' @return a map object
 #' @export
@@ -357,8 +430,8 @@ bt_footer <- function(bertin, text, fontSize, ...){
 #'   bt_layer(data = world) |>
 #'   bt_scalebar() |>
 #'   bt_draw()
-bt_scalebar <- function(bertin, x, y, units, ...){
-  res <- c(as.list(environment()), list(...))
+bt_scalebar <- function(bertin, x="left", y="bottom", units="kilometers", display= TRUE){
+  res <- c(as.list(environment()))
   res <- clean_input(res, type = "scalebar")
   if(missing(bertin)){bertin <- list()}
   bertin$layers[[length(bertin$layers) + 1]] <- res
@@ -367,12 +440,14 @@ bt_scalebar <- function(bertin, x, y, units, ...){
 
 #' Geolines
 #'
-#' @param bertin map object
-#' @param stroke stroke
-#' @param strokeWidth stroke width
-#' @param strokeDasharray stroke dasharray
-#' @param strokeLinecap stroke linecap
-#' @param ... other param
+#' @param bertin
+#' @param stroke
+#' @param strokeWidth
+#' @param strokeOpacity
+#' @param strokeDasharray
+#' @param strokeLinecap
+#' @param display
+#'
 #'
 #' @return a map object
 #' @export
@@ -386,8 +461,8 @@ bt_scalebar <- function(bertin, x, y, units, ...){
 #'   bt_layer(data = world, fill = "white") |>
 #'   bt_geolines() |>
 #'   bt_draw()
-bt_geolines <- function(bertin, stroke, strokeWidth, strokeDasharray, strokeLinecap, ...){
-  res <- c(as.list(environment()), list(...))
+bt_geolines <- function(bertin, stroke= "#020e21", strokeWidth=c(1.5,1.2,0.7), strokeDasharray=c("none",5,3), strokeLinecap="round", display= TRUE){
+  res <- c(as.list(environment()))
   res <- clean_input(res, type = "geolines")
   if(missing(bertin)){bertin <- list()}
   bertin$layers[[length(bertin$layers) + 1]] <- res
@@ -396,14 +471,15 @@ bt_geolines <- function(bertin, stroke, strokeWidth, strokeDasharray, strokeLine
 
 #' Hatch
 #'
-#' @param bertin map object
-#' @param angle orientation of lines
-#' @param stroke stroke
-#' @param strokeWidth stroke width
-#' @param strokeOpacity stroke opacity
-#' @param strokeDasharray stroke dasharray
-#' @param spacing spacing between lines
-#' @param ... other param
+#' @param bertin
+#' @param angle
+#' @param stroke
+#' @param strokeWidth
+#' @param strokeOpacity
+#' @param strokeDasharray
+#' @param spacing
+#' @param display
+#'
 #'
 #' @return a map object
 #' @export
@@ -417,8 +493,8 @@ bt_geolines <- function(bertin, stroke, strokeWidth, strokeDasharray, strokeLine
 #'   bt_layer(data = world, fill = "white") |>
 #'   bt_hatch() |>
 #'   bt_draw()
-bt_hatch <- function(bertin, angle, stroke, strokeWidth, strokeOpacity, strokeDasharray, spacing, ...){
-  res <- c(as.list(environment()), list(...))
+bt_hatch <- function(bertin, angle=45, stroke="#786d6c", strokeWidth=2, strokeOpacity=1, strokeDasharray="none", spacing=8, display=TRUE){
+  res <- c(as.list(environment()))
   res <- clean_input(res, type = "hatch")
   if(missing(bertin)){bertin <- list()}
   bertin$layers[[length(bertin$layers) + 1]] <- res
@@ -428,14 +504,14 @@ bt_hatch <- function(bertin, angle, stroke, strokeWidth, strokeOpacity, strokeDa
 
 #' Rhumbs
 #'
-#' @param bertin map object
-#' @param nb number of lines
-#' @param position position of the center in x and y
-#' @param stroke stroke color
-#' @param strokeWidth stroke width
-#' @param strokeOpacity stroke opacity
-#' @param strokeDasharray stroke dasharray
-#' @param ... other param
+#' @param bertin
+#' @param nb
+#' @param position
+#' @param stroke
+#' @param strokeWidth
+#' @param strokeOpacity
+#' @param strokeDasharray
+#' @param display
 #'
 #' @return a map object
 #' @export
@@ -449,8 +525,8 @@ bt_hatch <- function(bertin, angle, stroke, strokeWidth, strokeOpacity, strokeDa
 #'   bt_layer(data = world, fill = "white") |>
 #'   bt_rhumbs(position = c(370, 370), nb = 25) |>
 #'   bt_draw()
-bt_rhumbs <- function(bertin, nb, position, stroke, strokeWidth, strokeOpacity, strokeDasharray, ...){
-  res <- c(as.list(environment()), list(...))
+bt_rhumbs <- function(bertin, nb=10, position= c(height,4,width,4,width,4), stroke="#786d6c", strokeWidth=2, strokeOpacity=1, strokeDasharray="none", display=TRUE){
+  res <- c(as.list(environment()))
   res <- clean_input(res, type = "rhumbs")
   if(missing(bertin)){bertin <- list()}
   bertin$layers[[length(bertin$layers) + 1]] <- res
@@ -459,12 +535,34 @@ bt_rhumbs <- function(bertin, nb, position, stroke, strokeWidth, strokeOpacity, 
 
 #' Bubble
 #'
-#' @param bertin map obj
-#' @param data sf object EPSG:4326
-#' @param values values
-#' @param k k
-#' @param tooltip tooltip
-#' @param ... other param
+#' @param bertin
+#' @param data
+#' @param values
+#' @param k
+#' @param fixmax
+#' @param fill
+#' @param stroke
+#' @param strokeWidth
+#' @param fillOpacity
+#' @param dorling:
+#' @param iteration
+#' @param tooltip
+#' @param display
+#'
+#'
+#' @param leg_x
+#' @param leg_y
+#' @param leg_fill
+#' @param leg_stroke
+#' @param leg_strokeWidth
+#' @param leg_txtcol
+#' @param leg_title
+#' @param leg_round
+#' @param leg_divisor
+#' @param leg_fontSize
+#' @param leg_fontSize2
+#'
+#'
 #'
 #' @return a map object
 #' @export
@@ -474,10 +572,34 @@ bt_rhumbs <- function(bertin, nb, position, stroke, strokeWidth, strokeOpacity, 
 #' world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
 #'                  layer = "world", quiet = TRUE)
 #' bt_layer(data = world, fill = "#808080") |>
-#'   bt_bubble(data = world, values = "pop", k = 60, tooltip = "$LIBGEO") |>
+#'   bt_bubble(data = world, values = "pop", k = 60, tooltip = "$name") |>
 #'   bt_draw()
-bt_bubble <-function(bertin, data, values, k, tooltip, ...){
-  res <- c(as.list(environment()), list(...))
+bt_bubble <-
+  function(bertin,
+           data,
+           values,
+           k = 50,
+           fixmax,
+           fill = "random color",
+           stroke = "white",
+           strokeWidth = 0.5,
+           fillOpacity = 1,
+           dorling = FALSE,
+           iteration = 200,
+           tooltip,
+           display = TRUE,
+           leg_x,
+           leg_y,
+           leg_fill = "none",
+           leg_stroke = "black",
+           leg_strokeWidth = 0.8,
+           leg_txtcol = "#363636",
+           leg_title = values,
+           leg_round,
+           leg_divisor = 1,
+           leg_fontSize = 14,
+           leg_fontSize2 = 10) {
+    res <- c(as.list(environment()))
   res <- clean_input(res, type = "bubble")
   if(missing(bertin)){bertin <- list()}
   bertin$layers[[length(bertin$layers) + 1]] <- res
@@ -486,28 +608,47 @@ bt_bubble <-function(bertin, data, values, k, tooltip, ...){
 
 #' Square
 #'
-#' @param bertin map obj
-#' @param data sf object EPSG:4326
-#' @param values values
-#' @param k k
-#' @param tooltip tooltip
-#' @param ... other param
+#' @param bertin
+#' @param data
+#' @param values
+#' @param k
+#' @param fixmax
+#' @param fill
+#' @param stroke
+#' @param strokeWidth
+#' @param fillOpacity
+#' @param demers:
+#' @param iteration
+#' @param tooltip
+#' @param display
+#'
+#' @param leg_x
+#' @param leg_y
+#' @param leg_fill
+#' @param leg_stroke
+#' @param leg_strokeWidth
+#' @param leg_txtcol
+#' @param leg_title
+#' @param leg_round
+#' @param leg_divisor
+#' @param leg_fontSize
+#' @param leg_fontSize2
+#'
+#'
 #'
 #' @return a map object
 #' @export
 #'
 #' @examples
-#' library(sf)
-#' world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
-#'                  layer = "world", quiet = TRUE)
-#' bt_param(projection = "Eckert3", clip = TRUE) |>
-#'   bt_outline() |>
-#'   bt_layer(data = world, fill = "white") |>
-#'   bt_square(data = data,values = "pop", k = 60,
-#'             tooltip = c("$name", "$pop", "(inh.)")) |>
-#'   bt_draw()
-bt_square <-function(bertin, data, values, k, tooltip, ...){
-  res <- c(as.list(environment()), list(...))
+#'library(sf)
+#'world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
+#'                layer = "world", quiet = TRUE)
+#'bt_layer(data = world, fill = "#808080") |>
+#' bt_square(data = world, values = "pop", k = 60, tooltip = "$name") |>
+#' bt_draw()
+bt_square <-function(bertin, data, values, k=50, fixmax, fill = "random color", stroke="white", strokeWidth= 0.5, fillOpacity=1, demers=FALSE, iteration=200, tooltip, display= TRUE,
+                     leg_x,leg_y, leg_fill="none", leg_stroke="black", leg_strokeWidth=0.8, leg_txtco = "#363636", leg_title=var_data, leg_round, leg_divisor=1, leg_fontSize=14, leg_fontSize2=10){
+  res <- c(as.list(environment()))
   res <- clean_input(res, type = "square")
   if(missing(bertin)){bertin <- list()}
   bertin$layers[[length(bertin$layers) + 1]] <- res
@@ -516,27 +657,49 @@ bt_square <-function(bertin, data, values, k, tooltip, ...){
 
 #' Regular Bubble
 #'
-#' @param bertin map obj
-#' @param data sf object EPSG:4326
-#' @param step values
-#' @param values k
-#' @param tooltip tooltip
-#' @param ... other param
+#' @param bertin
+#' @param data
+#' @param values
+#' @param k
+#' @param fixmax
+#' @param fill
+#' @param stroke
+#' @param strokeWidth
+#' @param fillOpacity
+#' @param dorling:
+#' @param iteration
+#' @param tooltip
+#' @param display
+#'
+#'
+#' @param leg_x
+#' @param leg_y
+#' @param leg_fill
+#' @param leg_stroke
+#' @param leg_strokeWidth:
+#' @param leg_txtcol
+#' @param leg_title
+#' @param leg_round
+#' @param leg_divisor
+#' @param leg_fontSize
+#' @param leg_fontSize2
 #'
 #' @return a map object
 #' @export
 #'
 #' @examples
-#' library(sf)
-#' world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
-#'                  layer = "world", quiet = TRUE)
-#' bt_layer(data = world, fill = "#808080") |>
-#'   bt_regularbubble(data = world,
-#'                    values = "pop", step = 10,
-#'                    k = 10, tooltip = c("$name","$pop")) |>
-#'   bt_draw()
-bt_regularbubble <- function(bertin, data, step, values, tooltip, ...){
-  res <- c(as.list(environment()), list(...))
+#'library(sf)
+#'world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
+#'                 layer = "world", quiet = TRUE)
+#'bt_layer(data = world, fill = "#808080") |>
+#' bt_regularbubble(data = world,
+#'                  values = "pop", step = 10,
+#'                    k = 10, tooltip = "$value") |>
+#'  bt_draw()
+bt_regularbubble <- function(bertin, data, values, k =50, fixmax, fill= "random color", stroke= "white", strokeWidth=0.5, fillOpacity=1, dorling=FALSE, iteration=200, tooltip, display=TRUE,
+                             leg_x, leg_y, leg_fill = "none", leg_stroke="black",leg_strokeWidth= 0.8, leg_txtcol = "#363636", leg_title= var_data, leg_round, leg_divisor=1, leg_fontSize= 14,
+                             leg_fontSize2=10){
+  res <- c(as.list(environment()))
   res <- clean_input(res, type = "regularbubble")
   if(missing(bertin)){bertin <- list()}
   bertin$layers[[length(bertin$layers) + 1]] <- res
@@ -545,27 +708,49 @@ bt_regularbubble <- function(bertin, data, step, values, tooltip, ...){
 
 #' Regular Square
 #'
-#' @param bertin map obj
-#' @param data sf object EPSG:4326
-#' @param step values
-#' @param values k
-#' @param tooltip tooltip
-#' @param ... other param
+#' @param bertin
+#' @param data
+#' @param values
+#' @param k
+#' @param fixmax
+#' @param fill
+#' @param stroke
+#' @param strokeWidth
+#' @param fillOpacity
+#' @param demers:
+#' @param iteration
+#' @param tooltip
+#' @param display
+#'
+#'
+#' @param leg_x
+#' @param leg_y
+#' @param leg_fill
+#' @param leg_stroke
+#' @param leg_strokeWidth
+#' @param leg_txtcol
+#' @param leg_title
+#' @param leg_round
+#' @param leg_divisor
+#' @param leg_fontSize
+#' @param leg_fontSize2
 #'
 #' @return a map object
 #' @export
 #'
 #' @examples
-#' library(sf)
-#' world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
-#'                  layer = "world", quiet = TRUE)
-#' bt_layer(data = world, fill = "#808080") |>
-#'   bt_regularsquare(data = world,
-#'                    values = "pop", step = 10,
-#'                    k = 10, tooltip = c("$name","$pop")) |>
-#'   bt_draw()
-bt_regularsquare <- function(bertin, data, step, values, tooltip, ...){
-  res <- c(as.list(environment()), list(...))
+#'library(sf)
+#'world <- st_read(system.file("gpkg/world.gpkg", package = "bertin"),
+#'                layer = "world", quiet = TRUE)
+#'bt_layer(data = world, fill = "#808080") |>
+#'  bt_regularsquare(data = world,
+#'                 values = "pop", step = 10,
+#'                   k = 10, tooltip = "$value") |>
+#'  bt_draw()
+bt_regularsquare <- function(bertin, data, values, k=50, fixmax, fill=randomcolor, stroke="white",strokeWidth =0.5, fillOpacity=1, demrs= FALSE, iteration=200, tooltip, display=TRUE,
+                             leg_x,leg_y, leg_fill="none", leg_stroke="black", leg_strokeWidth= 0.8, leg_txtcol= "#363636", leg_title= var_data, leg_round, leg_divisor=1,
+                             leg_fontSize=14 , leg_fontSize2= 10){
+  res <- c(as.list(environment()))
   res <- clean_input(res, type = "regularsquare")
   if(missing(bertin)){bertin <- list()}
   bertin$layers[[length(bertin$layers) + 1]] <- res
@@ -574,13 +759,36 @@ bt_regularsquare <- function(bertin, data, step, values, tooltip, ...){
 
 #' Regular Grid
 #'
-#' @param bertin map obj
-#' @param data sf object EPSG:4326
-#' @param step step
-#' @param values values
-#' @param fill fill
-#' @param tooltip tooltip
-#' @param ... other param
+#' @param bertin
+#' @param data
+#' @param step
+#' @param values
+#' @param operator
+#' @param geoprocessing
+#' @param blur
+#'
+#' @param colors
+#' @param order
+#' @param col_missing
+#' @param txt_missing
+#' @param stroke
+#' @param strokeWidth
+#' @param fillOpacity
+#' @param tooltip
+#'
+#'
+#' @param leg_x
+#' @param leg_y
+#' @param leg_w
+#' @param leg_h
+#' @param leg_fill
+#' @param leg_stroke
+#' @param leg_strokeWidth
+#' @param leg_txtcol
+#' @param leg_title
+#' @param leg_round
+#' @param leg_fontSize
+#'
 #'
 #' @return a map object
 #' @export
@@ -599,8 +807,10 @@ bt_regularsquare <- function(bertin, data, step, values, tooltip, ...){
 #'                  ),
 #'                  tooltip = "$value") |>
 #'   bt_draw()
-bt_regulargrid <- function(bertin, data, step, values, fill,tooltip, ...){
-  res <- c(as.list(environment()), list(...))
+bt_regulargrid <- function(bertin, data, step =20, values, operator="sum", geoprocessing= "intersection", blur= 0, colors= "Tableau10", order, col_missing= "#f5f5f5", txt_missing= "No data",
+                           stroke="white", strokeWidth= 0.5, fillOpacity=1, tooltip, leg_x, leg_y, leg_w=30, leg_h = 20, leg_fill="none", leg_stroke="black", leg_strokeWidth = 0.8, leg_txtcol= "#363636",
+                           leg_title= var_data, leg_round, leg_fontSize= 10){
+  res <- c(as.list(environment()))
   res <- clean_input(res, type = "regulargrid")
   if(missing(bertin)){bertin <- list()}
   bertin$layers[[length(bertin$layers) + 1]] <- res
@@ -609,16 +819,34 @@ bt_regulargrid <- function(bertin, data, step, values, fill,tooltip, ...){
 
 #' Dot cartogram
 #'
-#' @param bertin map obj
-#' @param data sf object EPSG:4326
-#' @param onedot dot value
-#' @param iteration an integer to define the number of iteration for the Dorling method
-#' @param values values
-#' @param radius radius
-#' @param span spacing between dots
-#' @param fill fill color
-#' @param tooltip tooltip
-#' @param ... other param
+#' @param bertin
+#' @param data
+#' @param onedot
+#' @param nbmax
+#' @param iteration
+#' @param values
+#' @param radius
+#' @param span
+#' @param fill
+#' @param stroke
+#' @param strokeWidth
+#' @param fillOpacity
+#' @param tooltip
+#' @param display
+#'
+#'
+#' @param leg_x
+#' @param leg_y
+#' @param leg_fill
+#' @param leg_stroke
+#' @param leg_strokeWidth
+#' @param leg_txtcol
+#' @param leg_title
+#' @param leg_round
+#' @param leg_fontSize
+#'
+#'
+#'
 #'
 #' @return a map object
 #' @export
@@ -632,8 +860,9 @@ bt_regulargrid <- function(bertin, data, step, values, fill,tooltip, ...){
 #'                   onedot = 100000000000,
 #'                   iteration = 200, values = "gdp") |>
 #'   bt_draw()
-bt_dotcartogram <-function(bertin, data, onedot, iteration, values, radius, span, fill, tooltip, ...){
-  res <- c(as.list(environment()), list(...))
+bt_dotcartogram <-function(bertin, data, onedot, nbmax=200, iteration=200, values, radius=4, span=0.5, fill=randomcolor, stroke= "white", strokeWidth = 0.5, fillOpacity = 1, tooltip, display= TRUE,
+                           leg_x, leg_y, leg_fill="none", leg_stroke="black", leg_strokeWidth = 0.8, leg_txtcol = "#363636", leg_title=var_data, leg_round, leg_fontSize= 10){
+  res <- c(as.list(environment()))
   res <- clean_input(res, type = "dotcartogram")
   if(missing(bertin)){bertin <- list()}
   bertin$layers[[length(bertin$layers) + 1]] <- res
@@ -642,13 +871,36 @@ bt_dotcartogram <-function(bertin, data, onedot, iteration, values, radius, span
 
 #' Mushroom
 #'
-#' @param bertin map object
-#' @param data sf object EPSG:4326
-#' @param top_values top values
-#' @param bottom_values bottom values
-#' @param bottom_tooltip bottom tooltip
-#' @param top_tooltip top tooltip
-#' @param ... other param
+#' @param bertin
+#' @param data
+#' @param top_values
+#' @param bottom_values
+#' @param top_fill
+#' @param bottom_fill
+#' @param k
+#' @param stroke
+#' @param strokeWidth
+#' @param fillOpacity
+#' @param strokeOpacity
+#' @param top_tooltip
+#' @param bottom_tooltip
+#' @param display
+#'
+#'
+#' @param leg_x
+#' @param leg_y
+#' @param leg_fill
+#' @param leg_stroke
+#' @param leg_strokeWidth:
+#' @param leg_txtcol
+#' @param leg_title
+#' @param leg_round
+#' @param leg_fontSize
+#' @param leg_fontSize2
+#' @param leg_top_txt
+#' @param leg_bottom_txt
+#' @param leg_bottom_fill
+#' @param leg_top_fill
 #'
 #' @return a map object
 #' @export
@@ -663,8 +915,10 @@ bt_dotcartogram <-function(bertin, data, onedot, iteration, values, radius, span
 #' bt_layer(data = africa, fill = "#808080") |>
 #'   bt_mushroom(data = africa, top_values = "gdp_pct", bottom_values = "pop_pct") |>
 #'   bt_draw()
-bt_mushroom <- function(bertin, data, top_values, bottom_values, bottom_tooltip, top_tooltip, ...){
-  res <- c(as.list(environment()), list(...))
+bt_mushroom <- function(bertin, data, top_values, bottom_values, top_fill = "#d64f4f", bottom_fill= "#4fabd6", k=50, stroke= "white", strokeWidth=0.5, fillOpacity=1, strokeOpacity=1,
+                        top_tooltip, bottom_tooltip, display= TRUE,  leg_x,  leg_y, leg_fill="none", leg_stroke = "black", leg_strokeWidth= 0.8, leg_txtcol= "#363636", leg_title= var_data,
+                        leg_round, leg_fontSize=14, leg_fontSize2= 10, leg_top_txt = top_var, leg_bottom_txt= bottom_var, leg_bottom_fill, leg_top_fill){
+  res <- c(as.list(environment()))
   res <- clean_input(res, type = "mushroom")
   if(missing(bertin)){bertin <- list()}
   bertin$layers[[length(bertin$layers) + 1]] <- res
@@ -673,13 +927,29 @@ bt_mushroom <- function(bertin, data, top_values, bottom_values, bottom_tooltip,
 
 #' Spikes
 #'
-#' @param bertin map object
-#' @param data sf object EPSG:4326
-#' @param values values
-#' @param k height of highest peak
-#' @param w width of the spikes
-#' @param tooltip tooltip
-#' @param ... other param
+#' @param bertin
+#' @param data
+#' @param values
+#' @param k
+#' @param w
+#' @param fill
+#' @param stroke
+#' @param strokeWidth
+#' @param fillOpacity
+#' @param tooltip
+#' @param display
+#'
+#'
+#' @param leg_x
+#' @param leg_y
+#' @param leg_fill
+#' @param leg_stroke
+#' @param leg_strokeWidth
+#' @param leg_txtcol
+#' @param leg_title
+#' @param leg_round
+#' @param leg_fontSize
+#' @param leg_fontSize2
 #'
 #' @return a map object
 #' @export
@@ -691,8 +961,10 @@ bt_mushroom <- function(bertin, data, top_values, bottom_values, bottom_tooltip,
 #' bt_layer(data = world, fill = "#808080") |>
 #'   bt_spikes(data = world, values = "pop", k = 110, w = 6) |>
 #'   bt_draw()
-bt_spikes <- function(bertin, data, values, k, w, tooltip, ...){
-  res <- c(as.list(environment()), list(...))
+bt_spikes <- function(bertin, data, values, k=50, w=10, fill = "#a31d88", stroke = 0.7, strokeWidth= 0.7, fillOpacity=0.3, tooltip, display=TRUE,
+                      leg_x,leg_y, leg_fill="none", leg_stroke= "black", leg_strokeWidth= 0.8, leg_txtcol = "#363636", leg_title= var_data, leg_round,
+                      leg_fontSize=14, leg_fontSize2= 10){
+  res <- c(as.list(environment()))
   res <- clean_input(res, type = "spikes")
   if(missing(bertin)){bertin <- list()}
   bertin$layers[[length(bertin$layers) + 1]] <- res
@@ -701,14 +973,30 @@ bt_spikes <- function(bertin, data, values, k, w, tooltip, ...){
 
 #' Smooth
 #'
-#' @param bertin map object
-#' @param data sf object EPSG:4326
-#' @param values values
-#' @param thresholds number of classes (default: 100)
-#' @param bandwidth  bandwidth (the standard deviation) of the Gaussian kernel and returns the estimate. (default: 5)
-#' @param colorcurve a value to curve the color interpolation (default: 2)
-#' @param ... other param
+#' @param bertin
+#' @param data
+#' @param values
+#' @param stroke
+#' @param strokeWidth
+#' @param strokeLinecap
+#' @param strokeLinejoin
+#' @param strokeDasharray
+#' @param fillOpacity
+#' @param strokeOpacity
+#' @param display
 #'
+#' @param fill
+#' @param thresholds
+#' @param bandwidth
+#' @param colorcurve
+#' @param reverse
+#' @param remove
+#' @param clip
+#'
+#' @param grid_step
+#' @param grid_blur
+#' @param grid_operator
+#' @param grid_geoprocessing
 #' @return a map object
 #' @export
 #'
@@ -722,8 +1010,9 @@ bt_spikes <- function(bertin, data, values, k, w, tooltip, ...){
 #'             bandwidth = 25,
 #'             colorcurve = 1) |>
 #'   bt_draw()
-bt_smooth <- function(bertin, data, values, thresholds, bandwidth, colorcurve, ...){
-  res <- c(as.list(environment()), list(...))
+bt_smooth <- function(bertin, data, values, stroke="white", strokeWidth= 0.5, strokeLinecap= "round", strokeDasharray= "none", fllOpacity=1, strokeOpacity=1,display= TRUE,
+                      fill= "RdYlGn", thresholds=100, bandwidth= 5, colorcurve= 2, reverse= FALSE, remove=0, clip=FALSE, grid_step=20, grid_blur=0, grid_operator="sum", grid_geoprocessing= "intersection"){
+  res <- c(as.list(environment()))
   res <- clean_input(res, type = "smooth")
   if(missing(bertin)){bertin <- list()}
   bertin$layers[[length(bertin$layers) + 1]] <- res

@@ -4,16 +4,30 @@
 \alias{bt_param}
 \title{Params}
 \usage{
-bt_param(margin, width, projection, ...)
+bt_param(
+  margin = 1,
+  width = 1000,
+  projection = "Mercator",
+  extent = NULL,
+  background = NULL,
+  clip = FALSE,
+  reverse = FALSE
+)
 }
 \arguments{
 \item{margin}{margin}
 
-\item{width}{width}
+\item{width}{width in px}
 
-\item{projection}{proj}
+\item{projection}{projection of the map}
 
-\item{...}{other params}
+\item{extent}{a feature or a bbox array defining the extent.It could be a country or [[112, -43],[153, -9]]}
+
+\item{background}{color of the background}
+
+\item{clip}{a boolean to avoid artifacts of discontinuous projection}
+
+\item{reverse}{a boolean. By default, the layer placed on the topof the code is display on the top of the map.With reverse : true, your can reverse this order}
 }
 \value{
 A list of params

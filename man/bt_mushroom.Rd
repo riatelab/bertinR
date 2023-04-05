@@ -9,25 +9,36 @@ bt_mushroom(
   data,
   top_values,
   bottom_values,
-  bottom_tooltip,
+  top_fill = "#d64f4f",
+  bottom_fill = "#4fabd6",
+  k = 50,
+  stroke = "white",
+  strokeWidth = 0.5,
+  fillOpacity = 1,
+  strokeOpacity = 1,
   top_tooltip,
-  ...
+  bottom_tooltip,
+  display = TRUE,
+  leg_x,
+  leg_y,
+  leg_fill = "none",
+  leg_stroke = "black",
+  leg_strokeWidth = 0.8,
+  leg_txtcol = "#363636",
+  leg_title = var_data,
+  leg_round,
+  leg_fontSize = 14,
+  leg_fontSize2 = 10,
+  leg_top_txt = top_var,
+  leg_bottom_txt = bottom_var,
+  leg_bottom_fill,
+  leg_top_fill
 )
 }
 \arguments{
-\item{bertin}{map object}
+\item{display}{}
 
-\item{data}{sf object EPSG:4326}
-
-\item{top_values}{top values}
-
-\item{bottom_values}{bottom values}
-
-\item{bottom_tooltip}{bottom tooltip}
-
-\item{top_tooltip}{top tooltip}
-
-\item{...}{other param}
+\item{leg_top_fill}{}
 }
 \value{
 a map object

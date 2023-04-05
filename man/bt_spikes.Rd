@@ -4,22 +4,34 @@
 \alias{bt_spikes}
 \title{Spikes}
 \usage{
-bt_spikes(bertin, data, values, k, w, tooltip, ...)
+bt_spikes(
+  bertin,
+  data,
+  values,
+  k = 50,
+  w = 10,
+  fill = "#a31d88",
+  stroke = 0.7,
+  strokeWidth = 0.7,
+  fillOpacity = 0.3,
+  tooltip,
+  display = TRUE,
+  leg_x,
+  leg_y,
+  leg_fill = "none",
+  leg_stroke = "black",
+  leg_strokeWidth = 0.8,
+  leg_txtcol = "#363636",
+  leg_title = var_data,
+  leg_round,
+  leg_fontSize = 14,
+  leg_fontSize2 = 10
+)
 }
 \arguments{
-\item{bertin}{map object}
+\item{display}{}
 
-\item{data}{sf object EPSG:4326}
-
-\item{values}{values}
-
-\item{k}{height of highest peak}
-
-\item{w}{width of the spikes}
-
-\item{tooltip}{tooltip}
-
-\item{...}{other param}
+\item{leg_fontSize2}{}
 }
 \value{
 a map object

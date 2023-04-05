@@ -7,13 +7,20 @@
 bt_layer(
   bertin,
   data,
-  fill,
+  fill = "randomcolor",
   tooltip,
-  strokeWidth,
-  strokeDasharray,
-  stroke,
-  step,
-  ...
+  strokeWidth = 0.5,
+  strokeDasharray = NULL,
+  stroke = "white",
+  strokeLinecap = "round",
+  strokeLinejoin = "round",
+  fillOpacity = 1,
+  strokeOpacity = 1,
+  symbol = "circle",
+  symbol_size = 5,
+  symbol_shift = 0,
+  symbol_iteration = 200,
+  display = TRUE
 )
 }
 \arguments{
@@ -21,19 +28,33 @@ bt_layer(
 
 \item{data}{sf object EPSG:4326}
 
-\item{fill}{fill}
+\item{fill}{fill color}
 
-\item{tooltip}{tooltip}
+\item{tooltip}{tooltip allows you to display a label when you fly over an object}
 
 \item{strokeWidth}{stroke width}
 
 \item{strokeDasharray}{stroke dash array}
 
-\item{stroke}{stroke}
+\item{stroke}{stroke color}
 
-\item{step}{step}
+\item{strokeLinecap}{appearance of the line cap}
 
-\item{...}{other params}
+\item{strokeLinejoin}{appearance of the intersection beetween two or several lines}
+
+\item{fillOpacity}{fill opacity}
+
+\item{strokeOpacity}{stroke opacity}
+
+\item{symbol}{if it is a dot layer, the type of symbol.circlecrossdiamondsquarestartrianglewye}
+
+\item{symbol_size}{if it is a dot layer, a number indicating the size of the symbol}
+
+\item{symbol_shift}{if it is a dot layer, use a value > 0 to switch symbols and avoid overlay}
+
+\item{symbol_iteration}{Number of iteration to shift symbols}
+
+\item{display}{Boolean to allow to show or hide the layer. This parameter has no effect on the calculation of the extent}
 }
 \value{
 a bertin list

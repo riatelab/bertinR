@@ -4,16 +4,18 @@
 \alias{bt_header}
 \title{Header}
 \usage{
-bt_header(bertin, text, fontSize, ...)
+bt_header(
+  bertin,
+  text = "",
+  fontSize = 20,
+  fill = "#9e9696",
+  background = "white",
+  backgroundOpacity = 1,
+  display = TRUE
+)
 }
 \arguments{
-\item{bertin}{map object}
-
-\item{text}{text}
-
-\item{fontSize}{font size}
-
-\item{...}{other param}
+\item{display}{}
 }
 \value{
 a map object
