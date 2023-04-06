@@ -3,7 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   bertin: bertin.html
-last_built: 2023-01-16T08:30Z
+last_built: 2023-04-06T10:32Z
 urls:
   reference: https://riatelab.github.io/bertin/reference
   article: https://riatelab.github.io/bertin/articles

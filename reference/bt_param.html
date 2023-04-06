@@ -51,7 +51,15 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">bt_param</span><span class="op">(</span><span class="va">margin</span>, <span class="va">width</span>, <span class="va">projection</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">bt_param</span><span class="op">(</span></span>
+<span>  margin <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  width <span class="op">=</span> <span class="fl">1000</span>,</span>
+<span>  projection <span class="op">=</span> <span class="st">"Mercator"</span>,</span>
+<span>  extent <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  background <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  clip <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  reverse <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -61,15 +69,27 @@
 
 
 <dt>width</dt>
-<dd><p>width</p></dd>
+<dd><p>width in px</p></dd>
 
 
 <dt>projection</dt>
-<dd><p>proj</p></dd>
+<dd><p>projection of the map</p></dd>
 
 
-<dt>...</dt>
-<dd><p>other params</p></dd>
+<dt>extent</dt>
+<dd><p>a feature or a bbox array defining the extent.It could be a country or [[112, -43],[153, -9]]</p></dd>
+
+
+<dt>background</dt>
+<dd><p>color of the background</p></dd>
+
+
+<dt>clip</dt>
+<dd><p>a boolean to avoid artifacts of discontinuous projection</p></dd>
+
+
+<dt>reverse</dt>
+<dd><p>a boolean. By default, the layer placed on the topof the code is display on the top of the map.With reverse : true, your can reverse this order</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -85,6 +105,18 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $params</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $params$margin</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $params$width</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $params$projection</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Mercator"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $params$clip</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $params$reverse</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
