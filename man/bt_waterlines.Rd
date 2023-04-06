@@ -20,7 +20,29 @@ bt_waterlines(
 )
 }
 \arguments{
-\item{display}{}
+\item{bertin}{map object}
+
+\item{data}{sf object EPSG:4326}
+
+\item{dist}{distance between lines in pixels}
+
+\item{nb}{number of lines}
+
+\item{precision}{number of steps defining buffers. 1 = not accurate, 8 = accurate}
+
+\item{stroke}{stroke color}
+
+\item{strokeOpacity}{stroke opacity}
+
+\item{strokeWidth}{stroke width}
+
+\item{strokeDasharray}{stroke dash array}
+
+\item{strokeLinecap}{appearance of the line cap}
+
+\item{display}{Boolean to allow to show or hide the layer. This parameter has no effect on the calculation of the extent}
+
+\item{strokeLinejoin}{appearance of the intersection beetween two or several lines}
 }
 \value{
 a map object

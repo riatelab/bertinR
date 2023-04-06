@@ -7,7 +7,7 @@
 bt_layer(
   bertin,
   data,
-  fill = "randomcolor",
+  fill,
   tooltip,
   strokeWidth = 0.5,
   strokeDasharray = NULL,

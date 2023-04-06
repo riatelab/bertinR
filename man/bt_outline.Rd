@@ -14,7 +14,17 @@ bt_outline(
 )
 }
 \arguments{
-\item{display}{}
+\item{bertin}{map object}
+
+\item{fill}{fill color}
+
+\item{opacity}{opacity of the object}
+
+\item{stroke}{stroke color}
+
+\item{strokeWidth}{stroke width}
+
+\item{display}{Boolean to allow to show or hide the layer. This parameter has no effect on the calculation of the extent}
 }
 \value{
 a map object

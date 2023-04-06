@@ -25,7 +25,7 @@ bt_mushroom(
   leg_stroke = "black",
   leg_strokeWidth = 0.8,
   leg_txtcol = "#363636",
-  leg_title = var_data,
+  leg_title = values,
   leg_round,
   leg_fontSize = 14,
   leg_fontSize2 = 10,
@@ -36,9 +36,61 @@ bt_mushroom(
 )
 }
 \arguments{
-\item{display}{}
+\item{bertin}{map object}
 
-\item{leg_top_fill}{}
+\item{data}{sf object EPSG:4326}
+
+\item{top_values}{a string corresponding to the targeted top variable in the properties (compulsory)}
+
+\item{bottom_values}{a string corresponding to the targeted bottom variable in the properties(compulsory)}
+
+\item{top_fill}{top fill color}
+
+\item{bottom_fill}{bottom fill color}
+
+\item{k}{size of the largest object}
+
+\item{stroke}{stroke color}
+
+\item{strokeWidth}{stroke width}
+
+\item{fillOpacity}{fill opacity}
+
+\item{strokeOpacity}{stroke opacity}
+
+\item{top_tooltip}{top tooltip allows you to display a label when you fly over an object}
+
+\item{bottom_tooltip}{tooltip allows you to display a label when you fly over an object}
+
+\item{display}{Boolean to allow to show or hide the layer. This parameter has no effect on the calculation of the extent}
+
+\item{leg_x}{position in x (if this value is not filled, the legend is not displayed)(value in px)}
+
+\item{leg_y}{position in y (if this value is not filled, the legend is not displayed)(value in px)}
+
+\item{leg_fill}{color of the circles}
+
+\item{leg_stroke}{stroke color of the circles}
+
+\item{leg_strokeWidth}{stoke-width of the legend}
+
+\item{leg_txtcol}{color of the text}
+
+\item{leg_title}{title of the legend}
+
+\item{leg_round}{number of digits after the decimal point}
+
+\item{leg_fontSize}{legend title font size}
+
+\item{leg_fontSize2}{legend text font size}
+
+\item{leg_top_txt}{title for the top variable}
+
+\item{leg_bottom_txt}{title for the bottom variable}
+
+\item{leg_bottom_fill}{color of bottom semi circles}
+
+\item{leg_top_fill}{color of top semi circles}
 }
 \value{
 a map object

@@ -17,7 +17,26 @@ bt_tiles(
 )
 }
 \arguments{
-\item{display}{}
+\item{bertin}{map object}
+
+\item{style}{tile style'openstreetmap', 'opentopomap',
+'worldterrain', 'worldimagery', 'worldStreet',
+'worldphysical', 'shadedrelief', 'oceanbasemap'}
+
+\item{zoomDelta}{zoom offset}
+
+\item{tileSize}{tile size}
+
+\item{opacity}{opacity of the object}
+
+\item{clip}{a boolean to avoid artifacts of discontinuous projection}
+
+\item{source}{position of the text. It can be an array with x,y coordinates. For example [100,200]. It can be also a string defining the position.'topleft', 'top', 'topright', 'left', 'middle',
+'right', 'bottomleft', 'bottom', 'bottomright'}
+
+\item{increasetilesize}{a value to slightly increase the size of the tiles solve the problem of gap between the tiles with chromium}
+
+\item{display}{Boolean to allow to show or hide the layer. This parameter has no effect on the calculation of the extent}
 }
 \value{
 map object

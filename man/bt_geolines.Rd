@@ -14,7 +14,19 @@ bt_geolines(
 )
 }
 \arguments{
-\item{display}{}
+\item{bertin}{map object}
+
+\item{stroke}{stroke color}
+
+\item{strokeWidth}{stroke width}
+
+\item{strokeDasharray}{stroke dash array}
+
+\item{strokeLinecap}{appearance of the line cap}
+
+\item{display}{Boolean to allow to show or hide the layer. This parameter has no effect on the calculation of the extent}
+
+\item{strokeOpacity}{stroke opacity}
 }
 \value{
 a map object

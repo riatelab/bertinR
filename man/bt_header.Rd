@@ -15,7 +15,21 @@ bt_header(
 )
 }
 \arguments{
-\item{display}{}
+\item{bertin}{map object}
+
+\item{text}{text to display}
+
+\item{fontSize}{text size}
+
+\item{fill}{fill color}
+
+\item{background}{color of the background}
+
+\item{backgroundOpacity}{background opacity}
+
+\item{display}{Boolean to allow to show or hide the layer. This parameter has no effect on the calculation of the extent}
+
+\item{anchor}{text anchor. start, middle, end}
 }
 \value{
 a map object

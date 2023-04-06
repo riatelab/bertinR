@@ -14,7 +14,17 @@ bt_graticule(
 )
 }
 \arguments{
-\item{display}{}
+\item{bertin}{map object}
+
+\item{stroke}{stroke color}
+
+\item{strokeDasharray}{stroke dash array}
+
+\item{strokeWidth}{stroke width}
+
+\item{step}{gap between graticules. The value can be a number or an array of two values}
+
+\item{display}{Boolean to allow to show or hide the layer. This parameter has no effect on the calculation of the extent}
 }
 \value{
 map object

@@ -25,7 +25,38 @@ bt_text(
 )
 }
 \arguments{
-\item{display}{}
+\item{bertin}{map object}
+
+\item{text}{text to display}
+
+\item{position}{position of the text. It can be an array with x,y coordinates. For example [100,200]. It can be also a string defining the position.'topleft', 'top', 'topright', 'left', 'middle',
+'right', 'bottomleft', 'bottom', 'bottomright'}
+
+\item{fontSize}{text size}
+
+\item{fontFamily}{font family}
+
+\item{textDecoration}{text decoration.}
+
+\item{fontStyle}{font style}
+
+\item{margin}{margin}
+
+\item{anchor}{text anchor. start, middle, end}
+
+\item{fill}{fill color}
+
+\item{stroke}{stroke color}
+
+\item{frame_fill}{frame background color}
+
+\item{frame_stroke}{frame stroke color}
+
+\item{frame_strokeWidth}{thickness of the frame contour}
+
+\item{frame_opacity}{frame opacity}
+
+\item{display}{Boolean to allow to show or hide the layer. This parameter has no effect on the calculation of the extent}
 }
 \value{
 map object

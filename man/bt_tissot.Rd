@@ -15,21 +15,28 @@ bt_tissot(
   display = TRUE
 )
 }
+\arguments{
+\item{bertin}{map object}
+
+\item{step}{gap between graticules. The value can be a number or an array of two values}
+
+\item{fill}{fill color}
+
+\item{fillOpacity}{fill opacity}
+
+\item{stroke}{stroke color}
+
+\item{strokeWidth}{stroke width}
+
+\item{strokeOpacity}{stroke opacity}
+
+\item{display}{Boolean to allow to show or hide the layer. This parameter has no effect on the calculation of the extent}
+}
 \value{
 map object
 }
 \description{
-#' @eval my_params(c(
-}
-\details{
-'bertin',
- 'step',
- 'fill',
- 'fillOpacity',
- 'stroke',
- 'strokeWidth',
- 'strokeOpacity',
- 'display',))
+Tissot's indicatrix
 }
 \examples{
 library(sf)

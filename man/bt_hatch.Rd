@@ -16,7 +16,21 @@ bt_hatch(
 )
 }
 \arguments{
-\item{display}{}
+\item{bertin}{map object}
+
+\item{angle}{orientation of lines (degree)}
+
+\item{stroke}{stroke color}
+
+\item{strokeWidth}{stroke width}
+
+\item{strokeOpacity}{stroke opacity}
+
+\item{strokeDasharray}{stroke dash array}
+
+\item{spacing}{spacing between lines (pixel)}
+
+\item{display}{Boolean to allow to show or hide the layer. This parameter has no effect on the calculation of the extent}
 }
 \value{
 a map object

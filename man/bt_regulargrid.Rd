@@ -28,17 +28,58 @@ bt_regulargrid(
   leg_stroke = "black",
   leg_strokeWidth = 0.8,
   leg_txtcol = "#363636",
-  leg_title = var_data,
+  leg_title = values,
   leg_round,
   leg_fontSize = 10
 )
 }
 \arguments{
-\item{blur}{}
+\item{bertin}{map object}
 
-\item{tooltip}{}
+\item{data}{sf object EPSG:4326}
 
-\item{leg_fontSize}{}
+\item{step}{gap between graticules. The value can be a number or an array of two values}
+
+\item{operator}{'sum' for absolute quantitative data or 'mean}
+
+\item{geoprocessing}{'intersection' intersection between polygons and grid squares.
+Assignment of values in proportion to the intersected area) or 'dotinpoly'
+(considers each grid square and assigns the value of the underlying polygon
+or the weighted average of intersecting polygons. ).}
+
+\item{blur}{radius of the kernel defined}
+
+\item{colors}{define the pallette of categorical colors}
+
+\item{order}{an array of values to set the order of the colors}
+
+\item{col_missing}{Color for missing values}
+
+\item{txt_missing}{Text for missing values}
+
+\item{stroke}{stroke color}
+
+\item{strokeWidth}{stroke width}
+
+\item{fillOpacity}{fill opacity}
+
+\item{tooltip}{tooltip allows you to display a label when you fly over an object}
+
+\item{leg_x}{position in x (if this value is not filled, the legend is not displayed)(value in px)}
+
+\item{leg_y}{position in y (if this value is not filled, the legend is not displayed)(value in px)}
+
+\item{leg_fill}{color of the circles}
+
+\item{leg_stroke}{stroke color of the circles}
+
+\item{leg_strokeWidth}{stoke-width of the legend}
+
+\item{leg_title}{title of the legend}
+
+\item{leg_round}{number of digits after the decimal point}
+
+\item{leg_fontSize}{legend title font size}
 }
 \value{
 a map object

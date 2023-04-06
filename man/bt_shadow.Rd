@@ -16,7 +16,21 @@ bt_shadow(
 )
 }
 \arguments{
-\item{display}{}
+\item{bertin}{map object}
+
+\item{data}{sf object EPSG:4326}
+
+\item{dx}{shift in x}
+
+\item{dy}{shift in y}
+
+\item{stdDeviation}{blur}
+
+\item{opacity}{opacity of the object}
+
+\item{fill}{fill color}
+
+\item{display}{Boolean to allow to show or hide the layer. This parameter has no effect on the calculation of the extent}
 }
 \value{
 a map object

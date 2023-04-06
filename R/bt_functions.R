@@ -58,7 +58,7 @@ bt_param <- function(margin=1, width=1000, projection="Mercator", extent = NULL 
 #' bt_param(margin = 10, width = 500, projection = "Winkel3") |>
 #'   bt_layer(data = world, fill = "red") |>
 #'   bt_draw()
-bt_layer <-function(bertin, data, fill = "randomcolor",
+bt_layer <-function(bertin, data, fill,
                     tooltip, strokeWidth=0.5,
                     strokeDasharray=NULL, stroke = "white",strokeLinecap="round", strokeLinejoin= "round", fillOpacity = 1,
                     strokeOpacity=1, symbol="circle", symbol_size = 5, symbol_shift=0,symbol_iteration=200, display = TRUE ) {
@@ -72,7 +72,7 @@ bt_layer <-function(bertin, data, fill = "randomcolor",
 #' Tissot's indicatrix
 #'
 #'
-#' #' @eval my_params(c(
+#' @eval my_params(c(
 #'
 #'  'bertin',
 #'  'step',
@@ -81,7 +81,7 @@ bt_layer <-function(bertin, data, fill = "randomcolor",
 #'  'stroke',
 #'  'strokeWidth',
 #'  'strokeOpacity',
-#'  'display',))
+#'  'display'))
 #'
 #' @return map object
 #' @export
@@ -105,15 +105,17 @@ bt_tissot <- function(bertin, step=20 , fill="#d91848", fillOpacity=0.5, stroke 
 
 #' Mercator Tiles
 #'
-#' @param bertin
-#' @param style
-#' @param zoomDelta
-#' @param tileSize
-#' @param opacity
-#' @param clip
-#' @param source
-#' @param increasetilesize
-#' @param display
+#' @eval my_params(c(
+#'
+#' 'bertin',
+#' 'style',
+#' 'zoomDelta',
+#' 'tileSize',
+#' 'opacity',
+#' 'clip',
+#' 'source',
+#' 'increasetilesize',
+#' 'display'))
 #'
 #'
 #' @return map object
@@ -137,23 +139,25 @@ bt_tiles <- function(bertin, style="opentopomap",zoomDelta = 0, tileSize=512, op
 
 #' Texts
 #'
-#' @param bertin
-#' @param text
-#' @param position
-#' @param fontSize
-#' @param fontFamily
-#' @param textDecoration
-#' @param fontWeight
-#' @param fontStyle
-#' @param margin
-#' @param anchor
-#' @param fill
-#' @param stroke
-#' @param frame_fill
-#' @param frame_stroke
-#' @param frame_strokeWidth
-#' @param frame_opacity
-#' @param display
+#' @eval my_params(c(
+#'
+#' 'bertin',
+#'  'text',
+#'  'position',
+#'  'fontSize',
+#'  'fontFamily',
+#'  'textDecoration',
+#'  'fontWeight',
+#'  'fontStyle',
+#'  'margin',
+#'  'anchor',
+#'  'fill',
+#'  'stroke',
+#'  'frame_fill',
+#'  'frame_stroke',
+#'  'frame_strokeWidth',
+#'  'frame_opacity',
+#'  'display'))
 #'
 #'
 #' @return map object
@@ -181,19 +185,21 @@ bt_text <- function(bertin, text, position=c(100,200),fontSize=15,fontFamily="Ro
 
 #' Labels
 #'
-#' @param bertin
-#' @param data
-#' @param values
-#' @param fill
-#' @param fontSize
-#' @param fontFamily
-#' @param textDecoration
-#' @param fontWeight
-#' @param fontStyle
-#' @param opacity
-#' @param halo
-#' @param halo_style
-#' @param display
+#' @eval my_params(c(
+#'
+#'  'bertin',
+#'  'data',
+#'  'values',
+#'  'fill',
+#'  'fontSize',
+#'  'fontFamily',
+#'  'textDecoration',
+#'  'fontWeight',
+#'  'fontStyle',
+#'  'opacity',
+#'  'halo',
+#'  'halo_style',
+#'  'display'))
 #'
 #'
 #' @return map object
@@ -218,14 +224,14 @@ bt_label <- function(bertin, data, values, fill = "#474342" ,fontSize=10, fontFa
 
 #' Graticules
 #'
-#' @param bertin
-#' @param stroke
-#' @param strokeDasharray
-#' @param strokeWidth
-#' @param step
-#' @param display
+#' @eval my_params(c(
 #'
-#'
+#'  'bertin',
+#'  'stroke',
+#'  'strokeDasharray',
+#'  'strokeWidth',
+#'  'step',
+#'  'display'))
 #'
 #'
 #' @return map object
@@ -249,14 +255,16 @@ bt_graticule <- function(bertin, stroke="white", strokeDasharray="none",strokeWi
 
 #' Shadow
 #'
-#' @param bertin
-#' @param data
-#' @param fill
-#' @param dx
-#' @param dy
-#' @param stdDeviation
-#' @param opacity
-#' @param display
+#' @eval my_params(c(
+#'
+#' 'bertin',
+#' 'data',
+#' 'fill',
+#' 'dx',
+#' 'dy',
+#' 'stdDeviation',
+#' 'opacity',
+#' 'display'))
 #'
 #'
 #' @return a map object
@@ -281,12 +289,14 @@ bt_shadow <- function(bertin, data, dx=3, dy=3, stdDeviation=1.5, opacity=0.7, f
 
 #' Outline
 #'
-#' @param bertin
-#' @param fill
-#' @param opacity
-#' @param stroke
-#' @param strokeWidth
-#' @param display
+#'@eval my_params(c(
+#'
+#' 'bertin',
+#' 'fill',
+#' 'opacity',
+#' 'stroke',
+#' 'strokeWidth',
+#' 'display'))
 #'
 #'
 #' @return a map object
@@ -306,18 +316,20 @@ bt_outline <- function(bertin, fill="#add8f7", opacity=1, stroke="none", strokeW
 
 #' Waterlines
 #'
-#' @param bertin
-#' @param data
-#' @param dist
-#' @param nb
-#' @param precision
-#' @param stroke
-#' @param strokeOpacity
-#' @param strokeWidth
-#' @param strokeDasharray
-#' @param strokeLinecap
-#' @param strokeLinejoin
-#' @param display
+#' @eval my_params(c(
+#'
+#'  'bertin',
+#'  'data',
+#'  'dist',
+#'  'nb',
+#'  'precision',
+#'  'stroke',
+#'  'strokeOpacity',
+#'  'strokeWidth',
+#'  'strokeDasharray',
+#'  'strokeLinecap',
+#'  'strokeLinejoin',
+#'  'display'))
 #'
 #'
 #'
@@ -348,14 +360,16 @@ bt_waterlines <-function(bertin, data, dist=5, nb=3, precision=3, stroke="#5d81b
 
 #' Header
 #'
-#' @param bertin
-#' @param text
-#' @param anchor
-#' @param fontSize
-#' @param fill
-#' @param background
-#' @param backgroundOpacity
-#' @param display
+#' @eval my_params(c(
+#'
+#' 'bertin',
+#' 'text',
+#' 'anchor',
+#' 'fontSize',
+#' 'fill',
+#' 'background',
+#' 'backgroundOpacity',
+#' 'display'))
 #'
 #'
 #'
@@ -379,14 +393,16 @@ bt_header <-function(bertin, text="", fontSize=20, fill= "#9e9696", background= 
 
 #' Footer
 #'
-#' @param bertin
-#' @param text
-#' @param anchor
-#' @param fontSize
-#' @param fill
-#' @param background
-#' @param backgroundOpacity
-#' @param display
+#' @eval my_params(c(
+#'
+#' 'bertin',
+#' 'text',
+#' 'anchor',
+#' 'fontSize',
+#' 'fill',
+#' 'background',
+#' 'backgroundOpacity',
+#' 'display'))
 #'
 #'
 #'
@@ -412,11 +428,13 @@ bt_footer <- function(bertin, text="", fontSize=15,anchor="end",fill="#9e9696", 
 
 #' Scalebar
 #'
-#' @param bertin
-#' @param x
-#' @param y
-#' @param units
-#' @param display
+#' @eval my_params(c(
+#'
+#' 'bertin',
+#' 'x',
+#' 'y',
+#' 'units',
+#' 'display'))
 #'
 #'
 #' @return a map object
@@ -440,13 +458,15 @@ bt_scalebar <- function(bertin, x="left", y="bottom", units="kilometers", displa
 
 #' Geolines
 #'
-#' @param bertin
-#' @param stroke
-#' @param strokeWidth
-#' @param strokeOpacity
-#' @param strokeDasharray
-#' @param strokeLinecap
-#' @param display
+#'@eval my_params(c(
+#'
+#'  'bertin',
+#'  'stroke',
+#'  'strokeWidth',
+#'  'strokeOpacity',
+#'  'strokeDasharray',
+#'  'strokeLinecap',
+#'  'display'))
 #'
 #'
 #' @return a map object
@@ -471,14 +491,16 @@ bt_geolines <- function(bertin, stroke= "#020e21", strokeWidth=c(1.5,1.2,0.7), s
 
 #' Hatch
 #'
-#' @param bertin
-#' @param angle
-#' @param stroke
-#' @param strokeWidth
-#' @param strokeOpacity
-#' @param strokeDasharray
-#' @param spacing
-#' @param display
+#' @eval my_params(c(
+#'
+#'  'bertin',
+#'  'angle',
+#'  'stroke',
+#' 'strokeWidth',
+#'  'strokeOpacity',
+#'  'strokeDasharray',
+#'  'spacing',
+#'  'display'))
 #'
 #'
 #' @return a map object
@@ -504,14 +526,16 @@ bt_hatch <- function(bertin, angle=45, stroke="#786d6c", strokeWidth=2, strokeOp
 
 #' Rhumbs
 #'
-#' @param bertin
-#' @param nb
-#' @param position
-#' @param stroke
-#' @param strokeWidth
-#' @param strokeOpacity
-#' @param strokeDasharray
-#' @param display
+#'  @eval my_params(c(
+#'
+#' 'bertin',
+#'  'nb',
+#'  'position',
+#'  'stroke',
+#'  'strokeWidth',
+#'  'strokeOpacity',
+#'  'strokeDasharray',
+#'  'display'))
 #'
 #' @return a map object
 #' @export
@@ -525,7 +549,7 @@ bt_hatch <- function(bertin, angle=45, stroke="#786d6c", strokeWidth=2, strokeOp
 #'   bt_layer(data = world, fill = "white") |>
 #'   bt_rhumbs(position = c(370, 370), nb = 25) |>
 #'   bt_draw()
-bt_rhumbs <- function(bertin, nb=10, position= c(height,4,width,4,width,4), stroke="#786d6c", strokeWidth=2, strokeOpacity=1, strokeDasharray="none", display=TRUE){
+bt_rhumbs <- function(bertin, nb=10, position, stroke="#786d6c", strokeWidth=2, strokeOpacity=1, strokeDasharray="none", display=TRUE){
   res <- c(as.list(environment()))
   res <- clean_input(res, type = "rhumbs")
   if(missing(bertin)){bertin <- list()}
@@ -535,32 +559,33 @@ bt_rhumbs <- function(bertin, nb=10, position= c(height,4,width,4,width,4), stro
 
 #' Bubble
 #'
-#' @param bertin
-#' @param data
-#' @param values
-#' @param k
-#' @param fixmax
-#' @param fill
-#' @param stroke
-#' @param strokeWidth
-#' @param fillOpacity
-#' @param dorling:
-#' @param iteration
-#' @param tooltip
-#' @param display
+#' @eval my_params(c(
+#'
+#'  'bertin',
+#'  'data',
+#'  'values',
+#'  'k',
+#'  'fixmax',
+#'  'fill',
+#'  'stroke',
+#'  'strokeWidth',
+#'  'fillOpacity',
+#'  'iteration',
+#'  'tooltip',
+#'  'display',
 #'
 #'
-#' @param leg_x
-#' @param leg_y
-#' @param leg_fill
-#' @param leg_stroke
-#' @param leg_strokeWidth
-#' @param leg_txtcol
-#' @param leg_title
-#' @param leg_round
-#' @param leg_divisor
-#' @param leg_fontSize
-#' @param leg_fontSize2
+#'  'leg_x',
+#'  'leg_y',
+#'  'leg_fill',
+#'  'leg_stroke',
+#'  'leg_strokeWidth',
+#'  'leg_txtcol',
+#'  'leg_title',
+#'  'leg_round',
+#'  'leg_divisor',
+#'  'leg_fontSize',
+#'  'leg_fontSize2'))
 #'
 #'
 #'
@@ -580,7 +605,7 @@ bt_bubble <-
            values,
            k = 50,
            fixmax,
-           fill = "random color",
+           fill = "randomcolor",
            stroke = "white",
            strokeWidth = 0.5,
            fillOpacity = 1,
@@ -608,31 +633,33 @@ bt_bubble <-
 
 #' Square
 #'
-#' @param bertin
-#' @param data
-#' @param values
-#' @param k
-#' @param fixmax
-#' @param fill
-#' @param stroke
-#' @param strokeWidth
-#' @param fillOpacity
-#' @param demers:
-#' @param iteration
-#' @param tooltip
-#' @param display
+#' @eval my_params(c(
 #'
-#' @param leg_x
-#' @param leg_y
-#' @param leg_fill
-#' @param leg_stroke
-#' @param leg_strokeWidth
-#' @param leg_txtcol
-#' @param leg_title
-#' @param leg_round
-#' @param leg_divisor
-#' @param leg_fontSize
-#' @param leg_fontSize2
+#' 'bertin',
+#'  'data',
+#'  'values',
+#'  'k',
+#'  'fixmax',
+#'  'fill',
+#'  'stroke',
+#'  'strokeWidth',
+#'  'fillOpacity',
+#'  'demers',
+#'  'iteration',
+#'  'tooltip',
+#'  'display',
+#'
+#' 'leg_x',
+#' 'leg_y',
+#' 'leg_fill',
+#' 'leg_stroke',
+#' 'leg_strokeWidth',
+#' 'leg_txtcol',
+#' 'leg_title',
+#' 'leg_round',
+#' 'leg_divisor',
+#' 'leg_fontSize',
+#' 'leg_fontSize2'))
 #'
 #'
 #'
@@ -647,7 +674,7 @@ bt_bubble <-
 #' bt_square(data = world, values = "pop", k = 60, tooltip = "$name") |>
 #' bt_draw()
 bt_square <-function(bertin, data, values, k=50, fixmax, fill = "random color", stroke="white", strokeWidth= 0.5, fillOpacity=1, demers=FALSE, iteration=200, tooltip, display= TRUE,
-                     leg_x,leg_y, leg_fill="none", leg_stroke="black", leg_strokeWidth=0.8, leg_txtco = "#363636", leg_title=var_data, leg_round, leg_divisor=1, leg_fontSize=14, leg_fontSize2=10){
+                     leg_x,leg_y, leg_fill="none", leg_stroke="black", leg_strokeWidth=0.8, leg_txtco = "#363636", leg_title=values, leg_round, leg_divisor=1, leg_fontSize=14, leg_fontSize2=10){
   res <- c(as.list(environment()))
   res <- clean_input(res, type = "square")
   if(missing(bertin)){bertin <- list()}
@@ -657,32 +684,35 @@ bt_square <-function(bertin, data, values, k=50, fixmax, fill = "random color", 
 
 #' Regular Bubble
 #'
-#' @param bertin
-#' @param data
-#' @param values
-#' @param k
-#' @param fixmax
-#' @param fill
-#' @param stroke
-#' @param strokeWidth
-#' @param fillOpacity
-#' @param dorling:
-#' @param iteration
-#' @param tooltip
-#' @param display
+#' @eval my_params(c(
+#'
+#' 'bertin',
+#'  'data',
+#'  'values',
+#'  'k',
+#'  'fixmax',
+#' 'fill',
+#'  'stroke',
+#'  'strokeWidth',
+#'  'fillOpacity',
+#'  'dorling',
+#'  'iteration',
+#'  'step',
+#'  'tooltip',
+#'  'display',
 #'
 #'
-#' @param leg_x
-#' @param leg_y
-#' @param leg_fill
-#' @param leg_stroke
-#' @param leg_strokeWidth:
-#' @param leg_txtcol
-#' @param leg_title
-#' @param leg_round
-#' @param leg_divisor
-#' @param leg_fontSize
-#' @param leg_fontSize2
+#' 'leg_x',
+#' 'leg_y',
+#' 'leg_fill',
+#'  'leg_stroke',
+#'  'leg_strokeWidth',
+#'  'leg_txtcol',
+#' 'leg_title',
+#'  'leg_round',
+#' 'leg_divisor',
+#'  'leg_fontSize',
+#' 'leg_fontSize2'))
 #'
 #' @return a map object
 #' @export
@@ -696,8 +726,8 @@ bt_square <-function(bertin, data, values, k=50, fixmax, fill = "random color", 
 #'                  values = "pop", step = 10,
 #'                    k = 10, tooltip = "$value") |>
 #'  bt_draw()
-bt_regularbubble <- function(bertin, data, values, k =50, fixmax, fill= "random color", stroke= "white", strokeWidth=0.5, fillOpacity=1, dorling=FALSE, iteration=200, tooltip, display=TRUE,
-                             leg_x, leg_y, leg_fill = "none", leg_stroke="black",leg_strokeWidth= 0.8, leg_txtcol = "#363636", leg_title= var_data, leg_round, leg_divisor=1, leg_fontSize= 14,
+bt_regularbubble <- function(bertin, data, values, k =50, fixmax, fill= "random color", stroke= "white", strokeWidth=0.5, fillOpacity=1, dorling=FALSE,step=20, iteration=200, tooltip, display=TRUE,
+                             leg_x, leg_y, leg_fill = "none", leg_stroke="black",leg_strokeWidth= 0.8, leg_txtcol = "#363636", leg_title= values, leg_round, leg_divisor=1, leg_fontSize= 14,
                              leg_fontSize2=10){
   res <- c(as.list(environment()))
   res <- clean_input(res, type = "regularbubble")
@@ -708,32 +738,35 @@ bt_regularbubble <- function(bertin, data, values, k =50, fixmax, fill= "random 
 
 #' Regular Square
 #'
-#' @param bertin
-#' @param data
-#' @param values
-#' @param k
-#' @param fixmax
-#' @param fill
-#' @param stroke
-#' @param strokeWidth
-#' @param fillOpacity
-#' @param demers:
-#' @param iteration
-#' @param tooltip
-#' @param display
+#' @eval my_params(c(
+#'
+#' 'bertin',
+#' 'data',
+#'  'values',
+#'  'k',
+#' 'fixmax',
+#' 'fill',
+#' 'stroke',
+#' 'strokeWidth',
+#' 'fillOpacity',
+#' 'demers',
+#' 'iteration',
+#' 'step',
+#' 'tooltip',
+#' 'display',
 #'
 #'
-#' @param leg_x
-#' @param leg_y
-#' @param leg_fill
-#' @param leg_stroke
-#' @param leg_strokeWidth
-#' @param leg_txtcol
-#' @param leg_title
-#' @param leg_round
-#' @param leg_divisor
-#' @param leg_fontSize
-#' @param leg_fontSize2
+#' 'leg_x',
+#' 'leg_y',
+#' 'leg_fill',
+#'  'leg_stroke',
+#' 'leg_strokeWidth',
+#' 'leg_txtcol',
+#' 'leg_title',
+#' 'leg_round',
+#' 'leg_divisor',
+#' 'leg_fontSize',
+#' 'leg_fontSize2'))
 #'
 #' @return a map object
 #' @export
@@ -747,8 +780,8 @@ bt_regularbubble <- function(bertin, data, values, k =50, fixmax, fill= "random 
 #'                 values = "pop", step = 10,
 #'                   k = 10, tooltip = "$value") |>
 #'  bt_draw()
-bt_regularsquare <- function(bertin, data, values, k=50, fixmax, fill=randomcolor, stroke="white",strokeWidth =0.5, fillOpacity=1, demrs= FALSE, iteration=200, tooltip, display=TRUE,
-                             leg_x,leg_y, leg_fill="none", leg_stroke="black", leg_strokeWidth= 0.8, leg_txtcol= "#363636", leg_title= var_data, leg_round, leg_divisor=1,
+bt_regularsquare <- function(bertin, data, values, k=50, fixmax, fill=randomcolor, stroke="white",strokeWidth =0.5, fillOpacity=1, step=20, demers= FALSE, iteration=200, tooltip, display=TRUE,
+                             leg_x,leg_y, leg_fill="none", leg_stroke="black", leg_strokeWidth= 0.8, leg_txtcol= "#363636", leg_title= values, leg_round, leg_divisor=1,
                              leg_fontSize=14 , leg_fontSize2= 10){
   res <- c(as.list(environment()))
   res <- clean_input(res, type = "regularsquare")
@@ -759,35 +792,37 @@ bt_regularsquare <- function(bertin, data, values, k=50, fixmax, fill=randomcolo
 
 #' Regular Grid
 #'
-#' @param bertin
-#' @param data
-#' @param step
-#' @param values
-#' @param operator
-#' @param geoprocessing
-#' @param blur
+#' @eval my_params(c(
 #'
-#' @param colors
-#' @param order
-#' @param col_missing
-#' @param txt_missing
-#' @param stroke
-#' @param strokeWidth
-#' @param fillOpacity
-#' @param tooltip
+#' 'bertin',
+#' 'data',
+#' 'step',
+#' 'values',
+#' 'operator',
+#' 'geoprocessing',
+#' 'blur',
+#'
+#' 'colors',
+#' 'order',
+#' 'col_missing',
+#'  'txt_missing',
+#' 'stroke',
+#'  'strokeWidth',
+#' 'fillOpacity',
+#'  'tooltip',
 #'
 #'
-#' @param leg_x
-#' @param leg_y
-#' @param leg_w
-#' @param leg_h
-#' @param leg_fill
-#' @param leg_stroke
-#' @param leg_strokeWidth
-#' @param leg_txtcol
-#' @param leg_title
-#' @param leg_round
-#' @param leg_fontSize
+#'  'leg_x',
+#'  'leg_y',
+#'  'leg_w',
+#'  'leg_h',
+#'  'leg_fill',
+#'  'leg_stroke',
+#'  'leg_strokeWidth',
+#'  'leg_txtco',
+#'  'leg_title',
+#'  'leg_round',
+#'  'leg_fontSize'))
 #'
 #'
 #' @return a map object
@@ -809,7 +844,7 @@ bt_regularsquare <- function(bertin, data, values, k=50, fixmax, fill=randomcolo
 #'   bt_draw()
 bt_regulargrid <- function(bertin, data, step =20, values, operator="sum", geoprocessing= "intersection", blur= 0, colors= "Tableau10", order, col_missing= "#f5f5f5", txt_missing= "No data",
                            stroke="white", strokeWidth= 0.5, fillOpacity=1, tooltip, leg_x, leg_y, leg_w=30, leg_h = 20, leg_fill="none", leg_stroke="black", leg_strokeWidth = 0.8, leg_txtcol= "#363636",
-                           leg_title= var_data, leg_round, leg_fontSize= 10){
+                           leg_title= values, leg_round, leg_fontSize= 10){
   res <- c(as.list(environment()))
   res <- clean_input(res, type = "regulargrid")
   if(missing(bertin)){bertin <- list()}
@@ -819,31 +854,33 @@ bt_regulargrid <- function(bertin, data, step =20, values, operator="sum", geopr
 
 #' Dot cartogram
 #'
-#' @param bertin
-#' @param data
-#' @param onedot
-#' @param nbmax
-#' @param iteration
-#' @param values
-#' @param radius
-#' @param span
-#' @param fill
-#' @param stroke
-#' @param strokeWidth
-#' @param fillOpacity
-#' @param tooltip
-#' @param display
+#' @eval my_params(c(
+#'
+#'  'bertin',
+#'  'data',
+#'  'onedot',
+#'  'nbmax',
+#'  'iteration',
+#'  'values',
+#'  'radius',
+#' 'span',
+#'  'fill',
+#'  'stroke',
+#'  'strokeWidth',
+#'  'fillOpacity',
+#'  'tooltip',
+#'  'display',
 #'
 #'
-#' @param leg_x
-#' @param leg_y
-#' @param leg_fill
-#' @param leg_stroke
-#' @param leg_strokeWidth
-#' @param leg_txtcol
-#' @param leg_title
-#' @param leg_round
-#' @param leg_fontSize
+#'  'leg_x',
+#'  'leg_y',
+#'  'leg_fill',
+#'  'leg_stroke',
+#'  'leg_strokeWidth',
+#'  'leg_txtcol',
+#'  'leg_title',
+#'  'leg_round',
+#'  'leg_fontSize'))
 #'
 #'
 #'
@@ -861,7 +898,7 @@ bt_regulargrid <- function(bertin, data, step =20, values, operator="sum", geopr
 #'                   iteration = 200, values = "gdp") |>
 #'   bt_draw()
 bt_dotcartogram <-function(bertin, data, onedot, nbmax=200, iteration=200, values, radius=4, span=0.5, fill=randomcolor, stroke= "white", strokeWidth = 0.5, fillOpacity = 1, tooltip, display= TRUE,
-                           leg_x, leg_y, leg_fill="none", leg_stroke="black", leg_strokeWidth = 0.8, leg_txtcol = "#363636", leg_title=var_data, leg_round, leg_fontSize= 10){
+                           leg_x, leg_y, leg_fill="none", leg_stroke="black", leg_strokeWidth = 0.8, leg_txtcol = "#363636", leg_title=values, leg_round, leg_fontSize= 10){
   res <- c(as.list(environment()))
   res <- clean_input(res, type = "dotcartogram")
   if(missing(bertin)){bertin <- list()}
@@ -871,36 +908,38 @@ bt_dotcartogram <-function(bertin, data, onedot, nbmax=200, iteration=200, value
 
 #' Mushroom
 #'
-#' @param bertin
-#' @param data
-#' @param top_values
-#' @param bottom_values
-#' @param top_fill
-#' @param bottom_fill
-#' @param k
-#' @param stroke
-#' @param strokeWidth
-#' @param fillOpacity
-#' @param strokeOpacity
-#' @param top_tooltip
-#' @param bottom_tooltip
-#' @param display
+#' @eval my_params(c(
+#'
+#' 'bertin',
+#' 'data',
+#' 'top_values',
+#' 'bottom_values',
+#' 'top_fill',
+#' 'bottom_fill',
+#' 'k',
+#' 'stroke',
+#' 'strokeWidth',
+#' 'fillOpacity',
+#' 'strokeOpacity',
+#' 'top_tooltip',
+#' 'bottom_tooltip',
+#' 'display',
 #'
 #'
-#' @param leg_x
-#' @param leg_y
-#' @param leg_fill
-#' @param leg_stroke
-#' @param leg_strokeWidth:
-#' @param leg_txtcol
-#' @param leg_title
-#' @param leg_round
-#' @param leg_fontSize
-#' @param leg_fontSize2
-#' @param leg_top_txt
-#' @param leg_bottom_txt
-#' @param leg_bottom_fill
-#' @param leg_top_fill
+#' 'leg_x',
+#' 'leg_y',
+#' 'leg_fill',
+#' 'leg_stroke',
+#' 'leg_strokeWidth',
+#' 'leg_txtcol',
+#' 'leg_title',
+#' 'leg_round',
+#' 'leg_fontSize',
+#' 'leg_fontSize2',
+#' 'leg_top_txt',
+#' 'leg_bottom_txt',
+#' 'leg_bottom_fill',
+#' 'leg_top_fill'))
 #'
 #' @return a map object
 #' @export
@@ -916,7 +955,7 @@ bt_dotcartogram <-function(bertin, data, onedot, nbmax=200, iteration=200, value
 #'   bt_mushroom(data = africa, top_values = "gdp_pct", bottom_values = "pop_pct") |>
 #'   bt_draw()
 bt_mushroom <- function(bertin, data, top_values, bottom_values, top_fill = "#d64f4f", bottom_fill= "#4fabd6", k=50, stroke= "white", strokeWidth=0.5, fillOpacity=1, strokeOpacity=1,
-                        top_tooltip, bottom_tooltip, display= TRUE,  leg_x,  leg_y, leg_fill="none", leg_stroke = "black", leg_strokeWidth= 0.8, leg_txtcol= "#363636", leg_title= var_data,
+                        top_tooltip, bottom_tooltip, display= TRUE,  leg_x,  leg_y, leg_fill="none", leg_stroke = "black", leg_strokeWidth= 0.8, leg_txtcol= "#363636", leg_title= values,
                         leg_round, leg_fontSize=14, leg_fontSize2= 10, leg_top_txt = top_var, leg_bottom_txt= bottom_var, leg_bottom_fill, leg_top_fill){
   res <- c(as.list(environment()))
   res <- clean_input(res, type = "mushroom")
@@ -927,29 +966,31 @@ bt_mushroom <- function(bertin, data, top_values, bottom_values, top_fill = "#d6
 
 #' Spikes
 #'
-#' @param bertin
-#' @param data
-#' @param values
-#' @param k
-#' @param w
-#' @param fill
-#' @param stroke
-#' @param strokeWidth
-#' @param fillOpacity
-#' @param tooltip
-#' @param display
+#' @eval my_params(c(
+#'
+#'  'bertin',
+#'  'data',
+#'  'values',
+#'  'k',
+#'  'w',
+#'  'fill',
+#'  'stroke',
+#'  'strokeWidth',
+#'  'fillOpacity',
+#'  'tooltip',
+#'  'display',
 #'
 #'
-#' @param leg_x
-#' @param leg_y
-#' @param leg_fill
-#' @param leg_stroke
-#' @param leg_strokeWidth
-#' @param leg_txtcol
-#' @param leg_title
-#' @param leg_round
-#' @param leg_fontSize
-#' @param leg_fontSize2
+#'  'leg_x',
+#'  'leg_y',
+#'  'leg_fill',
+#'  'leg_stroke',
+#'  'leg_strokeWidth',
+#'  'leg_txtcol',
+#'  'leg_title',
+#'  'leg_round',
+#'  'leg_fontSize',
+#'  'leg_fontSize2'))
 #'
 #' @return a map object
 #' @export
@@ -962,7 +1003,7 @@ bt_mushroom <- function(bertin, data, top_values, bottom_values, top_fill = "#d6
 #'   bt_spikes(data = world, values = "pop", k = 110, w = 6) |>
 #'   bt_draw()
 bt_spikes <- function(bertin, data, values, k=50, w=10, fill = "#a31d88", stroke = 0.7, strokeWidth= 0.7, fillOpacity=0.3, tooltip, display=TRUE,
-                      leg_x,leg_y, leg_fill="none", leg_stroke= "black", leg_strokeWidth= 0.8, leg_txtcol = "#363636", leg_title= var_data, leg_round,
+                      leg_x,leg_y, leg_fill="none", leg_stroke= "black", leg_strokeWidth= 0.8, leg_txtcol = "#363636", leg_title= values, leg_round,
                       leg_fontSize=14, leg_fontSize2= 10){
   res <- c(as.list(environment()))
   res <- clean_input(res, type = "spikes")
@@ -973,30 +1014,33 @@ bt_spikes <- function(bertin, data, values, k=50, w=10, fill = "#a31d88", stroke
 
 #' Smooth
 #'
-#' @param bertin
-#' @param data
-#' @param values
-#' @param stroke
-#' @param strokeWidth
-#' @param strokeLinecap
-#' @param strokeLinejoin
-#' @param strokeDasharray
-#' @param fillOpacity
-#' @param strokeOpacity
-#' @param display
+#'@eval my_params(c(
 #'
-#' @param fill
-#' @param thresholds
-#' @param bandwidth
-#' @param colorcurve
-#' @param reverse
-#' @param remove
-#' @param clip
+#'  'bertin',
+#'  'data',
+#'  'values',
+#'  'stroke',
+#'  'strokeWidth',
+#'  'strokeLinecap',
+#'  'strokeLinejoin',
+#'   'strokeDasharray',
+#'  'fillOpacity',
+#'  'strokeOpacity',
+#'  'display',
 #'
-#' @param grid_step
-#' @param grid_blur
-#' @param grid_operator
-#' @param grid_geoprocessing
+#'  'fill',
+#'  'thresholds',
+#'  'bandwidth',
+#'  'colorcurve',
+#'  'reverse',
+#'  'remove',
+#'  'clip',
+#'
+#' 'grid_step',
+#' 'grid_blur',
+#' 'grid_operator',
+#' 'grid_geoprocessing'))
+#'
 #' @return a map object
 #' @export
 #'

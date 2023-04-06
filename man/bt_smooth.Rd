@@ -29,9 +29,45 @@ bt_smooth(
 )
 }
 \arguments{
-\item{display}{}
+\item{bertin}{map object}
 
-\item{clip}{}
+\item{data}{sf object EPSG:4326}
+
+\item{stroke}{stroke color}
+
+\item{strokeWidth}{stroke width}
+
+\item{strokeLinecap}{appearance of the line cap}
+
+\item{strokeDasharray}{stroke dash array}
+
+\item{strokeOpacity}{stroke opacity}
+
+\item{display}{Boolean to allow to show or hide the layer. This parameter has no effect on the calculation of the extent}
+
+\item{fill}{fill color}
+
+\item{thresholds}{number of classes}
+
+\item{bandwidth}{bandwidth (the standard deviation) of the Gaussian kernel and returns the estimate.}
+
+\item{colorcurve}{a value to curve the color interpolation}
+
+\item{reverse}{a boolean. By default, the layer placed on the topof the code is display on the top of the map.With reverse : true, your can reverse this order}
+
+\item{clip}{a boolean to avoid artifacts of discontinuous projection}
+
+\item{grid_step}{Gap between the points}
+
+\item{grid_blur}{radius of the kernel}
+
+\item{grid_operator}{operator 'sum' for absolute quantitative data or 'mean' for relative data (default: 'sum'. highly recommended)}
+
+\item{grid_geoprocessing}{intersection (intersection between polygons and grid squares. Assignment of values in proportion to the intersected area) or 'dotinpoly' (considers each grid square and assigns the value of the underlying polygon or the weighted average of intersecting polygons. )}
+
+\item{strokeLinejoin}{appearance of the intersection beetween two or several lines}
+
+\item{fillOpacity}{fill opacity}
 }
 \value{
 a map object

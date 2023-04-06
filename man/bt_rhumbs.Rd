@@ -15,14 +15,21 @@ bt_rhumbs(
   display = TRUE
 )
 }
-\arguments{
-\item{display}{}
-}
 \value{
 a map object
 }
 \description{
-Rhumbs
+@eval my_params(c(
+}
+\details{
+'bertin',
+ 'nb',
+ 'position',
+ 'stroke',
+ 'strokeWidth',
+ 'strokeOpacity',
+ 'strokeDasharray',
+ 'display'))
 }
 \examples{
 library(sf)

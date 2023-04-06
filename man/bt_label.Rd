@@ -21,7 +21,27 @@ bt_label(
 )
 }
 \arguments{
-\item{display}{}
+\item{bertin}{map object}
+
+\item{data}{sf object EPSG:4326}
+
+\item{fill}{fill color}
+
+\item{fontSize}{text size}
+
+\item{fontFamily}{font family}
+
+\item{textDecoration}{text decoration.}
+
+\item{fontStyle}{font style}
+
+\item{opacity}{opacity of the object}
+
+\item{halo}{boolean to display a halo below the text}
+
+\item{halo_style}{an array defining the halo style. [color, thickness, opacity]}
+
+\item{display}{Boolean to allow to show or hide the layer. This parameter has no effect on the calculation of the extent}
 }
 \value{
 map object

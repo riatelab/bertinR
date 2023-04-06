@@ -14,7 +14,8 @@ bt_regularsquare(
   stroke = "white",
   strokeWidth = 0.5,
   fillOpacity = 1,
-  demrs = FALSE,
+  step = 20,
+  demers = FALSE,
   iteration = 200,
   tooltip,
   display = TRUE,
@@ -24,7 +25,7 @@ bt_regularsquare(
   leg_stroke = "black",
   leg_strokeWidth = 0.8,
   leg_txtcol = "#363636",
-  leg_title = var_data,
+  leg_title = values,
   leg_round,
   leg_divisor = 1,
   leg_fontSize = 14,
@@ -32,9 +33,51 @@ bt_regularsquare(
 )
 }
 \arguments{
-\item{display}{}
+\item{bertin}{map object}
 
-\item{leg_fontSize2}{}
+\item{data}{sf object EPSG:4326}
+
+\item{k}{size of the largest object}
+
+\item{fixmax}{Max value to fix the size of the biggest circle, in order to make maps comparable}
+
+\item{fill}{fill color}
+
+\item{stroke}{stroke color}
+
+\item{strokeWidth}{stroke width}
+
+\item{fillOpacity}{fill opacity}
+
+\item{step}{gap between graticules. The value can be a number or an array of two values}
+
+\item{demers}{avoid overlapping between quares. a boolean}
+
+\item{tooltip}{tooltip allows you to display a label when you fly over an object}
+
+\item{display}{Boolean to allow to show or hide the layer. This parameter has no effect on the calculation of the extent}
+
+\item{leg_x}{position in x (if this value is not filled, the legend is not displayed)(value in px)}
+
+\item{leg_y}{position in y (if this value is not filled, the legend is not displayed)(value in px)}
+
+\item{leg_fill}{color of the circles}
+
+\item{leg_stroke}{stroke color of the circles}
+
+\item{leg_strokeWidth}{stoke-width of the legend}
+
+\item{leg_txtcol}{color of the text}
+
+\item{leg_title}{title of the legend}
+
+\item{leg_round}{number of digits after the decimal point}
+
+\item{leg_divisor}{A number to divide to the values in the legend. For example, 1000 is used to convert units to thousands.1000000 allows to convert units into millions}
+
+\item{leg_fontSize}{legend title font size}
+
+\item{leg_fontSize2}{legend text font size}
 }
 \value{
 a map object

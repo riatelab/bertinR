@@ -13,7 +13,15 @@ bt_scalebar(
 )
 }
 \arguments{
-\item{display}{}
+\item{bertin}{map object}
+
+\item{x}{position in x (pixel)}
+
+\item{y}{position in y (pixel)}
+
+\item{units}{distance unit, miles or kilometers}
+
+\item{display}{Boolean to allow to show or hide the layer. This parameter has no effect on the calculation of the extent}
 }
 \value{
 a map object
