@@ -25,12 +25,12 @@ bt_mushroom(
   leg_stroke = "black",
   leg_strokeWidth = 0.8,
   leg_txtcol = "#363636",
-  leg_title = values,
+  leg_title,
   leg_round,
   leg_fontSize = 14,
   leg_fontSize2 = 10,
-  leg_top_txt = top_var,
-  leg_bottom_txt = bottom_var,
+  leg_top_txt = top_values,
+  leg_bottom_txt = bottom_values,
   leg_bottom_fill,
   leg_top_fill
 )

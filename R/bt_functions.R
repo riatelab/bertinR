@@ -625,11 +625,11 @@ bt_bubble <-
            leg_fontSize = 14,
            leg_fontSize2 = 10) {
     res <- c(as.list(environment()))
-  res <- clean_input(res, type = "bubble")
-  if(missing(bertin)){bertin <- list()}
-  bertin$layers[[length(bertin$layers) + 1]] <- res
-  return(bertin)
-}
+    res <- clean_input(res, type = "bubble")
+    if(missing(bertin)){bertin <- list()}
+    bertin$layers[[length(bertin$layers) + 1]] <- res
+    return(bertin)
+  }
 
 #' Square
 #'
@@ -954,9 +954,34 @@ bt_dotcartogram <-function(bertin, data, onedot, nbmax=200, iteration=200, value
 #' bt_layer(data = africa, fill = "#808080") |>
 #'   bt_mushroom(data = africa, top_values = "gdp_pct", bottom_values = "pop_pct") |>
 #'   bt_draw()
-bt_mushroom <- function(bertin, data, top_values, bottom_values, top_fill = "#d64f4f", bottom_fill= "#4fabd6", k=50, stroke= "white", strokeWidth=0.5, fillOpacity=1, strokeOpacity=1,
-                        top_tooltip, bottom_tooltip, display= TRUE,  leg_x,  leg_y, leg_fill="none", leg_stroke = "black", leg_strokeWidth= 0.8, leg_txtcol= "#363636", leg_title= values,
-                        leg_round, leg_fontSize=14, leg_fontSize2= 10, leg_top_txt = top_var, leg_bottom_txt= bottom_var, leg_bottom_fill, leg_top_fill){
+bt_mushroom <-   function(bertin,
+                          data,
+                          top_values,
+                          bottom_values,
+                          top_fill = "#d64f4f",
+                          bottom_fill = "#4fabd6",
+                          k = 50,
+                          stroke = "white",
+                          strokeWidth = 0.5,
+                          fillOpacity = 1,
+                          strokeOpacity = 1,
+                          top_tooltip,
+                          bottom_tooltip,
+                          display = TRUE,
+                          leg_x,
+                          leg_y,
+                          leg_fill = "none",
+                          leg_stroke = "black",
+                          leg_strokeWidth = 0.8,
+                          leg_txtcol = "#363636",
+                          leg_title,
+                          leg_round,
+                          leg_fontSize = 14,
+                          leg_fontSize2 = 10,
+                          leg_top_txt = top_values,
+                          leg_bottom_txt = bottom_values,
+                          leg_bottom_fill,
+                          leg_top_fill) {
   res <- c(as.list(environment()))
   res <- clean_input(res, type = "mushroom")
   if(missing(bertin)){bertin <- list()}
