@@ -897,7 +897,7 @@ bt_regulargrid <- function(bertin, data, step =20, values, operator="sum", geopr
 #'                   onedot = 100000000000,
 #'                   iteration = 200, values = "gdp") |>
 #'   bt_draw()
-bt_dotcartogram <-function(bertin, data, onedot, nbmax=200, iteration=200, values, radius=4, span=0.5, fill=randomcolor, stroke= "white", strokeWidth = 0.5, fillOpacity = 1, tooltip, display= TRUE,
+bt_dotcartogram <-function(bertin, data, onedot, nbmax=200, iteration=200, values, radius=4, span=0.5, fill, stroke= "white", strokeWidth = 0.5, fillOpacity = 1, tooltip, display= TRUE,
                            leg_x, leg_y, leg_fill="none", leg_stroke="black", leg_strokeWidth = 0.8, leg_txtcol = "#363636", leg_title=values, leg_round, leg_fontSize= 10){
   res <- c(as.list(environment()))
   res <- clean_input(res, type = "dotcartogram")

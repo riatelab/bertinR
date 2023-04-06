@@ -13,7 +13,7 @@ bt_dotcartogram(
   values,
   radius = 4,
   span = 0.5,
-  fill = randomcolor,
+  fill,
   stroke = "white",
   strokeWidth = 0.5,
   fillOpacity = 1,

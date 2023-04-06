@@ -7,7 +7,7 @@
 bt_rhumbs(
   bertin,
   nb = 10,
-  position = c(height, 4, width, 4, width, 4),
+  position,
   stroke = "#786d6c",
   strokeWidth = 2,
   strokeOpacity = 1,
