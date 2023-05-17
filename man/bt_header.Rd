@@ -11,7 +11,8 @@ bt_header(
   fill = "#9e9696",
   background = "white",
   backgroundOpacity = 1,
-  display = TRUE
+  display = TRUE,
+  anchor = "end"
 )
 }
 \arguments{

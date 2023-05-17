@@ -10,7 +10,7 @@ bt_regularsquare(
   values,
   k = 50,
   fixmax,
-  fill = randomcolor,
+  fill,
   stroke = "white",
   strokeWidth = 0.5,
   fillOpacity = 1,

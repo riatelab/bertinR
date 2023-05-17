@@ -10,7 +10,7 @@ bt_square(
   values,
   k = 50,
   fixmax,
-  fill = "random color",
+  fill,
   stroke = "white",
   strokeWidth = 0.5,
   fillOpacity = 1,
@@ -23,7 +23,7 @@ bt_square(
   leg_fill = "none",
   leg_stroke = "black",
   leg_strokeWidth = 0.8,
-  leg_txtco = "#363636",
+  leg_txtcol = "#363636",
   leg_title = values,
   leg_round,
   leg_divisor = 1,
@@ -64,6 +64,8 @@ bt_square(
 
 \item{leg_strokeWidth}{stoke-width of the legend}
 
+\item{leg_txtcol}{color of the text}
+
 \item{leg_title}{title of the legend}
 
 \item{leg_round}{number of digits after the decimal point}
@@ -73,8 +75,6 @@ bt_square(
 \item{leg_fontSize}{legend title font size}
 
 \item{leg_fontSize2}{legend text font size}
-
-\item{leg_txtcol}{color of the text}
 }
 \value{
 a map object

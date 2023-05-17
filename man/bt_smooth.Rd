@@ -12,7 +12,8 @@ bt_smooth(
   strokeWidth = 0.5,
   strokeLinecap = "round",
   strokeDasharray = "none",
-  fllOpacity = 1,
+  strokeLinejoin = "round",
+  fillOpacity = 1,
   strokeOpacity = 1,
   display = TRUE,
   fill = "RdYlGn",
@@ -41,6 +42,10 @@ bt_smooth(
 
 \item{strokeDasharray}{stroke dash array}
 
+\item{strokeLinejoin}{appearance of the intersection beetween two or several lines}
+
+\item{fillOpacity}{fill opacity}
+
 \item{strokeOpacity}{stroke opacity}
 
 \item{display}{Boolean to allow to show or hide the layer. This parameter has no effect on the calculation of the extent}
@@ -64,10 +69,6 @@ bt_smooth(
 \item{grid_operator}{operator 'sum' for absolute quantitative data or 'mean' for relative data (default: 'sum'. highly recommended)}
 
 \item{grid_geoprocessing}{intersection (intersection between polygons and grid squares. Assignment of values in proportion to the intersected area) or 'dotinpoly' (considers each grid square and assigns the value of the underlying polygon or the weighted average of intersecting polygons. )}
-
-\item{strokeLinejoin}{appearance of the intersection beetween two or several lines}
-
-\item{fillOpacity}{fill opacity}
 }
 \value{
 a map object

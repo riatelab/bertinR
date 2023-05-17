@@ -10,7 +10,7 @@ bt_regularbubble(
   values,
   k = 50,
   fixmax,
-  fill = "random color",
+  fill,
   stroke = "white",
   strokeWidth = 0.5,
   fillOpacity = 1,

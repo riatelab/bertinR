@@ -10,7 +10,7 @@ bt_outline(
   opacity = 1,
   stroke = "none",
   strokeWidth = 1,
-  diplay = TRUE
+  display = TRUE
 )
 }
 \arguments{

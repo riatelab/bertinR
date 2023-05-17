@@ -305,7 +305,7 @@ bt_shadow <- function(bertin, data, dx=3, dy=3, stdDeviation=1.5, opacity=0.7, f
 #' @examples
 #' bt_outline(fill = "#ADD8F7", stroke = "#4269ad") |>
 #'   bt_draw()
-bt_outline <- function(bertin, fill="#add8f7", opacity=1, stroke="none", strokeWidth=1, diplay=TRUE){
+bt_outline <- function(bertin, fill="#add8f7", opacity=1, stroke="none", strokeWidth=1, display=TRUE){
   res <- c(as.list(environment()))
   res <- clean_input(res, type = "outline")
   if(missing(bertin)){bertin <- list()}
@@ -383,7 +383,7 @@ bt_waterlines <-function(bertin, data, dist=5, nb=3, precision=3, stroke="#5d81b
 #'   bt_layer(data = world, fill = "red") |>
 #'   bt_header(text = "Title") |>
 #'   bt_draw()
-bt_header <-function(bertin, text="", fontSize=20, fill= "#9e9696", background= "white", backgroundOpacity=1, display= TRUE){
+bt_header <-function(bertin, text="", fontSize=20, fill= "#9e9696", background= "white", backgroundOpacity=1, display= TRUE, anchor="end"){
   res <- c(as.list(environment()))
   res <- clean_input(res, type = "header")
   if(missing(bertin)){bertin <- list()}
@@ -481,7 +481,7 @@ bt_scalebar <- function(bertin, x="left", y="bottom", units="kilometers", displa
 #'   bt_layer(data = world, fill = "white") |>
 #'   bt_geolines() |>
 #'   bt_draw()
-bt_geolines <- function(bertin, stroke= "#020e21", strokeWidth=c(1.5,1.2,0.7), strokeDasharray=c("none",5,3), strokeLinecap="round", display= TRUE){
+bt_geolines <- function(bertin, stroke= "#020e21", strokeWidth=c(1.5,1.2,0.7), strokeDasharray=c("none",5,3), strokeLinecap="round", display= TRUE, strokeOpacity=1){
   res <- c(as.list(environment()))
   res <- clean_input(res, type = "geolines")
   if(missing(bertin)){bertin <- list()}
@@ -605,7 +605,7 @@ bt_bubble <-
            values,
            k = 50,
            fixmax,
-           fill = "randomcolor",
+           fill ,
            stroke = "white",
            strokeWidth = 0.5,
            fillOpacity = 1,
@@ -673,8 +673,8 @@ bt_bubble <-
 #'bt_layer(data = world, fill = "#808080") |>
 #' bt_square(data = world, values = "pop", k = 60, tooltip = "$name") |>
 #' bt_draw()
-bt_square <-function(bertin, data, values, k=50, fixmax, fill = "random color", stroke="white", strokeWidth= 0.5, fillOpacity=1, demers=FALSE, iteration=200, tooltip, display= TRUE,
-                     leg_x,leg_y, leg_fill="none", leg_stroke="black", leg_strokeWidth=0.8, leg_txtco = "#363636", leg_title=values, leg_round, leg_divisor=1, leg_fontSize=14, leg_fontSize2=10){
+bt_square <-function(bertin, data, values, k=50, fixmax, fill, stroke="white", strokeWidth= 0.5, fillOpacity=1, demers=FALSE, iteration=200, tooltip, display= TRUE,
+                     leg_x,leg_y, leg_fill="none", leg_stroke="black", leg_strokeWidth=0.8, leg_txtcol = "#363636", leg_title=values, leg_round, leg_divisor=1, leg_fontSize=14, leg_fontSize2=10){
   res <- c(as.list(environment()))
   res <- clean_input(res, type = "square")
   if(missing(bertin)){bertin <- list()}
@@ -726,7 +726,7 @@ bt_square <-function(bertin, data, values, k=50, fixmax, fill = "random color", 
 #'                  values = "pop", step = 10,
 #'                    k = 10, tooltip = "$value") |>
 #'  bt_draw()
-bt_regularbubble <- function(bertin, data, values, k =50, fixmax, fill= "random color", stroke= "white", strokeWidth=0.5, fillOpacity=1, dorling=FALSE,step=20, iteration=200, tooltip, display=TRUE,
+bt_regularbubble <- function(bertin, data, values, k =50, fixmax, fill, stroke= "white", strokeWidth=0.5, fillOpacity=1, dorling=FALSE,step=20, iteration=200, tooltip, display=TRUE,
                              leg_x, leg_y, leg_fill = "none", leg_stroke="black",leg_strokeWidth= 0.8, leg_txtcol = "#363636", leg_title= values, leg_round, leg_divisor=1, leg_fontSize= 14,
                              leg_fontSize2=10){
   res <- c(as.list(environment()))
@@ -780,7 +780,7 @@ bt_regularbubble <- function(bertin, data, values, k =50, fixmax, fill= "random 
 #'                 values = "pop", step = 10,
 #'                   k = 10, tooltip = "$value") |>
 #'  bt_draw()
-bt_regularsquare <- function(bertin, data, values, k=50, fixmax, fill=randomcolor, stroke="white",strokeWidth =0.5, fillOpacity=1, step=20, demers= FALSE, iteration=200, tooltip, display=TRUE,
+bt_regularsquare <- function(bertin, data, values, k=50, fixmax, fill, stroke="white",strokeWidth =0.5, fillOpacity=1, step=20, demers= FALSE, iteration=200, tooltip, display=TRUE,
                              leg_x,leg_y, leg_fill="none", leg_stroke="black", leg_strokeWidth= 0.8, leg_txtcol= "#363636", leg_title= values, leg_round, leg_divisor=1,
                              leg_fontSize=14 , leg_fontSize2= 10){
   res <- c(as.list(environment()))
@@ -843,7 +843,7 @@ bt_regularsquare <- function(bertin, data, values, k=50, fixmax, fill=randomcolo
 #'                  tooltip = "$value") |>
 #'   bt_draw()
 bt_regulargrid <- function(bertin, data, step =20, values, operator="sum", geoprocessing= "intersection", blur= 0, colors= "Tableau10", order, col_missing= "#f5f5f5", txt_missing= "No data",
-                           stroke="white", strokeWidth= 0.5, fillOpacity=1, tooltip, leg_x, leg_y, leg_w=30, leg_h = 20, leg_fill="none", leg_stroke="black", leg_strokeWidth = 0.8, leg_txtcol= "#363636",
+                           stroke="white", strokeWidth= 0.5, fillOpacity=1, tooltip, leg_x, leg_y, leg_w=30, leg_h= 20, leg_fill="none", leg_stroke="black", leg_strokeWidth = 0.8, leg_txtcol= "#363636",
                            leg_title= values, leg_round, leg_fontSize= 10){
   res <- c(as.list(environment()))
   res <- clean_input(res, type = "regulargrid")
@@ -1027,7 +1027,7 @@ bt_mushroom <-   function(bertin,
 #' bt_layer(data = world, fill = "#808080") |>
 #'   bt_spikes(data = world, values = "pop", k = 110, w = 6) |>
 #'   bt_draw()
-bt_spikes <- function(bertin, data, values, k=50, w=10, fill = "#a31d88", stroke = 0.7, strokeWidth= 0.7, fillOpacity=0.3, tooltip, display=TRUE,
+bt_spikes <- function(bertin, data,values, k=50, w=10, fill = "#a31d88", stroke = 0.7, strokeWidth= 0.7, fillOpacity=0.3, tooltip, display=TRUE,
                       leg_x,leg_y, leg_fill="none", leg_stroke= "black", leg_strokeWidth= 0.8, leg_txtcol = "#363636", leg_title= values, leg_round,
                       leg_fontSize=14, leg_fontSize2= 10){
   res <- c(as.list(environment()))
@@ -1079,7 +1079,7 @@ bt_spikes <- function(bertin, data, values, k=50, w=10, fill = "#a31d88", stroke
 #'             bandwidth = 25,
 #'             colorcurve = 1) |>
 #'   bt_draw()
-bt_smooth <- function(bertin, data, values, stroke="white", strokeWidth= 0.5, strokeLinecap= "round", strokeDasharray= "none", fllOpacity=1, strokeOpacity=1,display= TRUE,
+bt_smooth <- function(bertin, data, values, stroke="white", strokeWidth= 0.5, strokeLinecap= "round", strokeDasharray= "none", strokeLinejoin="round", fillOpacity=1, strokeOpacity=1,display= TRUE,
                       fill= "RdYlGn", thresholds=100, bandwidth= 5, colorcurve= 2, reverse= FALSE, remove=0, clip=FALSE, grid_step=20, grid_blur=0, grid_operator="sum", grid_geoprocessing= "intersection"){
   res <- c(as.list(environment()))
   res <- clean_input(res, type = "smooth")
