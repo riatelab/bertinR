@@ -36,6 +36,8 @@ bt_square(
 
 \item{data}{sf object EPSG:4326}
 
+\item{values}{a string corresponding to the targeted variable in the properties}
+
 \item{k}{size of the largest object}
 
 \item{fixmax}{Max value to fix the size of the biggest circle, in order to make maps comparable}
@@ -49,6 +51,8 @@ bt_square(
 \item{fillOpacity}{fill opacity}
 
 \item{demers}{avoid overlapping between quares. a boolean}
+
+\item{iteration}{an integer to define the number of iteration for the Dorling method}
 
 \item{tooltip}{tooltip allows you to display a label when you fly over an object}
 

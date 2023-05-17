@@ -34,6 +34,8 @@ bt_smooth(
 
 \item{data}{sf object EPSG:4326}
 
+\item{values}{a string corresponding to the targeted variable in the properties}
+
 \item{stroke}{stroke color}
 
 \item{strokeWidth}{stroke width}
@@ -59,6 +61,8 @@ bt_smooth(
 \item{colorcurve}{a value to curve the color interpolation}
 
 \item{reverse}{a boolean. By default, the layer placed on the topof the code is display on the top of the map.With reverse : true, your can reverse this order}
+
+\item{remove}{number of polygons to remove}
 
 \item{clip}{a boolean to avoid artifacts of discontinuous projection}
 

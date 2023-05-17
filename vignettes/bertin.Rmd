@@ -50,7 +50,7 @@ bt_param(projection = "InterruptedHomolosine", clip = TRUE) |>
   bt_graticule() |>
   bt_shadow(data = world, opacity = 0.2) |>
   bt_layer(data = world,
-           tooltip = c("$region", "$name", ""),
+           tooltip = c("$region", "$name", " "),
            fill = list(
              type = "typo",
              values = "region",
@@ -103,7 +103,7 @@ bt_param(projection = "InterruptedMollweideHemispheres", clip = TRUE) |>
               leg_y = 100,
               leg_title = "The Continents"
             ), tooltip = list(
-              fields = c("$name", "", "Continent", "$region", "Population", "$pop"),
+              fields = c("$name", " ", "Continent", "$region", "Population", "$pop"),
               fontSize = c(25, 10, 14, 12, 14, 12),
               fontWeight = c("bold", "normal", "bold", "normal", "bold", "normal")
             ),
@@ -147,13 +147,7 @@ bt_param(projection = "Bertin1953", width = 600) |>
   bt_layer(data = world, fill = "white", fillOpacity = .3) |>
   bt_graticule() |>
   bt_header(text = "World Population (step = 10)") |>
-  bt_regularbubble(data = world, step = 10, values = "pop", k = 10,
-                   tooltip = list(
-                     "$name",
-                     "",
-                     "country value",
-                     "$pop"
-                   )) |>
+  bt_regularbubble(data = world, step = 10, values = "pop", k = 10) |>
   bt_draw()
 ```
 

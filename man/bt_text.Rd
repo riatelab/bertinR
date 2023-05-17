@@ -38,6 +38,8 @@ bt_text(
 
 \item{textDecoration}{text decoration.}
 
+\item{fontWeight}{font weight. "normal", "bold", "bolder", "lighter"}
+
 \item{fontStyle}{font style}
 
 \item{margin}{margin}

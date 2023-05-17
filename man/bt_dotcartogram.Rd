@@ -39,6 +39,10 @@ bt_dotcartogram(
 
 \item{nbmax}{number max of circles on the map}
 
+\item{iteration}{an integer to define the number of iteration for the Dorling method}
+
+\item{values}{a string corresponding to the targeted variable in the properties}
+
 \item{radius}{radius of dots}
 
 \item{span}{spacing between dots}

@@ -15,7 +15,7 @@ bt_waterlines(
   strokeWidth = c(1.2, 0.2),
   strokeDasharray = "none",
   strokeLinecap = "round",
-  strokeLineJoin = "round",
+  strokeLinejoin = "round",
   display = TRUE
 )
 }
@@ -40,9 +40,9 @@ bt_waterlines(
 
 \item{strokeLinecap}{appearance of the line cap}
 
-\item{display}{Boolean to allow to show or hide the layer. This parameter has no effect on the calculation of the extent}
-
 \item{strokeLinejoin}{appearance of the intersection beetween two or several lines}
+
+\item{display}{Boolean to allow to show or hide the layer. This parameter has no effect on the calculation of the extent}
 }
 \value{
 a map object

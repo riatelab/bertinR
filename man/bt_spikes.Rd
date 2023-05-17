@@ -33,6 +33,8 @@ bt_spikes(
 
 \item{data}{sf object EPSG:4326}
 
+\item{values}{a string corresponding to the targeted variable in the properties}
+
 \item{k}{size of the largest object}
 
 \item{w}{width of the spikes}

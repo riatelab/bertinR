@@ -40,6 +40,8 @@ bt_regulargrid(
 
 \item{step}{gap between graticules. The value can be a number or an array of two values}
 
+\item{values}{a string corresponding to the targeted variable in the properties}
+
 \item{operator}{'sum' for absolute quantitative data or 'mean}
 
 \item{geoprocessing}{'intersection' intersection between polygons and grid squares.
@@ -69,11 +71,17 @@ or the weighted average of intersecting polygons. ).}
 
 \item{leg_y}{position in y (if this value is not filled, the legend is not displayed)(value in px)}
 
+\item{leg_w}{width of the box}
+
+\item{leg_h}{height of the box}
+
 \item{leg_fill}{color of the circles}
 
 \item{leg_stroke}{stroke color of the circles}
 
 \item{leg_strokeWidth}{stoke-width of the legend}
+
+\item{leg_txtcol}{color of the text}
 
 \item{leg_title}{title of the legend}
 

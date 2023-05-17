@@ -25,6 +25,8 @@ bt_label(
 
 \item{data}{sf object EPSG:4326}
 
+\item{values}{a string corresponding to the targeted variable in the properties}
+
 \item{fill}{fill color}
 
 \item{fontSize}{text size}
@@ -32,6 +34,8 @@ bt_label(
 \item{fontFamily}{font family}
 
 \item{textDecoration}{text decoration.}
+
+\item{fontWeight}{font weight. "normal", "bold", "bolder", "lighter"}
 
 \item{fontStyle}{font style}
 

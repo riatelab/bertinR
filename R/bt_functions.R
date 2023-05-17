@@ -15,7 +15,7 @@
 #'
 #' @examples
 #' bt_param(margin = 10)
-bt_param <- function(margin=1, width=1000, projection="Mercator", extent = NULL ,background=NULL,clip=FALSE, reverse=FALSE){
+bt_param <- function(margin=1, width=1000, projection, extent = NULL ,background=NULL,clip=FALSE, reverse=FALSE){
   res <- c(as.list(environment()))
   not_empty <- function(x){sum(nchar(x))>0}
   res <- res[unlist(lapply(X = res, FUN = not_empty))]
@@ -345,7 +345,7 @@ bt_outline <- function(bertin, fill="#add8f7", opacity=1, stroke="none", strokeW
 #'   bt_waterlines(data = world, dist = 3, nb = 4) |>
 #'   bt_draw()
 bt_waterlines <-function(bertin, data, dist=5, nb=3, precision=3, stroke="#5d81ba",strokeOpacity= c(1,0.1), strokeWidth=c(1.2,0.2), strokeDasharray="none",
-                         strokeLinecap="round", strokeLineJoin="round", display=TRUE){
+                         strokeLinecap="round", strokeLinejoin="round", display=TRUE){
   res <- c(as.list(environment()))
   res <- clean_input(res, type = "waterlines")
   if(missing(bertin)){bertin <- list()}
@@ -526,16 +526,15 @@ bt_hatch <- function(bertin, angle=45, stroke="#786d6c", strokeWidth=2, strokeOp
 
 #' Rhumbs
 #'
-#'  @eval my_params(c(
-#'
+#' @eval my_params(c(
 #' 'bertin',
-#'  'nb',
-#'  'position',
-#'  'stroke',
-#'  'strokeWidth',
-#'  'strokeOpacity',
-#'  'strokeDasharray',
-#'  'display'))
+#' 'nb',
+#' 'position',
+#' 'stroke',
+#' 'strokeWidth',
+#' 'strokeOpacity',
+#' 'strokeDasharray',
+#' 'display'))
 #'
 #' @return a map object
 #' @export
@@ -560,7 +559,6 @@ bt_rhumbs <- function(bertin, nb=10, position, stroke="#786d6c", strokeWidth=2, 
 #' Bubble
 #'
 #' @eval my_params(c(
-#'
 #'  'bertin',
 #'  'data',
 #'  'values',
@@ -570,11 +568,10 @@ bt_rhumbs <- function(bertin, nb=10, position, stroke="#786d6c", strokeWidth=2, 
 #'  'stroke',
 #'  'strokeWidth',
 #'  'fillOpacity',
+#'  'dorling',
 #'  'iteration',
 #'  'tooltip',
 #'  'display',
-#'
-#'
 #'  'leg_x',
 #'  'leg_y',
 #'  'leg_fill',
@@ -819,7 +816,7 @@ bt_regularsquare <- function(bertin, data, values, k=50, fixmax, fill, stroke="w
 #'  'leg_fill',
 #'  'leg_stroke',
 #'  'leg_strokeWidth',
-#'  'leg_txtco',
+#'  'leg_txtcol',
 #'  'leg_title',
 #'  'leg_round',
 #'  'leg_fontSize'))
@@ -1039,32 +1036,29 @@ bt_spikes <- function(bertin, data,values, k=50, w=10, fill = "#a31d88", stroke 
 
 #' Smooth
 #'
-#'@eval my_params(c(
-#'
-#'  'bertin',
-#'  'data',
-#'  'values',
-#'  'stroke',
-#'  'strokeWidth',
-#'  'strokeLinecap',
-#'  'strokeLinejoin',
+#' @eval my_params(c(
+#'   'bertin',
+#'   'data',
+#'   'values',
+#'   'stroke',
+#'   'strokeWidth',
+#'   'strokeLinecap',
+#'   'strokeLinejoin',
 #'   'strokeDasharray',
-#'  'fillOpacity',
-#'  'strokeOpacity',
-#'  'display',
-#'
-#'  'fill',
-#'  'thresholds',
-#'  'bandwidth',
-#'  'colorcurve',
-#'  'reverse',
-#'  'remove',
-#'  'clip',
-#'
-#' 'grid_step',
-#' 'grid_blur',
-#' 'grid_operator',
-#' 'grid_geoprocessing'))
+#'   'fillOpacity',
+#'   'strokeOpacity',
+#'   'display',
+#'   'fill',
+#'   'thresholds',
+#'   'bandwidth',
+#'   'colorcurve',
+#'   'reverse',
+#'   'remove',
+#'   'clip',
+#'   'grid_step',
+#'   'grid_blur',
+#'   'grid_operator',
+#'   'grid_geoprocessing'))
 #'
 #' @return a map object
 #' @export
@@ -1079,8 +1073,28 @@ bt_spikes <- function(bertin, data,values, k=50, w=10, fill = "#a31d88", stroke 
 #'             bandwidth = 25,
 #'             colorcurve = 1) |>
 #'   bt_draw()
-bt_smooth <- function(bertin, data, values, stroke="white", strokeWidth= 0.5, strokeLinecap= "round", strokeDasharray= "none", strokeLinejoin="round", fillOpacity=1, strokeOpacity=1,display= TRUE,
-                      fill= "RdYlGn", thresholds=100, bandwidth= 5, colorcurve= 2, reverse= FALSE, remove=0, clip=FALSE, grid_step=20, grid_blur=0, grid_operator="sum", grid_geoprocessing= "intersection"){
+bt_smooth <- function(bertin,
+                      data,
+                      values,
+                      stroke = "white",
+                      strokeWidth = 0.5,
+                      strokeLinecap = "round",
+                      strokeDasharray = "none",
+                      strokeLinejoin = "round",
+                      fillOpacity = 1,
+                      strokeOpacity = 1,
+                      display = TRUE,
+                      fill = "RdYlGn",
+                      thresholds = 100,
+                      bandwidth = 5,
+                      colorcurve = 2,
+                      reverse = FALSE,
+                      remove = 0,
+                      clip = FALSE,
+                      grid_step = 20,
+                      grid_blur = 0,
+                      grid_operator = "sum",
+                      grid_geoprocessing = "intersection") {
   res <- c(as.list(environment()))
   res <- clean_input(res, type = "smooth")
   if(missing(bertin)){bertin <- list()}

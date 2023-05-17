@@ -15,21 +15,29 @@ bt_rhumbs(
   display = TRUE
 )
 }
+\arguments{
+\item{bertin}{map object}
+
+\item{nb}{number of lines}
+
+\item{position}{position of the text. It can be an array with x,y coordinates. For example [100,200]. It can be also a string defining the position.'topleft', 'top', 'topright', 'left', 'middle',
+'right', 'bottomleft', 'bottom', 'bottomright'}
+
+\item{stroke}{stroke color}
+
+\item{strokeWidth}{stroke width}
+
+\item{strokeOpacity}{stroke opacity}
+
+\item{strokeDasharray}{stroke dash array}
+
+\item{display}{Boolean to allow to show or hide the layer. This parameter has no effect on the calculation of the extent}
+}
 \value{
 a map object
 }
 \description{
-@eval my_params(c(
-}
-\details{
-'bertin',
- 'nb',
- 'position',
- 'stroke',
- 'strokeWidth',
- 'strokeOpacity',
- 'strokeDasharray',
- 'display'))
+Rhumbs
 }
 \examples{
 library(sf)

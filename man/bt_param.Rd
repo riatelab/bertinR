@@ -7,7 +7,7 @@
 bt_param(
   margin = 1,
   width = 1000,
-  projection = "Mercator",
+  projection,
   extent = NULL,
   background = NULL,
   clip = FALSE,
