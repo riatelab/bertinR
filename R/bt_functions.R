@@ -46,7 +46,7 @@ bt_param <- function(margin=1, width=1000, projection, extent = NULL ,background
 #' 'symbol_iteration',
 #' 'display',
 #' 'tooltip'))
-#'
+#' @param id A unique identifier for the layer, useful to update parameters with proxy in shiny.
 #'
 #' @return a bertin list
 #'
@@ -58,13 +58,28 @@ bt_param <- function(margin=1, width=1000, projection, extent = NULL ,background
 #' bt_param(margin = 10, width = 500, projection = "Winkel3") |>
 #'   bt_layer(data = world, fill = "red") |>
 #'   bt_draw()
-bt_layer <-function(bertin, data, fill,
-                    tooltip, strokeWidth=0.5,
-                    strokeDasharray=NULL, stroke = "white",strokeLinecap="round", strokeLinejoin= "round", fillOpacity = 1,
-                    strokeOpacity=1, symbol="circle", symbol_size = 5, symbol_shift=0,symbol_iteration=200, display = TRUE ) {
+bt_layer <- function(bertin,
+                     data,
+                     fill,
+                     tooltip,
+                     strokeWidth = 0.5,
+                     strokeDasharray = NULL,
+                     stroke = "white",
+                     strokeLinecap = "round",
+                     strokeLinejoin = "round",
+                     fillOpacity = 1,
+                     strokeOpacity = 1,
+                     symbol = "circle",
+                     symbol_size = 5,
+                     symbol_shift = 0,
+                     symbol_iteration = 200,
+                     display = TRUE,
+                     id = NULL) {
   res <- c(as.list(environment()))
   res <- clean_input(res, type = "layer")
-  if(missing(bertin)){bertin <- list()}
+  if (missing(bertin)) {
+    bertin <- list()
+  }
   bertin$layers[[length(bertin$layers) + 1]] <- res
   return(bertin)
 }
