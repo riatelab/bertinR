@@ -25,7 +25,7 @@ string and have \code{'px'} appended.}
 is useful if you want to save an expression in a variable.}
 }
 \description{
-Output and render functions for using draw within Shiny
+Output and render functions for using Bertin within Shiny
 applications and interactive Rmd documents.
 }
 \examples{
@@ -101,4 +101,7 @@ server <- function(input, output, session) {
 
 if (interactive())
   shinyApp(ui, server)
+}
+\seealso{
+\code{\link[=bertinProxy]{bertinProxy()}} to update an already generated map from the server.
 }

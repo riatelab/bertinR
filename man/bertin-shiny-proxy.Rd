@@ -8,25 +8,46 @@
 \usage{
 bertinProxy(shinyId, session = shiny::getDefaultReactiveDomain())
 
-bt_proxy_update(proxy, ...)
+bt_proxy_update(
+  proxy,
+  id,
+  attr,
+  value,
+  delay = NULL,
+  duration = NULL,
+  legend = NULL
+)
 }
 \arguments{
-\item{shinyId}{single-element character vector indicating the output ID of the
+\item{shinyId}{Single-element character vector indicating the output ID of the
 chart to modify (if invoked from a Shiny module, the namespace will be added
 automatically).}
 
-\item{session}{the Shiny session object to which the chart belongs; usually the
+\item{session}{The Shiny session object to which the chart belongs; usually the
 default value will suffice.}
 
 \item{proxy}{A proxy object created with `bertinProxy()`.}
 
-\item{...}{Parameters to update.}
+\item{id}{The layer id.}
+
+\item{attr}{The attribute to change.}
+
+\item{value}{The new value to give to the attribute.}
+
+\item{delay}{The time before making the change.}
+
+\item{duration}{The time of transition.}
+
+\item{legend}{In some cases, changing the attribute requires changing the
+title of the legend. You can do this via the legend parameter.}
 }
 \value{
 An object of class `bertinProxy`.
 }
 \description{
-Shiny proxy for bertin widget
+It allows you to modify specific attributes and styles without having to redraw the entire map.
+  Not everything can be modified. Only the attributes underlined
+  in [the online documentation](https://github.com/neocarto/bertin) are.
 }
 \examples{
 library(bertin)

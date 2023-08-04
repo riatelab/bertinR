@@ -1,7 +1,7 @@
 
 #' Shiny bindings for Bertin.js
 #'
-#' Output and render functions for using draw within Shiny
+#' Output and render functions for using Bertin within Shiny
 #' applications and interactive Rmd documents.
 #'
 #' @param outputId output variable to read from
@@ -14,6 +14,8 @@
 #'   is useful if you want to save an expression in a variable.
 #'
 #' @name bertin-shiny
+#'
+#' @seealso \code{\link[=bertinProxy]{bertinProxy()}} to update an already generated map from the server.
 #'
 #' @export
 #'
@@ -31,12 +33,18 @@ renderBertin <- function(expr, env = parent.frame(), quoted = FALSE) {
 
 
 
-#' Shiny proxy for bertin widget
+#' @title Shiny proxy for bertin widget
 #'
-#' @param shinyId single-element character vector indicating the output ID of the
+#' @description
+#'  It allows you to modify specific attributes and styles without having to redraw the entire map.
+#'   Not everything can be modified. Only the attributes underlined
+#'   in [the online documentation](https://github.com/neocarto/bertin) are.
+#'
+#'
+#' @param shinyId Single-element character vector indicating the output ID of the
 #'   chart to modify (if invoked from a Shiny module, the namespace will be added
 #'   automatically).
-#' @param session the Shiny session object to which the chart belongs; usually the
+#' @param session The Shiny session object to which the chart belongs; usually the
 #'   default value will suffice.
 #'
 #' @return An object of class `bertinProxy`.
@@ -65,15 +73,40 @@ bertinProxy <- function(shinyId, session = shiny::getDefaultReactiveDomain()) {
 }
 
 #' @param proxy A proxy object created with `bertinProxy()`.
-#' @param ... Parameters to update.
+#' @param id The layer id.
+#' @param attr The attribute to change.
+#' @param value The new value to give to the attribute.
+#' @param delay The time before making the change.
+#' @param duration The time of transition.
+#' @param legend In some cases, changing the attribute requires changing the
+#'  title of the legend. You can do this via the legend parameter.
+#'
 #' @rdname bertin-shiny-proxy
 #' @export
-bt_proxy_update <- function(proxy, ...) {
+bt_proxy_update <- function(proxy,
+                            id,
+                            attr,
+                            value,
+                            delay = NULL,
+                            duration = NULL,
+                            legend = NULL) {
   if (!"bertinProxy" %in% class(proxy))
     stop("This function must be used with a bertinProxy object")
+  params <- list(
+    id = id,
+    attr = attr,
+    value = value,
+    delay = delay,
+    duration = duration,
+    legend = legend
+  )
+  params <- params[!vapply(params, is.null, FUN.VALUE = logical(1))]
   proxy$session$sendCustomMessage(
     type = "bertin-update",
-    message = list(id = proxy$id, data = list(...))
+    message = list(
+      id = proxy$id,
+      data = params
+    )
   )
   proxy
 }
