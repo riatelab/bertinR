@@ -20,7 +20,8 @@ bt_layer(
   symbol_size = 5,
   symbol_shift = 0,
   symbol_iteration = 200,
-  display = TRUE
+  display = TRUE,
+  id = NULL
 )
 }
 \arguments{
@@ -55,6 +56,8 @@ bt_layer(
 \item{symbol_iteration}{Number of iteration to shift symbols}
 
 \item{display}{Boolean to allow to show or hide the layer. This parameter has no effect on the calculation of the extent}
+
+\item{id}{A unique identifier for the layer, useful to update parameters with proxy in shiny.}
 }
 \value{
 a bertin list

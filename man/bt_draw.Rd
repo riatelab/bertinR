@@ -4,10 +4,12 @@
 \alias{bt_draw}
 \title{Draw the map}
 \usage{
-bt_draw(bertin, elementId = NULL)
+bt_draw(bertin, width = NULL, height = NULL, elementId = NULL)
 }
 \arguments{
-\item{bertin}{bertin}
+\item{bertin}{A `bertin` configuration list, typically initiated with [bt_param()].}
+
+\item{width, height}{A numeric input in pixels.}
 
 \item{elementId}{elementId}
 }

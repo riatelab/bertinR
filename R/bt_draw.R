@@ -1,14 +1,14 @@
 #' Draw the map
 #'
-#' @param bertin bertin
-
+#' @param bertin A `bertin` configuration list, typically initiated with [bt_param()].
 #' @param elementId elementId
+#' @param width,height A numeric input in pixels.
 #'
 #' @importFrom htmlwidgets createWidget
 #' @importFrom jsonlite toJSON
 #'
 #' @export
-bt_draw <- function(bertin, elementId = NULL) {
+bt_draw <- function(bertin, width = NULL, height = NULL, elementId = NULL) {
   bertin$params$reverse = TRUE
   for(i in seq_along(bertin$layers)){
     old_names <- names(bertin$layers[[i]])
@@ -19,51 +19,33 @@ bt_draw <- function(bertin, elementId = NULL) {
       names(bertin$layers[[i]]) <- new_names
     }
   }
-    # forward options using x
-    x = list(
-      message = as.character(
-        toJSON(bertin, auto_unbox = T, pretty = F, sf = "geojson")
-        )
+  x <- list(
+    parameters = bertin
+  )
+  attr(x, "TOJSON_ARGS") <- list(dataframe = "rows", auto_unbox = TRUE, pretty = FALSE, sf = "geojson")
+
+  htmlwidgets::createWidget(
+    name = "draw",
+    x = x,
+    width = width,
+    height = height,
+    package = "bertin",
+    elementId = elementId,
+    sizingPolicy = htmlwidgets::sizingPolicy(
+      defaultWidth = "100%",
+      defaultHeight = "100%",
+      viewer.defaultHeight = "100%",
+      viewer.defaultWidth = "100%",
+      knitr.figure = FALSE,
+      knitr.defaultWidth = "100%",
+      knitr.defaultHeight = "500px",
+      browser.fill = TRUE,
+      viewer.suppress = FALSE,
+      browser.external = TRUE,
+      padding = 0
     )
+  )
+}
 
 
-    # create widget
-    htmlwidgets::createWidget(
-      name = 'draw',
-      x,
-      # width = width,
-      # height = height,
-      package = 'bertin',
-      elementId = elementId
-    )
-  }
 
-#'
-#' #' Shiny bindings for draw
-#' #'
-#' #' Output and render functions for using draw within Shiny
-#' #' applications and interactive Rmd documents.
-#' #'
-#' #' @param outputId output variable to read from
-#' #' @param width,height Must be a valid CSS unit (like \code{'100\%'},
-#' #'   \code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
-#' #'   string and have \code{'px'} appended.
-#' #' @param expr An expression that generates a draw
-#' #' @param env The environment in which to evaluate \code{expr}.
-#' #' @param quoted Is \code{expr} a quoted expression (with \code{quote()})? This
-#' #'   is useful if you want to save an expression in a variable.
-#' #'
-#' #' @name draw-shiny
-#' #'
-#' #' @export
-#' drawOutput <- function(outputId, width = '100%', height = '400px'){
-#'   htmlwidgets::shinyWidgetOutput(outputId, 'draw', width, height, package = 'bertin')
-#' }
-#'
-#' #' @rdname draw-shiny
-#' #' @export
-#' renderDraw <- function(expr, env = parent.frame(), quoted = FALSE) {
-#'   if (!quoted) { expr <- substitute(expr) } # force quoted
-#'   htmlwidgets::shinyRenderWidget(expr, drawOutput, env, quoted = TRUE)
-#' }
-#'
